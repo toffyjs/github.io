@@ -266,15 +266,17 @@ Footer.prototype.render = function() {
                 "data-tid": "Aq5yrkqnvx9b",
                 className: "Footer-div_12"
             },
-            links && links.map && links.length ? links.map((i, j) => (React.createElement("a", {
-                    key: j,
-                    "data-tid": "Aag72o7cdsx",
-                    className: "Footer-a_10",
-                    href: i.link,
-                    target: 'blank'
-                },
-                i.title
-            ))) : undefined
+            links && links.map && links.length ? links.map((i, j) => (
+                React.createElement("a", {
+                        key: j,
+                        "data-tid": "Aag72o7cdsx",
+                        className: "Footer-a_10",
+                        href: i.link,
+                        target: 'blank'
+                    },
+                    i.title
+                )
+            )) : undefined
         ),
         React.createElement("div", {
                 "data-tid": "Aduqhox7tpr6",
@@ -298,7 +300,7 @@ Footer.prototype.componentWillMount = function() {
             "Home": "/",
             "Roadmap": "/roadmap",
             "Terms Of Service": "/terms",
-            "Privacy Policy": "/privecy"
+            "Privacy Policy": "/PrivacyPolicy"
         }
     } catch (e) {
         console.log("=========================")
@@ -429,55 +431,57 @@ Contents.prototype.render = function() {
                 "data-tid": "Ai73qq2o6drk",
                 className: "Contents-div_2"
             },
-            this.contents && this.contents.map && this.contents.length ? this.contents.map((i, j) => (React.createElement("div", {
-                    key: j,
-                    "data-tid": "Apnw1w49por7",
-                    onClick: (e) => {
-                        this.hover(i);
-                    },
-                    className: "Contents-div_71",
-                    title: 'Click for full view'
-                },
+            this.contents && this.contents.map && this.contents.length ? this.contents.map((i, j) => (
                 React.createElement("div", {
-                        "data-tid": "A5fnc2ypy07r",
-                        className: "Contents-div_29"
+                        key: j,
+                        "data-tid": "Apnw1w49por7",
+                        onClick: (e) => {
+                            this.hover(i);
+                        },
+                        className: "Contents-div_71",
+                        title: 'Click for full view'
                     },
-                    React.createElement("i", {
-                        "data-tid": "A975ssd5j25u",
-                        className: " Contents-i_5" + (' fa fa-' + i.icon)
-                    }),
                     React.createElement("div", {
-                            "data-tid": "Agqc1bfmmfms",
-                            className: "Contents-div_12"
+                            "data-tid": "A5fnc2ypy07r",
+                            className: "Contents-div_29"
                         },
-                        React.createElement("h1", {
-                                "data-tid": "Alxo4vwp3keq",
-                                className: "Contents-h1_21"
+                        React.createElement("i", {
+                            "data-tid": "A975ssd5j25u",
+                            className: " Contents-i_5" + (' fa fa-' + (i.icon))
+                        }),
+                        React.createElement("div", {
+                                "data-tid": "Agqc1bfmmfms",
+                                className: "Contents-div_12"
                             },
-                            i.title
-                        ),
-                        React.createElement("p", {
-                                "data-tid": "Aoldzg8c3gks",
-                                className: "Contents-p_21"
-                            },
-                            i.text
+                            React.createElement("h1", {
+                                    "data-tid": "Alxo4vwp3keq",
+                                    className: "Contents-h1_21"
+                                },
+                                i.title
+                            ),
+                            React.createElement("p", {
+                                    "data-tid": "Aoldzg8c3gks",
+                                    className: "Contents-p_21"
+                                },
+                                i.text
+                            )
                         )
-                    )
-                ),
-                React.createElement("div", {
-                        "data-tid": "Alq96ztbvk1k",
-                        className: " Contents-div_16" + (typeof state.s == i != undefined && state.s == i && ' Contents-hover ' || '')
-                    },
-                    React.createElement("img", {
-                        "data-tid": "Aw6a4ue1xpq",
-                        style: {
-                            filter: state.s === i ? null : 'grayscale()'
+                    ),
+                    React.createElement("div", {
+                            "data-tid": "Alq96ztbvk1k",
+                            className: " Contents-div_16" + (typeof state.s == i != undefined && state.s == i && ' Contents-hover ' || '')
                         },
-                        className: "Contents-img_25",
-                        src: i.img
-                    })
+                        React.createElement("img", {
+                            "data-tid": "Aw6a4ue1xpq",
+                            style: {
+                                filter: state.s === i ? null : 'grayscale()'
+                            },
+                            className: "Contents-img_25",
+                            src: i.img
+                        })
+                    )
                 )
-            ))) : undefined
+            )) : undefined
         ),
         state.s ?
         React.createElement("div", {
@@ -673,7 +677,7 @@ TopBarSite.prototype.render = function() {
                             color: '#aaa',
                             textDecoration: 'none'
                         },
-                        href: '/privecy'
+                        href: '/privacypolicy'
                     },
                     React.createElement("span", {
                             "data-tid": "b15ywokw1nv"
