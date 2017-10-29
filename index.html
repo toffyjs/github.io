@@ -1,0 +1,858 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+
+body{
+    font-family:Roboto
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}</style><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js">
+</script><title></title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> 
+ <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+
+<style type="text/css">
+   
+ .Footer-div_27 {
+    background-color: #444;
+    background: flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px;
+    padding-top: 60px
+}
+.Footer-div_12 {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px
+}
+.Footer-a_10 {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 40px;
+    margin-right: 40px
+}
+.Footer-a_10:hover {
+    cursor: pointer;
+    color: BurlyWood
+}
+.Footer-div_64 {
+    margin-top: 35px;
+    margin-bottom: 20px
+}
+.NotifyMe-div_6 {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+.NotifyMe-div_69 {
+    justify-content: flex-start;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    margin-bottom: 82px;
+    margin-top: 38px
+}
+.NotifyMe-div_67 {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
+    margin-right: 25px
+}
+.NotifyMe-i_2 {
+    color: RoyalBlue;
+    font-size: 91px
+}
+.NotifyMe-div_105 {
+    margin-left: 24px;
+    width: 300px
+}
+.NotifyMe-h1_8 {
+    font-weight: 900;
+    color: #333;
+    font-size: 25px;
+    margin-top: 6px;
+    font-style: italic;
+    text-transform: uppercase
+}
+.NotifyMe-p_4 {
+    font-size: 19px;
+    margin-top: 11px;
+    color: #555;
+    text-transform: capitalize
+}
+.NotifyMe-h1_1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900
+}
+.NotifyMe-div_61 {
+    margin: 14px
+}
+.NotifyMe-input_3 {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    width: 281px;
+    font-size: 18px;
+    font-weight: 900;
+    border-color: #333;
+    text-indent: 14px
+}
+.NotifyMe-button_3 {
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 12px;
+    border-style: none;
+    color: AliceBlue;
+    font-size: 16px;
+    padding-left: 27px;
+    padding-right: 22px;
+    font-weight: 900;
+    padding-top: 13px;
+    background-color: #333
+}
+.Contents-div_1 {
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    max-width: 1000px
+}
+.Contents-div_2 {
+    padding: 20px;
+    position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between
+}
+.Contents-div_71 {
+    flex-direction: row;
+    display: flex;
+    width: 46%;
+    position: relative;
+    margin-bottom: 162px
+}
+.Contents-div_71:hover {
+    cursor: zoom-in
+}
+.Contents-div_29:hover {
+    cursor: pointer;
+    opacity: 1
+}
+.Contents-div_29 {
+    margin-top: 24px;
+    color: #444;
+    font-weight: 400;
+    opacity: 0.6;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    flex-direction: row
+}
+.Contents-i_5 {
+    font-size: 33px;
+    margin-right: 31px;
+    width: 22px
+}
+.Contents-div_12 {
+    width: 180px
+}
+.Contents-h1_21 {
+    font-weight: 900
+}
+.Contents-p_21 {
+    margin-top: 7px;
+    font-size: 18px;
+    line-height: 23px;
+    color: #666
+}
+.Contents-div_16 {
+    max-width: 465px;
+    max-height: 400px;
+    position: absolute;
+    background-color: #111;
+    background-size: auto;
+    border: 4px solid #555;
+    transition-property: left;
+    transition-duration: .3s;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    left: 236px;
+    transition-timing-function: ease-in
+}
+.Contents-hover {
+    z-index: 20;
+    border-radius: 0;
+    height: auto;
+    width: auto;
+    right: -400px;
+    box-shadow: 0 0 10px
+}
+.Contents-div_131 {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    background-color: Black;
+    z-index: 262
+}
+.Contents-video_1 {
+    width: 100%
+}
+.Index-div_9 {
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end
+}
+.Index-img_28 {
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    z-index: 0;
+    padding-bottom: 0;
+    top: 3px;
+    margin-top: 118px
+}
+.Index-div_5 {
+    min-height: 100vh;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding-bottom: 72px
+}
+</style>
+ </head><body><script type="text/javascript">
+ </script><div id="app"></div><script type="text/javascript">
+    
+        var Footer = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Footer.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    let links = Object.keys(this.links).map(a => {
+        return {
+            title: a,
+            link: this.links[a]
+        }
+    })
+    return React.createElement("div", {
+            "data-tid": "Aaopts7pu67u",
+            className: "Footer-div_27"
+        },
+        React.createElement("div", {
+                "data-tid": "Aq5yrkqnvx9b",
+                className: "Footer-div_12"
+            },
+            links && links.map && links.length ? links.map((i, j) => (React.createElement("a", {
+                    "data-tid": "Aag72o7cdsx",
+                    className: "Footer-a_10",
+                    href: i.link,
+                    target: 'blank'
+                },
+                i.title
+            ))) : undefined
+        ),
+        React.createElement("div", {
+                "data-tid": "Aduqhox7tpr6",
+                style: {
+                    color: 'white'
+                },
+                className: "Footer-div_64"
+            },
+            React.createElement("span", {
+                    "data-tid": "Alc6yl6q68pn",
+                    style: {}
+                },
+                "© 2017, ToffyJS. All Rights Reserved."
+            )
+        )
+    )
+}
+Footer.prototype.componentWillMount = function() {
+    try {
+        this.links = {
+            "Home": "/",
+            "Dashboard": "/dashboard",
+            "Roadmap": "/roadmap",
+            "Terms Of Service": "/terms",
+            "Privacy Policy": "/privecy"
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+
+
+var NotifyMe = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+NotifyMe.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Aywy9qomfxtg",
+            className: "NotifyMe-div_6"
+        },
+        React.createElement("div", {
+                "data-tid": "A2cvbp0n1ut6",
+                className: "NotifyMe-div_69"
+            },
+            React.createElement("div", {
+                    "data-tid": "A8d7zi8wic76",
+                    className: "NotifyMe-div_67"
+                },
+                React.createElement("i", {
+                    "data-tid": "A24r6b58336n",
+                    className: " NotifyMe-i_2" + (" fa fa-dropbox")
+                }),
+                React.createElement("div", {
+                        "data-tid": "A619ggvdtgsb",
+                        className: "NotifyMe-div_105"
+                    },
+                    React.createElement("h1", {
+                            "data-tid": "Awyuw8zasxv",
+                            className: "NotifyMe-h1_8"
+                        },
+                        "Dropbox"
+                    ),
+                    React.createElement("p", {
+                            "data-tid": "A9n35ja5xfa",
+                            className: "NotifyMe-p_4"
+                        },
+                        "Sync and save your components and styles into your dropbox"
+                    )
+                )
+            ),
+            React.createElement("div", {
+                    "data-tid": "Arsy96cyw35",
+                    className: "NotifyMe-div_67"
+                },
+                React.createElement("i", {
+                    "data-tid": "Abxc3fl955",
+                    style: {
+                        color: '#333'
+                    },
+                    className: " NotifyMe-i_2" + (" fa fa-github")
+                }),
+                React.createElement("div", {
+                        "data-tid": "A6u2tyz2u7os",
+                        className: "NotifyMe-div_105"
+                    },
+                    React.createElement("h1", {
+                            "data-tid": "Ax2ah20wwydd",
+                            className: "NotifyMe-h1_8"
+                        },
+                        "Github"
+                    ),
+                    React.createElement("p", {
+                            "data-tid": "Ayrp0ho8evq",
+                            className: "NotifyMe-p_4"
+                        },
+                        "Push your code, styling and components into your github"
+                    )
+                )
+            )
+        ),
+        React.createElement("h1", {
+                "data-tid": "A5p50924zscx",
+                className: "NotifyMe-h1_1"
+            },
+            "Intrested in trying?"
+        ),
+        React.createElement("div", {
+                "data-tid": "A9zyj5gooai",
+                className: "NotifyMe-div_61"
+            },
+            React.createElement("input", {
+                "data-tid": "Ajj3sprk2fl8",
+                className: "NotifyMe-input_3",
+                type: 'text',
+                placeholder: 'Email address...'
+            }),
+            React.createElement("button", {
+                    "data-tid": "Ahfvl8fh4r1f",
+                    className: "NotifyMe-button_3"
+                },
+                "Send"
+            )
+        )
+    )
+}
+
+
+var Contents = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Contents.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Am4qlz9bo7nk",
+            className: "Contents-div_1"
+        },
+        React.createElement("div", {
+                "data-tid": "Ai73qq2o6drk",
+                className: "Contents-div_2"
+            },
+            this.contents && this.contents.map && this.contents.length ? this.contents.map((i, j) => (React.createElement("div", {
+                    "data-tid": "Apnw1w49por7",
+                    onClick: (e) => {
+                        this.hover(i);
+                    },
+                    className: "Contents-div_71",
+                    title: 'Click for full view'
+                },
+                React.createElement("div", {
+                        "data-tid": "A5fnc2ypy07r",
+                        className: "Contents-div_29"
+                    },
+                    React.createElement("i", {
+                        "data-tid": "A975ssd5j25u",
+                        className: " Contents-i_5" + (' fa fa-' + i.icon)
+                    }),
+                    React.createElement("div", {
+                            "data-tid": "Agqc1bfmmfms",
+                            className: "Contents-div_12"
+                        },
+                        React.createElement("h1", {
+                                "data-tid": "Alxo4vwp3keq",
+                                className: "Contents-h1_21"
+                            },
+                            i.title
+                        ),
+                        React.createElement("p", {
+                                "data-tid": "Aoldzg8c3gks",
+                                className: "Contents-p_21"
+                            },
+                            i.text
+                        )
+                    )
+                ),
+                React.createElement("div", {
+                        "data-tid": "Alq96ztbvk1k",
+                        className: " Contents-div_16" + (typeof state.s == i != undefined && state.s == i && ' Contents-hover ' || '')
+                    },
+                    React.createElement("img", {
+                        "data-tid": "Aw6a4ue1xpq",
+                        style: {
+                            filter: state.s === i ? null : 'grayscale()'
+                        },
+                        className: "Contents-img_25",
+                        src: i.img
+                    })
+                )
+            ))) : undefined
+        ),
+        state.s ?
+        React.createElement("div", {
+                "data-tid": "Av92cst39n6",
+                onClick: (e) => {
+                    this.hover();
+                },
+                className: "Contents-div_131"
+            },
+            React.createElement("video", {
+                "data-tid": "Aq5sy8d1xgnf",
+                className: "Contents-video_1",
+                src: state.s.video,
+                autoPlay: true
+            })
+        ) :
+        null
+    )
+}
+Contents.prototype.componentWillMount = function() {
+    try {
+        this.contents = [{
+            img: "/imgs/style.png",
+            title: "Styling",
+            text: "Easily edit your styling and experience the changes as you modify your CSS",
+            icon: "paint-brush"
+        }, {
+            img: "/imgs/setting.png",
+            title: "Elements",
+            text: "Define properties to your element like you would do in HTML",
+            icon: "cubes"
+        }, {
+            icon: "plus",
+            img: "/imgs/addpanel.png",
+            title: "Add",
+            text: "Enrich and expand your component with any element using the side menu"
+        }, {
+            icon: "paint-brush",
+            icon: "code",
+            img: "/imgs/code.png",
+            title: "Code",
+            text: "Write your own JS code and make your components come to live"
+        }, {
+            icon: "flash",
+            img: "/imgs/instastyle.png",
+            title: "Quick",
+            text: "Quickly modify your styling or navigate between components using key bindings"
+        }, {
+            icon: "align-left",
+            img: "/imgs/layout.png",
+            title: "Layout",
+            text: "Place and align your elements in seconds with intuitive layout tools"
+        }].map((i, j) => {
+            i.video = "https://aizikdahan.github.io/imgs/add.webm"
+            i.side = ((j % 2) === 1) ? "-reverse" : '';
+            i.bg = (i.side != '') ? "#444" : "#E4A910";
+            if (j === 2) i.bg = "#111";
+            i.z = j;
+            return i;
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Contents.prototype.hover = function(i) {
+    try {
+        let s = this.state.s;
+        if (i === s) return
+        if (s) s.x = s.px;
+        if (i) {
+            i.px = i.x;
+            i.x = -50
+        }
+        this.setState({
+            s: i
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('hover')
+        console.log(e)
+    }
+}
+
+
+var TopBarSite = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+TopBarSite.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "nwek2h41ioj",
+            style: {
+                height: '60px',
+                borderBottom: '1px solid #444',
+                position: 'fixed',
+                left: '0',
+                right: '0',
+                backgroundColor: '#212121',
+                padding: '0 20px',
+                zIndex: '10'
+            }
+        },
+        React.createElement("div", {
+                "data-tid": "h136ucasyya",
+                style: {
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                }
+            },
+            React.createElement("a", {
+                    "data-tid": "w4fzmcyvcz",
+                    style: {
+                        textDecoration: 'none'
+                    },
+                    href: '/'
+                },
+                React.createElement("h1", {
+                        "data-tid": "xtwubwoipqn",
+                        style: {
+                            color: '#eee',
+                            fontWeight: '100px',
+                            fontSize: '15px',
+                            fontWeight: '100'
+                        },
+                        className: "xtwubwoipqn"
+                    },
+                    "TOFFY", React.createElement("span", {
+                            "data-tid": "wwin6tiiom",
+                            style: {
+                                color: '#aaa'
+                            }
+                        },
+                        "JS"
+                    )
+                )
+            ),
+            React.createElement("div", {
+                    "data-tid": "ayxpwhsm8lv",
+                    style: {
+                        color: '#ccc'
+                    }
+                },
+                React.createElement("a", {
+                        "data-tid": "ap5cyehzwrs",
+                        style: {
+                            fontSize: '11px',
+                            fontWeight: '900px',
+                            color: '#aaa',
+                            textDecoration: 'none'
+                        },
+                        href: '/roadmap'
+                    },
+                    React.createElement("span", {
+                            "data-tid": "ww3i7aterk"
+                        },
+                        "Roadmap"
+                    )
+                ),
+                React.createElement("a", {
+                        "data-tid": "ns3wa0v9pgq",
+                        style: {
+                            fontSize: '11px',
+                            fontWeight: '900px',
+                            color: '#aaa',
+                            textDecoration: 'none',
+                            margin: '0 30px'
+                        },
+                        href: '/terms'
+                    },
+                    React.createElement("span", {
+                            "data-tid": "9xjegbdt0ww"
+                        },
+                        "Terms"
+                    )
+                ),
+                React.createElement("a", {
+                        "data-tid": "qip40lz6gg",
+                        style: {
+                            fontSize: '11px',
+                            fontWeight: '900px',
+                            color: '#aaa',
+                            textDecoration: 'none'
+                        },
+                        href: '/privecy'
+                    },
+                    React.createElement("span", {
+                            "data-tid": "b15ywokw1nv"
+                        },
+                        "Privacy Policy"
+                    )
+                ),
+                React.createElement("a", {
+                        "data-tid": "2xqu79a7n9y",
+                        style: {
+                            fontSize: '11px',
+                            fontWeight: '900px',
+                            color: '#aaa',
+                            textDecoration: 'none',
+                            marginLeft: '30px'
+                        },
+                        href: '/dashboard'
+                    },
+                    React.createElement("span", {
+                            "data-tid": "soy8b8z3s2c"
+                        },
+                        "Dashboard"
+                    )
+                )
+            )
+        )
+    )
+}
+
+
+class Index extends React.Component {
+    render() {
+        var props = this.props;
+        var state = this.state;
+        return React.createElement("div", {
+                "data-tid": "sjckp6e2bx",
+                style: {}
+            },
+            React.createElement(TopBarSite, {
+                "data-tid": "o1evokl7w2q"
+            }),
+            React.createElement("div", {
+                    "data-tid": "ufhc7qner6o",
+                    style: {
+                        backgroundColor: '#333',
+                        borderBottom: '1px solid #3b3b3b',
+                        color: '#eee',
+                        textAlign: 'center',
+                        minHeight: '100vh'
+                    },
+                    className: "Index-div_9"
+                },
+                React.createElement("div", {
+                        "data-tid": "rnaqqyqzmei",
+                        style: {
+                            width: '1093px',
+                            maxWidth: '100%',
+                            margin: '0 auto'
+                        }
+                    },
+                    React.createElement("h1", {
+                            "data-tid": "5egm5whzjmb",
+                            style: {
+                                fontSize: '39px',
+                                paddingTop: '190px'
+                            },
+                            className: "Index_index_anim"
+                        },
+                        "ReactJS Components Made Easy"
+                    ),
+                    React.createElement("p", {
+                            "data-tid": "yu7bmqcgxw",
+                            style: {
+                                marginTop: '18px',
+                                color: '#aaa',
+                                fontSize: '16px',
+                                lineHeight: '24px',
+                                marginLeft: 'auto',
+                                marginRight: 'auto',
+                                padding: '10px',
+                                animationDelay: '0.75s'
+                            },
+                            className: "Index_index_anim"
+                        },
+                        "Toffy gives developers the power to design, build, and launch responsive ", React.createElement("br", {
+                            "data-tid": "l4o923df6tb"
+                        }),
+                        "components and easily migrate into a new or existing project."
+                    ),
+                    React.createElement("img", {
+                        "data-tid": "h8p91zlhio",
+                        style: {
+                            width: '100%',
+                            boxShadow: '0 -5px 5px 4px rgba(0,0,0,0.3),0 0 0px 1px rgba(0,0,0,0.3)',
+                            animationDelay: '1.2s'
+                        },
+                        className: "Index-img_28 Index_index_anim",
+                        src: '/imgs/bg.png'
+                    })
+                )
+            ),
+            React.createElement("div", {
+                    "data-tid": "Ax71lu9ijoo",
+                    className: "Index-div_5"
+                },
+                React.createElement(Contents, {
+                    "data-tid": "Alar03ji9mg"
+                }),
+                React.createElement(NotifyMe, {
+                    "data-tid": "A4hclup1id2"
+                })
+            ),
+            React.createElement(Footer, {
+                "data-tid": "A5iuibpfujos",
+                style: {}
+            })
+        )
+    }
+    constructor(props) {
+        super()
+        this.state = {}
+    }
+    edit(e) {
+        this.setState({
+            email: e.target.value
+        })
+    }
+    componentWillMount() {
+        this.state.isMobile = document.documentElement.offsetWidth < 410;
+        this.links = {
+            home: "/",
+            dashboard: "/dashboard",
+            roadmap: "/dashboard",
+            terms: "/dashboard",
+            privecy: "/dashboard",
+            facebook: "http://facebook.com"
+        }
+        this.contents = [{
+            img: "/imgs/style.png",
+            title: "Style Panel",
+            text: "Here you can add properites to the node element such as value placeholder disabled etc,also you can bind event to the element"
+        }, {
+            img: "/imgs/setting.png",
+            title: "Setting",
+            text: "Here you can add properites to the node element such as value placeholder disabled etc,also you can bind event to the element"
+        }, {
+            img: "/imgs/add.png",
+            title: "Add Bar",
+            text: "Here you can add properites to the node element such as value placeholder disabled etc,also you can bind event to the element"
+        }].map((i, j) => {
+            i.side = ((j % 2) === 1) ? "-reverse" : '';
+            i.bg = (i.side != '') ? "#444" : "#E4A910";
+            if (j === 2) i.bg = "#111"
+            return i;
+        });
+        try {
+            window.smartlook || (function(d) {
+                var o = smartlook = function() {
+                        o.api.push(arguments)
+                    },
+                    h = d.getElementsByTagName('head')[0];
+                var c = d.createElement('script');
+                o.api = new Array();
+                c.async = true;
+                c.type = 'text/javascript';
+                c.charset = 'utf-8';
+                c.src = 'https://rec.smartlook.com/recorder.js';
+                h.appendChild(c);
+            })(document);
+            smartlook('init', '2255cb6f6cf76b4290eab8fbe3c596a048e83829');
+        } catch (e) {
+            console.log(e);
+        }
+    }
+}
+        ReactDOM.render(
+            React.createElement(Index,{
+    
+} ),
+            document.getElementById('app')
+        )
+</script></body></html>
