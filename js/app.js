@@ -34,7 +34,6 @@ function run(name, propsstr) {
     } catch (e) {
         debugger
     }
-
 }
 
 function updateStyle(css, code) {
@@ -124,6 +123,13 @@ function updateSelect(nodeid) {
 function $print() {
     window.openFromView && window.openFromView("log", arguments, Klasses)
 }
+
+let oldHTMLFocus = HTMLElement.prototype.focus;
+HTMLElement.prototype.focus = function() {
+    if (!window.canFocus) return;
+    oldHTMLFocus.apply(this, arguments);
+};
+
 
 console.log("App ready!!!")
 
