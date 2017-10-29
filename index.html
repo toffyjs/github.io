@@ -267,6 +267,7 @@ Footer.prototype.render = function() {
                 className: "Footer-div_12"
             },
             links && links.map && links.length ? links.map((i, j) => (React.createElement("a", {
+                    key: j,
                     "data-tid": "Aag72o7cdsx",
                     className: "Footer-a_10",
                     href: i.link,
@@ -295,7 +296,6 @@ Footer.prototype.componentWillMount = function() {
     try {
         this.links = {
             "Home": "/",
-            "Dashboard": "/dashboard",
             "Roadmap": "/roadmap",
             "Terms Of Service": "/terms",
             "Privacy Policy": "/privecy"
@@ -430,6 +430,7 @@ Contents.prototype.render = function() {
                 className: "Contents-div_2"
             },
             this.contents && this.contents.map && this.contents.length ? this.contents.map((i, j) => (React.createElement("div", {
+                    key: j,
                     "data-tid": "Apnw1w49por7",
                     onClick: (e) => {
                         this.hover(i);
@@ -578,11 +579,10 @@ TopBarSite.prototype.render = function() {
             "data-tid": "nwek2h41ioj",
             style: {
                 height: '60px',
-                borderBottom: '1px solid #444',
                 position: 'fixed',
                 left: '0',
                 right: '0',
-                backgroundColor: '#212121',
+                backgroundColor: '#333',
                 padding: '0 20px',
                 zIndex: '10'
             }
@@ -679,23 +679,6 @@ TopBarSite.prototype.render = function() {
                             "data-tid": "b15ywokw1nv"
                         },
                         "Privacy Policy"
-                    )
-                ),
-                React.createElement("a", {
-                        "data-tid": "2xqu79a7n9y",
-                        style: {
-                            fontSize: '11px',
-                            fontWeight: '900px',
-                            color: '#aaa',
-                            textDecoration: 'none',
-                            marginLeft: '30px'
-                        },
-                        href: '/dashboard'
-                    },
-                    React.createElement("span", {
-                            "data-tid": "soy8b8z3s2c"
-                        },
-                        "Dashboard"
                     )
                 )
             )
@@ -811,24 +794,6 @@ class Index extends React.Component {
             privecy: "/dashboard",
             facebook: "http://facebook.com"
         }
-        this.contents = [{
-            img: "/imgs/style.png",
-            title: "Style Panel",
-            text: "Here you can add properites to the node element such as value placeholder disabled etc,also you can bind event to the element"
-        }, {
-            img: "/imgs/setting.png",
-            title: "Setting",
-            text: "Here you can add properites to the node element such as value placeholder disabled etc,also you can bind event to the element"
-        }, {
-            img: "/imgs/add.png",
-            title: "Add Bar",
-            text: "Here you can add properites to the node element such as value placeholder disabled etc,also you can bind event to the element"
-        }].map((i, j) => {
-            i.side = ((j % 2) === 1) ? "-reverse" : '';
-            i.bg = (i.side != '') ? "#444" : "#E4A910";
-            if (j === 2) i.bg = "#111"
-            return i;
-        });
         try {
             window.smartlook || (function(d) {
                 var o = smartlook = function() {
