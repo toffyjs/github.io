@@ -103,10 +103,9 @@ Footer.prototype.componentWillMount = function() {
     try {
         this.links = {
             "Home": "/",
-            "Dashboard": "/dashboard",
             "Roadmap": "/roadmap",
             "Terms Of Service": "/terms",
-            "Privacy Policy": "/privecy"
+            "Privacy Policy": "/PrivacyPolicy"
         }
     } catch (e) {
         console.log("=========================")
@@ -225,7 +224,7 @@ TopBarSite.prototype.render = function() {
                             color: '#aaa',
                             textDecoration: 'none'
                         },
-                        href: '/privecy'
+                        href: '/PrivacyPolicy'
                     },
                     React.createElement("span", {
                             "data-tid": "b15ywokw1nv"
