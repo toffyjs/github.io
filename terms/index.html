@@ -119,7 +119,6 @@ Footer.prototype.componentWillMount = function() {
     try {
         this.links = {
             "Home": "/",
-            "Dashboard": "/dashboard",
             "Roadmap": "/roadmap",
             "Terms Of Service": "/terms",
             "Privacy Policy": "/privecy"
@@ -129,6 +128,44 @@ Footer.prototype.componentWillMount = function() {
         console.log('componentWillMount')
         console.log(e)
     }
+}
+
+
+var InfoList = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+InfoList.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Acu0ap1p8rx",
+            style: {},
+            className: "Terms-div_27"
+        },
+        props.terms && props.terms.map && props.terms.length ? props.terms.map((i, j) => (React.createElement("div", {
+                key: j,
+                "data-tid": "Ampinebblv5c",
+                className: "Terms-div_26"
+            },
+            React.createElement("h1", {
+                    "data-tid": "Ae45rxnpyt7a",
+                    className: "Terms-h1_13"
+                },
+                i.title
+            ),
+            React.createElement("p", {
+                    "data-tid": "Aean9hamoefb",
+                    className: "Terms-p_4"
+                },
+                i.txt
+            )
+        ))) : undefined
+    )
 }
 
 
@@ -265,30 +302,10 @@ class Terms extends React.Component {
             React.createElement(TopBarSite, {
                 "data-tid": "A6vleklzv85v"
             }),
-            React.createElement("div", {
-                    "data-tid": "Atrns6tthhh",
-                    style: {},
-                    className: "Terms-div_27"
-                },
-                state.terms && state.terms.map && state.terms.length ? state.terms.map((i, j) => (React.createElement("div", {
-                        key: j,
-                        "data-tid": "A9rs2otxmras",
-                        className: "Terms-div_26"
-                    },
-                    React.createElement("h1", {
-                            "data-tid": "Ac0b82uetaw",
-                            className: "Terms-h1_13"
-                        },
-                        i.title
-                    ),
-                    React.createElement("p", {
-                            "data-tid": "Apdx5ry1a8cf",
-                            className: "Terms-p_4"
-                        },
-                        i.txt
-                    )
-                ))) : undefined
-            ),
+            React.createElement(InfoList, {
+                "data-tid": "Adixf1lbogo7",
+                terms: state.terms
+            }),
             React.createElement(Footer, {
                 "data-tid": "Aaxy0ply0n6"
             })
