@@ -97,15 +97,17 @@ Footer.prototype.render = function() {
                 "data-tid": "Aq5yrkqnvx9b",
                 className: "Footer-div_12"
             },
-            links && links.map && links.length ? links.map((i, j) => (React.createElement("a", {
-                    key: j,
-                    "data-tid": "Aag72o7cdsx",
-                    className: "Footer-a_10",
-                    href: i.link,
-                    target: 'blank'
-                },
-                i.title
-            ))) : undefined
+            links && links.map && links.length ? links.map((i, j) => (
+                React.createElement("a", {
+                        key: j,
+                        "data-tid": "Aag72o7cdsx",
+                        className: "Footer-a_10",
+                        href: i.link,
+                        target: 'blank'
+                    },
+                    i.title
+                )
+            )) : undefined
         ),
         React.createElement("div", {
                 "data-tid": "Aduqhox7tpr6",
@@ -129,7 +131,7 @@ Footer.prototype.componentWillMount = function() {
             "Home": "/",
             "Roadmap": "/roadmap",
             "Terms Of Service": "/terms",
-            "Privacy Policy": "/privecy"
+            "Privacy Policy": "/privacypolicy"
         }
     } catch (e) {
         console.log("=========================")
@@ -155,24 +157,26 @@ InfoList.prototype.render = function() {
             style: {},
             className: "Terms-div_27"
         },
-        props.terms && props.terms.map && props.terms.length ? props.terms.map((i, j) => (React.createElement("div", {
-                key: j,
-                "data-tid": "Ampinebblv5c",
-                className: "Terms-div_26"
-            },
-            React.createElement("h1", {
-                    "data-tid": "Ae45rxnpyt7a",
-                    className: "Terms-h1_13"
+        props.terms && props.terms.map && props.terms.length ? props.terms.map((i, j) => (
+            React.createElement("div", {
+                    key: j,
+                    "data-tid": "Ampinebblv5c",
+                    className: "Terms-div_26"
                 },
-                i.title
-            ),
-            React.createElement("p", {
-                    "data-tid": "Aean9hamoefb",
-                    className: "Terms-p_4"
-                },
-                i.txt
+                React.createElement("h1", {
+                        "data-tid": "Ae45rxnpyt7a",
+                        className: "Terms-h1_13"
+                    },
+                    i.title
+                ),
+                React.createElement("p", {
+                        "data-tid": "Aean9hamoefb",
+                        className: "Terms-p_4"
+                    },
+                    i.txt
+                )
             )
-        ))) : undefined
+        )) : undefined
     )
 }
 
@@ -286,7 +290,7 @@ TopBarSite.prototype.render = function() {
                             color: '#aaa',
                             textDecoration: 'none'
                         },
-                        href: '/privecy'
+                        href: '/privacypolicy'
                     },
                     React.createElement("span", {
                             "data-tid": "b15ywokw1nv"
