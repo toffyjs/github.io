@@ -77,15 +77,24 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin-left: 9px;
     height: 200px;
     width: 200px;
-    background-color: Black
+    background-color: Black;
+    position: relative
 }
-.Contents-hover {
-    z-index: 20;
-    border-radius: 0;
-    height: auto;
-    width: auto;
-    right: -400px;
-    box-shadow: 0 0 10px
+.Contents-div_16:hover {}
+.Contents-div_20 {
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    top: 1px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+.Contents-i_3 {
+    color: AliceBlue;
+    font-size: 62px
 }
 .Contents-div_131 {
     position: fixed;
@@ -141,9 +150,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
                     React.createElement("div", {
                             key: j,
                             "data-tid": "Apnw1w49por7",
-                            onClick: (e) => {
+                            onMouseOver: (e) => {
                                 this.hover(i);
                             },
+                            onClick: this.play.bind(this),
                             className: "Contents-div_71",
                             title: 'Click for full view'
                         },
@@ -178,23 +188,28 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
                                 style: {
                                     backgroundImage: 'url(' + i.img + ')'
                                 },
-                                className: " Contents-div_16" + (state.s == i && ' Contents-hover ' || '') + ''
+                                className: "Contents-div_16"
                             },
                             state.s === i ?
-                            React.createElement("i", {
-                                "data-tid": "Ao7hk4lw46lf",
-                                className: (" fa fa-pencil") + ''
-                            }) :
+                            React.createElement("div", {
+                                    "data-tid": "Abcabbi9jg95",
+                                    className: "Contents-div_20"
+                                },
+                                React.createElement("i", {
+                                    "data-tid": "Ao7hk4lw46lf",
+                                    className: " Contents-i_3" + (" fa fa-play") + ''
+                                })
+                            ) :
                             null
                         )
                     )
                 )) : undefined
             ),
-            state.s ?
+            state.s && state.play ?
             React.createElement("div", {
                     "data-tid": "Av92cst39n6",
                     onClick: (e) => {
-                        this.hover();
+                        this.close();
                     },
                     className: "Contents-div_131"
                 },
@@ -228,13 +243,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     hover(i) {
         let s = this.state.s;
         if (i === s) return
-        if (s) s.x = s.px;
-        if (i) {
-            i.px = i.x;
-            i.x = -50
-        }
         this.setState({
             s: i
+        })
+    }
+    play() {
+        this.setState({
+            play: true
+        })
+    }
+    close() {
+        this.setState({
+            play: false
         })
     }
     componentWillMount() {
