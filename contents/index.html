@@ -24,16 +24,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Contents-div_2 {
     padding: 20px;
     position: relative;
-    flex-wrap: wrap;
     display: flex;
-    justify-content: space-between
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start
 }
 .Contents-div_71 {
     flex-direction: row;
     display: flex;
-    width: 46%;
     position: relative;
-    margin-bottom: 162px
+    margin-bottom: 162px;
+    margin-left: 30px
 }
 .Contents-div_71:hover {
     cursor: zoom-in
@@ -70,21 +72,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: #666
 }
 .Contents-div_16 {
-    max-width: 465px;
-    max-height: 400px;
-    position: absolute;
-    background-color: #111;
-    background-size: auto;
-    border: 4px solid #555;
-    transition-property: left;
-    transition-duration: .3s;
-    background-repeat: no-repeat;
     overflow: hidden;
     border-radius: 50%;
-    width: 200px;
+    margin-left: 9px;
     height: 200px;
-    left: 236px;
-    transition-timing-function: ease-in
+    width: 200px;
+    background-color: Black
 }
 .Contents-hover {
     z-index: 20;
@@ -182,16 +175,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
                         ),
                         React.createElement("div", {
                                 "data-tid": "Alq96ztbvk1k",
+                                style: {
+                                    backgroundImage: 'url(' + i.img + ')'
+                                },
                                 className: " Contents-div_16" + (state.s == i && ' Contents-hover ' || '') + ''
                             },
-                            React.createElement("img", {
-                                "data-tid": "Aw6a4ue1xpq",
-                                style: {
-                                    filter: state.s === i ? null : 'grayscale()'
-                                },
-                                className: "Contents-img_25",
-                                src: i.img
-                            })
+                            state.s === i ?
+                            React.createElement("i", {
+                                "data-tid": "Ao7hk4lw46lf",
+                                className: (" fa fa-pencil") + ''
+                            }) :
+                            null
                         )
                     )
                 )) : undefined
