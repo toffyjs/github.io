@@ -14,7 +14,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 <style type="text/css">
    
- .Graph-div_11 {
+ .GraphPanel-div_47 {
+    position: absolute;
+    top: 1px;
+    flex-direction: row;
+    display: flex
+}
+.Graph-div_11 {
     background-color: BlueViolet;
     width: 600px;
     height: 400px;
@@ -73,19 +79,61 @@ GraphPanel.prototype.render = function() {
         },
         React.createElement(Graph, {
             "data-tid": "A4d9sz153047",
-            dots: this.dots
-        })
+            dots: this.state.dots
+        }),
+        React.createElement("div", {
+                "data-tid": "A6izixyl9x33",
+                className: "GraphPanel-div_47"
+            },
+            React.createElement("button", {
+                    "data-tid": "Asl8vju562li",
+                    onClick: this.openMenu.bind(this)
+                },
+                React.createElement("i", {
+                    "data-tid": "Apfjh0q0f3bb",
+                    className: (" fa fa-cog") + ''
+                })
+            ),
+            state.openMenu ?
+            React.createElement(MenuPanel, {
+                "data-tid": "A40z0pn9c6vu",
+                clear: this.clear.bind(this)
+            }) :
+            null
+        )
     )
 }
 GraphPanel.prototype.componentWillMount = function() {
     try {
-        this.dots = [{
+        this.state.dots = [{
             x: 50,
             y: 80
-        }]
+        }];
     } catch (e) {
         console.log("=========================")
         console.log('componentWillMount')
+        console.log(e)
+    }
+}
+GraphPanel.prototype.openMenu = function() {
+    try {
+        this.setState({
+            openMenu: !this.state.openMenu
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('openMenu')
+        console.log(e)
+    }
+}
+GraphPanel.prototype.clear = function() {
+    try {
+        this.setState({
+            dots: []
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('clear')
         console.log(e)
     }
 }
@@ -161,6 +209,17 @@ Graph.prototype.componentWillMount = function() {
     } catch (e) {
         console.log("=========================")
         console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Graph.prototype.componentWillReceiveProps = function(props) {
+    try {
+        if (props.dots !== this.props.dots) {
+            this.state.dots = props.dots;
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillReceiveProps')
         console.log(e)
     }
 }
@@ -250,6 +309,36 @@ Graph.prototype.remove = function(i, j, e) {
         console.log('remove')
         console.log(e)
     }
+}
+
+
+var MenuPanel = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+MenuPanel.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Av2eu61yn1ej"
+        },
+        React.createElement("div", {
+                "data-tid": "Ao2wenmruyj"
+            },
+            React.createElement("button", {
+                    "data-tid": "Aucw10ga4g9h",
+                    onClick: (e) => {
+                        props.clear();
+                    }
+                },
+                "clear"
+            )
+        )
+    )
 }
 
 
