@@ -59,7 +59,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     display: flex;
     position: relative;
     margin-bottom: 162px;
-    margin-left: 30px
+    margin-left: 30px;
+    flex-wrap: wrap;
+    justify-content: center
 }
 .Contents-div_71:hover {
     cursor: zoom-in
@@ -76,7 +78,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     justify-content: flex-start;
     display: flex;
     align-items: center;
-    flex-direction: row
+    flex-direction: row;
+    margin-bottom: 21px
 }
 .Contents-i_5 {
     font-size: 33px;
@@ -182,7 +185,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .NotifyMe-div_105 {
     margin-left: 24px;
-    width: 300px
+    flex: 1;
+    max-width: 350px
 }
 .NotifyMe-h1_8 {
     font-weight: 900;
@@ -204,7 +208,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-weight: 900
 }
 .NotifyMe-div_61 {
-    margin: 14px;
+    margin-top: 14px;
     flex-wrap: wrap;
     display: flex
 }
@@ -214,7 +218,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding: 10px;
     border-style: solid;
     border-width: 1px;
-    width: 281px;
     font-size: 18px;
     font-weight: 900;
     border-color: #333;
@@ -240,7 +243,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 30px;
     padding-top: 60px
 }
 .Footer-div_12 {
@@ -248,14 +250,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 16px
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center
 }
 .Footer-a_10 {
     color: #fff;
     text-decoration: none;
-    font-size: 14px;
-    margin-left: 40px;
-    margin-right: 40px
+    font-size: 15px;
+    width: 135px;
+    text-align: center;
+    margin-bottom: 14px
 }
 .Footer-a_10:hover {
     cursor: pointer;
@@ -628,7 +633,7 @@ Contents.prototype.render = function() {
                 React.createElement("iframe", {
                     "data-tid": "Aiyk19z256ds",
                     className: "Contents-iframe_1",
-                    src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1'
+                    src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1&rel=0'
                 })
             ),
             React.createElement("button", {
