@@ -1,0 +1,308 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+
+body{
+    font-family:Roboto
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}</style><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js">
+</script><title></title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> 
+ <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+
+<style type="text/css">
+   
+ .Contents-div_1 {
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    max-width: 1000px
+}
+.Contents-div_2 {
+    padding: 20px;
+    position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between
+}
+.Contents-div_71 {
+    flex-direction: row;
+    display: flex;
+    width: 46%;
+    position: relative;
+    margin-bottom: 162px
+}
+.Contents-div_71:hover {
+    cursor: zoom-in
+}
+.Contents-div_29:hover {
+    cursor: pointer;
+    opacity: 1
+}
+.Contents-div_29 {
+    margin-top: 24px;
+    color: #444;
+    font-weight: 400;
+    opacity: 0.6;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    flex-direction: row
+}
+.Contents-i_5 {
+    font-size: 33px;
+    margin-right: 31px;
+    width: 22px
+}
+.Contents-div_12 {
+    width: 180px
+}
+.Contents-h1_21 {
+    font-weight: 900
+}
+.Contents-p_21 {
+    margin-top: 7px;
+    font-size: 18px;
+    line-height: 23px;
+    color: #666
+}
+.Contents-div_16 {
+    max-width: 465px;
+    max-height: 400px;
+    position: absolute;
+    background-color: #111;
+    background-size: auto;
+    border: 4px solid #555;
+    transition-property: left;
+    transition-duration: .3s;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    left: 236px;
+    transition-timing-function: ease-in
+}
+.Contents-hover {
+    z-index: 20;
+    border-radius: 0;
+    height: auto;
+    width: auto;
+    right: -400px;
+    box-shadow: 0 0 10px
+}
+.Contents-div_131 {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    background-color: Black;
+    z-index: 262;
+    justify-content: center;
+    display: flex;
+    align-items: center
+}
+.Contents-div_131:hover {
+    cursor: nwse-resize
+}
+.Contents-div_17 {
+    width: 100%;
+    height: 100%;
+    pointer-events: none
+}
+.Contents-iframe_1 {
+    border-style: none;
+    width: 100%;
+    height: 100%
+}
+.Contents-button_1 {
+    color: AliceBlue;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 41px;
+    position: absolute;
+    right: 1px;
+    top: 1px
+}
+</style>
+ </head><body><script type="text/javascript">
+ </script><div id="app"></div><script type="text/javascript">
+    
+        class Contents extends React.Component {
+    render() {
+        var props = this.props;
+        var state = this.state;
+        return React.createElement("div", {
+                "data-tid": "Am4qlz9bo7nk",
+                className: "Contents-div_1"
+            },
+            React.createElement("div", {
+                    "data-tid": "Ai73qq2o6drk",
+                    className: "Contents-div_2"
+                },
+                this.contents && this.contents.map && this.contents.length ? this.contents.map((i, j) => (
+                    React.createElement("div", {
+                            key: j,
+                            "data-tid": "Apnw1w49por7",
+                            onClick: (e) => {
+                                this.hover(i);
+                            },
+                            className: "Contents-div_71",
+                            title: 'Click for full view'
+                        },
+                        React.createElement("div", {
+                                "data-tid": "A5fnc2ypy07r",
+                                className: "Contents-div_29"
+                            },
+                            React.createElement("i", {
+                                "data-tid": "A975ssd5j25u",
+                                className: " Contents-i_5" + (' fa fa-' + (i.icon)) + ''
+                            }),
+                            React.createElement("div", {
+                                    "data-tid": "Agqc1bfmmfms",
+                                    className: "Contents-div_12"
+                                },
+                                React.createElement("h1", {
+                                        "data-tid": "Alxo4vwp3keq",
+                                        className: "Contents-h1_21"
+                                    },
+                                    i.title
+                                ),
+                                React.createElement("p", {
+                                        "data-tid": "Aoldzg8c3gks",
+                                        className: "Contents-p_21"
+                                    },
+                                    i.text
+                                )
+                            )
+                        ),
+                        React.createElement("div", {
+                                "data-tid": "Alq96ztbvk1k",
+                                className: " Contents-div_16" + (state.s == i && ' Contents-hover ' || '') + ''
+                            },
+                            React.createElement("img", {
+                                "data-tid": "Aw6a4ue1xpq",
+                                style: {
+                                    filter: state.s === i ? null : 'grayscale()'
+                                },
+                                className: "Contents-img_25",
+                                src: i.img
+                            })
+                        )
+                    )
+                )) : undefined
+            ),
+            state.s ?
+            React.createElement("div", {
+                    "data-tid": "Av92cst39n6",
+                    onClick: (e) => {
+                        this.hover();
+                    },
+                    className: "Contents-div_131"
+                },
+                React.createElement("div", {
+                        "data-tid": "Aimy9611ywsk",
+                        className: "Contents-div_17"
+                    },
+                    React.createElement("iframe", {
+                        "data-tid": "Aiyk19z256ds",
+                        className: "Contents-iframe_1",
+                        src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1'
+                    })
+                ),
+                React.createElement("button", {
+                        "data-tid": "Agq8xn6bs07n",
+                        className: "Contents-button_1"
+                    },
+                    React.createElement("i", {
+                        "data-tid": "Aqkbj31dw4d",
+                        className: (" fa fa-close") + ''
+                    })
+                )
+            ) :
+            null
+        )
+    }
+    constructor(props) {
+        super()
+        this.state = {}
+    }
+    hover(i) {
+        let s = this.state.s;
+        if (i === s) return
+        if (s) s.x = s.px;
+        if (i) {
+            i.px = i.x;
+            i.x = -50
+        }
+        this.setState({
+            s: i
+        })
+    }
+    componentWillMount() {
+        this.contents = [{
+            img: "/imgs/style.png",
+            video: "-X_t1yDFgew",
+            title: "Styling",
+            text: "Easily edit your styling and experience the changes as you modify your CSS",
+            icon: "paint-brush"
+        }, {
+            img: "/imgs/setting.png",
+            video: "kdyH8ELUWFY",
+            title: "Setting",
+            text: "Define properties to your element like you would do in HTML",
+            icon: "cog"
+        }, {
+            icon: "plus",
+            video: "CNUjwqdOTac",
+            img: "/imgs/addpanel.png",
+            title: "Add",
+            text: "Enrich and expand your component with any element using the side menu"
+        }, {
+            icon: "code",
+            img: "/imgs/code.png",
+            video: "g67Fz5mwe5Q",
+            title: "Code",
+            text: "Write your own JS code and make your components come to live"
+        }, {
+            icon: "flash",
+            video: "1SD7WmOczY4",
+            img: "/imgs/instastyle.png",
+            title: "Quick",
+            text: "Quickly modify your styling or navigate between components using key bindings"
+        }, {
+            icon: "align-left",
+            img: "/imgs/layout.png",
+            video: "JXauV0POstY",
+            title: "Layout",
+            text: "Place and align your elements in seconds with intuitive layout tools"
+        }, {
+            icon: "flash",
+            img: "/imgs/add.png",
+            video: "FztZK847aFw",
+            title: "Quickly add ",
+            text: "Add Element just by dragging..."
+        }, {
+            icon: "eye",
+            img: "/imgs/inspect.png",
+            video: "PszZ1XhLInk",
+            title: "Inspect",
+            text: "Inspect the elements"
+        }].map((i, j) => {
+            i.side = ((j % 2) === 1) ? "-reverse" : '';
+            i.bg = (i.side != '') ? "#444" : "#E4A910";
+            if (j === 2) i.bg = "#111";
+            i.z = j;
+            return i;
+        });
+    }
+}
+        ReactDOM.render(
+            React.createElement(Contents,{} ),
+            document.getElementById('app')
+        )
+</script></body></html>
