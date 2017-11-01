@@ -46,16 +46,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Contents-div_2 {
     padding: 20px;
     position: relative;
-    flex-wrap: wrap;
     display: flex;
-    justify-content: space-between
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start
 }
 .Contents-div_71 {
     flex-direction: row;
     display: flex;
-    width: 46%;
     position: relative;
-    margin-bottom: 162px
+    margin-bottom: 162px;
+    margin-left: 30px
 }
 .Contents-div_71:hover {
     cursor: zoom-in
@@ -92,29 +94,29 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: #666
 }
 .Contents-div_16 {
-    max-width: 465px;
-    max-height: 400px;
-    position: absolute;
-    background-color: #111;
-    background-size: auto;
-    border: 4px solid #555;
-    transition-property: left;
-    transition-duration: .3s;
-    background-repeat: no-repeat;
     overflow: hidden;
     border-radius: 50%;
-    width: 200px;
+    margin-left: 9px;
     height: 200px;
-    left: 236px;
-    transition-timing-function: ease-in
+    width: 200px;
+    background-color: Black;
+    position: relative
 }
-.Contents-hover {
-    z-index: 20;
-    border-radius: 0;
-    height: auto;
-    width: auto;
-    right: -400px;
-    box-shadow: 0 0 10px
+.Contents-div_16:hover {}
+.Contents-div_20 {
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    top: 1px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+.Contents-i_3 {
+    color: AliceBlue;
+    font-size: 62px
 }
 .Contents-div_131 {
     position: fixed;
@@ -123,10 +125,38 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     bottom: 0px;
     top: 0px;
     background-color: Black;
-    z-index: 262
+    z-index: 262;
+    justify-content: center;
+    display: flex;
+    align-items: center
 }
-.Contents-video_1 {
-    width: 100%
+.Contents-div_131:hover {
+    cursor: nwse-resize
+}
+.Contents-div_17 {
+    width: 100%;
+    height: 100%;
+    pointer-events: none
+}
+.Contents-iframe_1 {
+    border-style: none;
+    width: 100%;
+    height: 100%
+}
+.Contents-button_1 {
+    color: AliceBlue;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 41px;
+    position: absolute;
+    right: 1px;
+    top: 1px
+}
+.NotifyMe-div_6 {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center
 }
 .NotifyMe-div_6 {
     justify-content: center;
@@ -135,12 +165,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     align-items: center
 }
 .NotifyMe-div_69 {
-    justify-content: flex-start;
+    justify-content: center;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     flex-direction: row;
-    margin-bottom: 82px;
-    margin-top: 38px
+    flex-wrap: wrap
+}
+.NotifyMe-div_69 {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap
 }
 .NotifyMe-div_67 {
     flex-direction: row;
@@ -148,7 +184,21 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     justify-content: center;
     align-items: center;
     margin-left: 25px;
-    margin-right: 25px
+    margin-right: 25px;
+    margin-bottom: 30px
+}
+.NotifyMe-div_67 {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 30px
+}
+.NotifyMe-i_2 {
+    color: RoyalBlue;
+    font-size: 91px
 }
 .NotifyMe-i_2 {
     color: RoyalBlue;
@@ -157,6 +207,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .NotifyMe-div_105 {
     margin-left: 24px;
     width: 300px
+}
+.NotifyMe-div_105 {
+    margin-left: 24px;
+    width: 300px
+}
+.NotifyMe-h1_8 {
+    font-weight: 900;
+    color: #333;
+    font-size: 25px;
+    margin-top: 6px;
+    font-style: italic;
+    text-transform: uppercase
 }
 .NotifyMe-h1_8 {
     font-weight: 900;
@@ -172,13 +234,31 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: #555;
     text-transform: capitalize
 }
+.NotifyMe-p_4 {
+    font-size: 19px;
+    margin-top: 11px;
+    color: #555;
+    text-transform: capitalize
+}
+.NotifyMe-h1_1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900
+}
 .NotifyMe-h1_1 {
     text-align: center;
     text-transform: uppercase;
     font-weight: 900
 }
 .NotifyMe-div_61 {
-    margin: 14px
+    margin: 14px;
+    flex-wrap: wrap;
+    display: flex
+}
+.NotifyMe-div_61 {
+    margin: 14px;
+    flex-wrap: wrap;
+    display: flex
 }
 .NotifyMe-input_3 {
     border-top-left-radius: 20px;
@@ -191,6 +271,31 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-weight: 900;
     border-color: #333;
     text-indent: 14px
+}
+.NotifyMe-input_3 {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    width: 281px;
+    font-size: 18px;
+    font-weight: 900;
+    border-color: #333;
+    text-indent: 14px
+}
+.NotifyMe-button_3 {
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 12px;
+    border-style: none;
+    color: AliceBlue;
+    font-size: 16px;
+    padding-left: 27px;
+    padding-right: 22px;
+    font-weight: 900;
+    padding-top: 13px;
+    background-color: #333
 }
 .NotifyMe-button_3 {
     border-bottom-right-radius: 20px;
@@ -516,9 +621,10 @@ Contents.prototype.render = function() {
                 React.createElement("div", {
                         key: j,
                         "data-tid": "Apnw1w49por7",
-                        onClick: (e) => {
+                        onMouseOver: (e) => {
                             this.hover(i);
                         },
+                        onClick: this.play.bind(this),
                         className: "Contents-div_71",
                         title: 'Click for full view'
                     },
@@ -528,7 +634,7 @@ Contents.prototype.render = function() {
                         },
                         React.createElement("i", {
                             "data-tid": "A975ssd5j25u",
-                            className: " Contents-i_5" + (' fa fa-' + (i.icon))
+                            className: " Contents-i_5" + (' fa fa-' + (i.icon)) + ''
                         }),
                         React.createElement("div", {
                                 "data-tid": "Agqc1bfmmfms",
@@ -550,34 +656,53 @@ Contents.prototype.render = function() {
                     ),
                     React.createElement("div", {
                             "data-tid": "Alq96ztbvk1k",
-                            className: " Contents-div_16" + (typeof state.s == i != undefined && state.s == i && ' Contents-hover ' || '')
-                        },
-                        React.createElement("img", {
-                            "data-tid": "Aw6a4ue1xpq",
                             style: {
-                                filter: state.s === i ? null : 'grayscale()'
+                                backgroundImage: 'url(' + i.img + ')'
                             },
-                            className: "Contents-img_25",
-                            src: i.img
-                        })
+                            className: "Contents-div_16"
+                        },
+                        state.s === i ?
+                        React.createElement("div", {
+                                "data-tid": "Abcabbi9jg95",
+                                className: "Contents-div_20"
+                            },
+                            React.createElement("i", {
+                                "data-tid": "Ao7hk4lw46lf",
+                                className: " Contents-i_3" + (" fa fa-play") + ''
+                            })
+                        ) :
+                        null
                     )
                 )
             )) : undefined
         ),
-        state.s ?
+        state.s && state.play ?
         React.createElement("div", {
                 "data-tid": "Av92cst39n6",
                 onClick: (e) => {
-                    this.hover();
+                    this.close();
                 },
                 className: "Contents-div_131"
             },
-            React.createElement("video", {
-                "data-tid": "Aq5sy8d1xgnf",
-                className: "Contents-video_1",
-                src: state.s.video,
-                autoPlay: true
-            })
+            React.createElement("div", {
+                    "data-tid": "Aimy9611ywsk",
+                    className: "Contents-div_17"
+                },
+                React.createElement("iframe", {
+                    "data-tid": "Aiyk19z256ds",
+                    className: "Contents-iframe_1",
+                    src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1'
+                })
+            ),
+            React.createElement("button", {
+                    "data-tid": "Agq8xn6bs07n",
+                    className: "Contents-button_1"
+                },
+                React.createElement("i", {
+                    "data-tid": "Aqkbj31dw4d",
+                    className: (" fa fa-close") + ''
+                })
+            )
         ) :
         null
     )
@@ -586,37 +711,53 @@ Contents.prototype.componentWillMount = function() {
     try {
         this.contents = [{
             img: "/imgs/style.png",
+            video: "-X_t1yDFgew",
             title: "Styling",
             text: "Easily edit your styling and experience the changes as you modify your CSS",
             icon: "paint-brush"
         }, {
             img: "/imgs/setting.png",
-            title: "Elements",
+            video: "kdyH8ELUWFY",
+            title: "Setting",
             text: "Define properties to your element like you would do in HTML",
-            icon: "cubes"
+            icon: "cog"
         }, {
             icon: "plus",
+            video: "CNUjwqdOTac",
             img: "/imgs/addpanel.png",
             title: "Add",
             text: "Enrich and expand your component with any element using the side menu"
         }, {
-            icon: "paint-brush",
             icon: "code",
             img: "/imgs/code.png",
+            video: "g67Fz5mwe5Q",
             title: "Code",
             text: "Write your own JS code and make your components come to live"
         }, {
             icon: "flash",
+            video: "1SD7WmOczY4",
             img: "/imgs/instastyle.png",
             title: "Quick",
             text: "Quickly modify your styling or navigate between components using key bindings"
         }, {
             icon: "align-left",
             img: "/imgs/layout.png",
+            video: "JXauV0POstY",
             title: "Layout",
             text: "Place and align your elements in seconds with intuitive layout tools"
+        }, {
+            icon: "flash",
+            img: "/imgs/add.png",
+            video: "FztZK847aFw",
+            title: "Quickly add ",
+            text: "Add Element just by dragging..."
+        }, {
+            icon: "eye",
+            img: "/imgs/inspect.png",
+            video: "PszZ1XhLInk",
+            title: "Inspect",
+            text: "Inspect the elements"
         }].map((i, j) => {
-            i.video = "/videos/add.webm"
             i.side = ((j % 2) === 1) ? "-reverse" : '';
             i.bg = (i.side != '') ? "#444" : "#E4A910";
             if (j === 2) i.bg = "#111";
@@ -633,17 +774,34 @@ Contents.prototype.hover = function(i) {
     try {
         let s = this.state.s;
         if (i === s) return
-        if (s) s.x = s.px;
-        if (i) {
-            i.px = i.x;
-            i.x = -50
-        }
         this.setState({
             s: i
         })
     } catch (e) {
         console.log("=========================")
         console.log('hover')
+        console.log(e)
+    }
+}
+Contents.prototype.play = function() {
+    try {
+        this.setState({
+            play: true
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('play')
+        console.log(e)
+    }
+}
+Contents.prototype.close = function() {
+    try {
+        this.setState({
+            play: false
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('close')
         console.log(e)
     }
 }
@@ -674,7 +832,7 @@ NotifyMe.prototype.render = function() {
                 },
                 React.createElement("i", {
                     "data-tid": "A24r6b58336n",
-                    className: " NotifyMe-i_2" + (" fa fa-dropbox")
+                    className: " NotifyMe-i_2" + (" fa fa-dropbox") + ''
                 }),
                 React.createElement("div", {
                         "data-tid": "A619ggvdtgsb",
@@ -703,7 +861,7 @@ NotifyMe.prototype.render = function() {
                     style: {
                         color: '#333'
                     },
-                    className: " NotifyMe-i_2" + (" fa fa-github")
+                    className: " NotifyMe-i_2" + (" fa fa-github") + ''
                 }),
                 React.createElement("div", {
                         "data-tid": "A6u2tyz2u7os",
