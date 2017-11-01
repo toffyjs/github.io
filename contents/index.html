@@ -1,4 +1,6 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html><html><head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style type="text/css">
 
 body{
@@ -134,130 +136,117 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
  </head><body><script type="text/javascript">
  </script><div id="app"></div><script type="text/javascript">
     
-        class Contents extends React.Component {
-    render() {
-        var props = this.props;
-        var state = this.state;
-        return React.createElement("div", {
-                "data-tid": "Am4qlz9bo7nk",
-                className: "Contents-div_1"
+        var Contents = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Contents.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Am4qlz9bo7nk",
+            className: "Contents-div_1"
+        },
+        React.createElement("div", {
+                "data-tid": "Ai73qq2o6drk",
+                className: "Contents-div_2"
             },
-            React.createElement("div", {
-                    "data-tid": "Ai73qq2o6drk",
-                    className: "Contents-div_2"
-                },
-                this.contents && this.contents.map && this.contents.length ? this.contents.map((i, j) => (
-                    React.createElement("div", {
-                            key: j,
-                            "data-tid": "Apnw1w49por7",
-                            onMouseOver: (e) => {
-                                this.hover(i);
-                            },
-                            onClick: this.play.bind(this),
-                            className: "Contents-div_71",
-                            title: 'Click for full view'
+            this.contents && this.contents.map && this.contents.length ? this.contents.map((i, j) => (
+                React.createElement("div", {
+                        key: j,
+                        "data-tid": "Apnw1w49por7",
+                        onMouseOver: (e) => {
+                            this.hover(i);
                         },
+                        onClick: this.play.bind(this),
+                        className: "Contents-div_71",
+                        title: 'Click for full view'
+                    },
+                    React.createElement("div", {
+                            "data-tid": "A5fnc2ypy07r",
+                            className: "Contents-div_29"
+                        },
+                        React.createElement("i", {
+                            "data-tid": "A975ssd5j25u",
+                            className: " Contents-i_5" + (' fa fa-' + (i.icon)) + ''
+                        }),
                         React.createElement("div", {
-                                "data-tid": "A5fnc2ypy07r",
-                                className: "Contents-div_29"
+                                "data-tid": "Agqc1bfmmfms",
+                                className: "Contents-div_12"
+                            },
+                            React.createElement("h1", {
+                                    "data-tid": "Alxo4vwp3keq",
+                                    className: "Contents-h1_21"
+                                },
+                                i.title
+                            ),
+                            React.createElement("p", {
+                                    "data-tid": "Aoldzg8c3gks",
+                                    className: "Contents-p_21"
+                                },
+                                i.text
+                            )
+                        )
+                    ),
+                    React.createElement("div", {
+                            "data-tid": "Alq96ztbvk1k",
+                            style: {
+                                backgroundImage: 'url(' + i.img + ')'
+                            },
+                            className: "Contents-div_16"
+                        },
+                        state.s === i ?
+                        React.createElement("div", {
+                                "data-tid": "Abcabbi9jg95",
+                                className: "Contents-div_20"
                             },
                             React.createElement("i", {
-                                "data-tid": "A975ssd5j25u",
-                                className: " Contents-i_5" + (' fa fa-' + (i.icon)) + ''
-                            }),
-                            React.createElement("div", {
-                                    "data-tid": "Agqc1bfmmfms",
-                                    className: "Contents-div_12"
-                                },
-                                React.createElement("h1", {
-                                        "data-tid": "Alxo4vwp3keq",
-                                        className: "Contents-h1_21"
-                                    },
-                                    i.title
-                                ),
-                                React.createElement("p", {
-                                        "data-tid": "Aoldzg8c3gks",
-                                        className: "Contents-p_21"
-                                    },
-                                    i.text
-                                )
-                            )
-                        ),
-                        React.createElement("div", {
-                                "data-tid": "Alq96ztbvk1k",
-                                style: {
-                                    backgroundImage: 'url(' + i.img + ')'
-                                },
-                                className: "Contents-div_16"
-                            },
-                            state.s === i ?
-                            React.createElement("div", {
-                                    "data-tid": "Abcabbi9jg95",
-                                    className: "Contents-div_20"
-                                },
-                                React.createElement("i", {
-                                    "data-tid": "Ao7hk4lw46lf",
-                                    className: " Contents-i_3" + (" fa fa-play") + ''
-                                })
-                            ) :
-                            null
-                        )
+                                "data-tid": "Ao7hk4lw46lf",
+                                className: " Contents-i_3" + (" fa fa-play") + ''
+                            })
+                        ) :
+                        null
                     )
-                )) : undefined
-            ),
-            state.s && state.play ?
-            React.createElement("div", {
-                    "data-tid": "Av92cst39n6",
-                    onClick: (e) => {
-                        this.close();
-                    },
-                    className: "Contents-div_131"
-                },
-                React.createElement("div", {
-                        "data-tid": "Aimy9611ywsk",
-                        className: "Contents-div_17"
-                    },
-                    React.createElement("iframe", {
-                        "data-tid": "Aiyk19z256ds",
-                        className: "Contents-iframe_1",
-                        src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1'
-                    })
-                ),
-                React.createElement("button", {
-                        "data-tid": "Agq8xn6bs07n",
-                        className: "Contents-button_1"
-                    },
-                    React.createElement("i", {
-                        "data-tid": "Aqkbj31dw4d",
-                        className: (" fa fa-close") + ''
-                    })
                 )
-            ) :
-            null
-        )
-    }
-    constructor(props) {
-        super()
-        this.state = {}
-    }
-    hover(i) {
-        let s = this.state.s;
-        if (i === s) return
-        this.setState({
-            s: i
-        })
-    }
-    play() {
-        this.setState({
-            play: true
-        })
-    }
-    close() {
-        this.setState({
-            play: false
-        })
-    }
-    componentWillMount() {
+            )) : undefined
+        ),
+        state.s && state.play ?
+        React.createElement("div", {
+                "data-tid": "Av92cst39n6",
+                onClick: (e) => {
+                    this.close();
+                },
+                className: "Contents-div_131"
+            },
+            React.createElement("div", {
+                    "data-tid": "Aimy9611ywsk",
+                    className: "Contents-div_17"
+                },
+                React.createElement("iframe", {
+                    "data-tid": "Aiyk19z256ds",
+                    className: "Contents-iframe_1",
+                    src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1&rel=0'
+                })
+            ),
+            React.createElement("button", {
+                    "data-tid": "Agq8xn6bs07n",
+                    className: "Contents-button_1"
+                },
+                React.createElement("i", {
+                    "data-tid": "Aqkbj31dw4d",
+                    className: (" fa fa-close") + ''
+                })
+            )
+        ) :
+        null
+    )
+}
+Contents.prototype.componentWillMount = function() {
+    try {
         this.contents = [{
             img: "/imgs/style.png",
             video: "-X_t1yDFgew",
@@ -313,6 +302,45 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
             i.z = j;
             return i;
         });
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Contents.prototype.hover = function(i) {
+    try {
+        let s = this.state.s;
+        if (i === s) return
+        this.setState({
+            s: i
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('hover')
+        console.log(e)
+    }
+}
+Contents.prototype.play = function() {
+    try {
+        this.setState({
+            play: true
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('play')
+        console.log(e)
+    }
+}
+Contents.prototype.close = function() {
+    try {
+        this.setState({
+            play: false
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('close')
+        console.log(e)
     }
 }
         ReactDOM.render(
