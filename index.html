@@ -201,39 +201,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: #555;
     text-transform: capitalize
 }
-.NotifyMe-h1_1 {
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 900
+.NotifyMe-div_601 {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
-.NotifyMe-div_61 {
-    margin-top: 14px;
-    flex-wrap: wrap;
-    display: flex
-}
-.NotifyMe-input_3 {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    padding: 10px;
-    border-style: solid;
-    border-width: 1px;
-    font-size: 18px;
-    font-weight: 900;
-    border-color: #333;
-    text-indent: 14px
-}
-.NotifyMe-button_3 {
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-    padding: 12px;
+.NotifyMe-iframe_1 {
     border-style: none;
-    color: AliceBlue;
-    font-size: 16px;
-    padding-left: 27px;
-    padding-right: 22px;
-    font-weight: 900;
-    padding-top: 13px;
-    background-color: #333
+    display: block;
+    height: 718px;
+    max-width: 100%;
+    width: 700px
 }
 .Footer-div_27 {
     background-color: #444;
@@ -821,28 +800,15 @@ NotifyMe.prototype.render = function() {
                 )
             )
         ),
-        React.createElement("h1", {
-                "data-tid": "A5p50924zscx",
-                className: "NotifyMe-h1_1"
-            },
-            "Intrested in trying?"
-        ),
         React.createElement("div", {
-                "data-tid": "A9zyj5gooai",
-                className: "NotifyMe-div_61"
+                "data-tid": "Anp2abj2wrhp",
+                className: "NotifyMe-div_601"
             },
-            React.createElement("input", {
-                "data-tid": "Ajj3sprk2fl8",
-                className: "NotifyMe-input_3",
-                type: 'text',
-                placeholder: 'Email address...'
-            }),
-            React.createElement("button", {
-                    "data-tid": "Ahfvl8fh4r1f",
-                    className: "NotifyMe-button_3"
-                },
-                "Send"
-            )
+            React.createElement("iframe", {
+                "data-tid": "Aua39hyrbj3",
+                className: "NotifyMe-iframe_1",
+                src: 'https://docs.google.com/forms/d/e/1FAIpQLSdub0NJDz3hcLZCLmRDqBDwkrniWtHF1rz1Zj0VLM2mlAivHQ/viewform?embedded=true'
+            })
         )
     )
 }
