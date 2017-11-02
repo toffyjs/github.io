@@ -36,6 +36,10 @@
      transform: scale(0.8);
  }
  
+ button:hover {
+     cursor: pointer;
+ }
+ 
  input[type=range] {
      -webkit-appearance: none;
      background-color: transparent;
@@ -84,7 +88,7 @@
  body {
      font-size: 14px;
      font-family: Roboto;
-     background-color: #2f2f2f;
+     background-color: #fff;
  }
  /*=================  */
  
