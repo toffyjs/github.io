@@ -252,7 +252,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 </style>
  </head><body><script type="text/javascript">
  </script><div id="app"></div><script type="text/javascript">
-    
+   try{
+        
         var Index = React.createClass({
     getInitialState: function() {
         return {}
@@ -609,7 +610,8 @@ Contents.prototype.render = function() {
                 React.createElement("iframe", {
                     "data-tid": "Aiyk19z256ds",
                     className: "Contents-iframe_1",
-                    src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1&rel=0'
+                    src: 'https://www.youtube.com/embed/' + state.s.video + '?autoplay=1&rel=0',
+                    id: 'player'
                 })
             ),
             React.createElement("button", {
@@ -689,6 +691,18 @@ Contents.prototype.componentWillMount = function() {
         console.log(e)
     }
 }
+Contents.prototype.componentDidMount = function() {
+    try {
+        // var s = document.createElement("script");
+        // s.src='https://www.youtube.com/iframe_api';
+        // document.getElementsByTagName("head")[0].appendChild(s)
+        return
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentDidMount')
+        console.log(e)
+    }
+}
 Contents.prototype.hover = function(i) {
     try {
         let s = this.state.s;
@@ -706,7 +720,21 @@ Contents.prototype.play = function() {
     try {
         this.setState({
             play: true
-        })
+        });
+        var r = setInterval(() => {
+            if (!window.player) return;
+            $print(window.player);
+            window.player.addEventListener("onStateChange", function(state) {
+                $print(999);
+                if (state === 0) {
+                    this.close();
+                }
+            });
+            clearInterval(r);
+        }, 1000);
+        window.onYouTubeIframeAPIReady = () => {
+            alert(56745)
+        };
     } catch (e) {
         console.log("=========================")
         console.log('play')
@@ -888,4 +916,8 @@ Footer.prototype.componentWillMount = function() {
 } ),
             document.getElementById('app')
         )
+   }catch(e){
+       alert(e.name+"
+"+e.message);
+   }
 </script></body></html>
