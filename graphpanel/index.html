@@ -1,0 +1,444 @@
+<!DOCTYPE html><html><head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style type="text/css">
+
+body{
+    font-family:Roboto
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}</style><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js">
+</script><title></title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> 
+ <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+
+<style type="text/css">
+ .GraphPanel-div_47 {
+    position: absolute;
+    top: 1px;
+    flex-direction: row;
+    display: flex
+}
+.Graph-div_11 {
+    background-color: BlueViolet;
+    width: 600px;
+    height: 400px;
+    position: relative;
+    background: linear-gradient(5deg, #b04747 20%, #81853b 100%)
+}
+.Graph-div_15 {
+    position: absolute
+}
+.Graph-div_18 {
+    position: absolute
+}
+.Dot-button_2 {
+    border-radius: 50%;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    border-color: transparent;
+    background-color: Black
+}
+.DotPanel-div_25 {
+    flex-direction: column;
+    display: flex;
+    width: 200px;
+    background-color: MediumVioletRed;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    color: AliceBlue
+}
+.DotPanel-button_3 {
+    border-color: transparent;
+    background-color: transparent;
+    text-align: left;
+    color: Azure
+}
+.DotPanel-i_1 {
+    margin-right: 7px
+}
+</style>
+ </head><body><script type="text/javascript">
+ </script><div id="app"></div><script type="text/javascript">
+   try{
+        
+        var GraphPanel = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+GraphPanel.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Ak0qo2ul6chd"
+        },
+        React.createElement(Graph, {
+            "data-tid": "A4d9sz153047",
+            dots: this.state.dots
+        }),
+        React.createElement("div", {
+                "data-tid": "A6izixyl9x33",
+                className: "GraphPanel-div_47"
+            },
+            React.createElement("button", {
+                    "data-tid": "Asl8vju562li",
+                    onClick: this.openMenu.bind(this)
+                },
+                React.createElement("i", {
+                    "data-tid": "Apfjh0q0f3bb",
+                    className: (" fa fa-cog") + ''
+                })
+            ),
+            state.openMenu ?
+            React.createElement(MenuPanel, {
+                "data-tid": "A40z0pn9c6vu",
+                clear: this.clear.bind(this)
+            }) :
+            null
+        )
+    )
+}
+GraphPanel.prototype.componentWillMount = function() {
+    try {
+        this.state.dots = [{
+            x: 50,
+            y: 80
+        }];
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+GraphPanel.prototype.openMenu = function() {
+    try {
+        this.setState({
+            openMenu: !this.state.openMenu
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('openMenu')
+        console.log(e)
+    }
+}
+GraphPanel.prototype.clear = function() {
+    try {
+        this.setState({
+            dots: []
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('clear')
+        console.log(e)
+    }
+}
+
+
+var Graph = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Graph.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "A1bcxbvhv7ct",
+            onClick: this.add.bind(this),
+            className: "Graph-div_11"
+        },
+        state.dots && state.dots.map && state.dots.length ? state.dots.map((i, j) => (
+            React.createElement("div", {
+                    key: j,
+                    "data-tid": "Agtr2r9amyp8",
+                    style: {
+                        top: i.y,
+                        left: i.x,
+                        opacity: state.i === i ? 0.5 : 1
+                    },
+                    onDragEnd: this.endDrag.bind(this),
+                    onDragStart: (e) => {
+                        this.startDrag(e, i);
+                    },
+                    onDoubleClick: (e) => {
+                        this.remove(i, j, e);
+                    },
+                    onClick: (e) => {
+                        this.select(i, j, e);
+                    },
+                    className: "Graph-div_15",
+                    draggable: true
+                },
+                React.createElement(Dot, {
+                    "data-tid": "Ax7uiet0p3z",
+                    rad: this.n
+                })
+            )
+        )) : undefined, state.s ?
+        React.createElement("div", {
+                "data-tid": "Awhd68odilq",
+                style: {
+                    top: (state.s.y + 10) + "px",
+                    left: (state.s.x + 10) + "px"
+                },
+                className: "Graph-div_18"
+            },
+            React.createElement(DotPanel, {
+                "data-tid": "A9aho6f0ki7a"
+            })
+        ) :
+        null
+    )
+}
+Graph.prototype.componentWillMount = function() {
+    try {
+        this.n = 20;
+        debugger
+        this.state.dots = this.props.dots.map(a => ({
+            x: this.normal(a.x),
+            y: this.normal(a.y)
+        }));
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Graph.prototype.componentWillReceiveProps = function(props) {
+    try {
+        if (props.dots !== this.props.dots) {
+            this.state.dots = props.dots;
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillReceiveProps')
+        console.log(e)
+    }
+}
+Graph.prototype.normal = function(x) {
+    try {
+        return Math.floor(x / this.n) * this.n + (this.n / 2);
+    } catch (e) {
+        console.log("=========================")
+        console.log('normal')
+        console.log(e)
+    }
+}
+Graph.prototype.add = function(e) {
+    try {
+        this.setState({
+            s: null
+        })
+        var x = this.normal(e.clientX);
+        var y = this.normal(e.clientY);
+        if (this.state.dots.find(a => a.x === x)) {
+            return alert('you cant add to the same X');
+        }
+        this.state.dots.push({
+            x: x,
+            y: y
+        });
+        this.setState({});
+    } catch (e) {
+        console.log("=========================")
+        console.log('add')
+        console.log(e)
+    }
+}
+Graph.prototype.startDrag = function(e, i) {
+    try {
+        this.setState({
+            i: i
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('startDrag')
+        console.log(e)
+    }
+}
+Graph.prototype.endDrag = function(e) {
+    try {
+        var x = this.normal(e.clientX);
+        var y = this.normal(e.clientY);
+        if (this.state.dots.find(a => a.x === x)) {
+            this.setState({
+                i: null
+            })
+            return alert('you cant add to the same X');
+        }
+        this.state.i.x = x;
+        this.state.i.y = y;
+        this.setState({
+            i: null
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('endDrag')
+        console.log(e)
+    }
+}
+Graph.prototype.select = function(i, j, e) {
+    try {
+        this.setState({
+            s: i
+        })
+        e.stopPropagation();
+    } catch (e) {
+        console.log("=========================")
+        console.log('select')
+        console.log(e)
+    }
+}
+Graph.prototype.remove = function(i, j, e) {
+    try {
+        e.stopPropagation();
+        this.state.dots.splice(j, 1);
+        this.setState({
+            s: null
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('remove')
+        console.log(e)
+    }
+}
+
+
+var MenuPanel = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+MenuPanel.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Av2eu61yn1ej"
+        },
+        React.createElement("div", {
+                "data-tid": "Ao2wenmruyj"
+            },
+            React.createElement("button", {
+                    "data-tid": "Aucw10ga4g9h",
+                    onClick: (e) => {
+                        props.clear();
+                    }
+                },
+                "clear"
+            )
+        )
+    )
+}
+
+
+var Dot = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Dot.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Av1h0sm3fvis"
+        },
+        React.createElement("button", {
+            "data-tid": "Asplxq9rpn8g",
+            style: {
+                width: props.rad,
+                height: props.rad
+            },
+            className: "Dot-button_2"
+        })
+    )
+}
+
+
+var DotPanel = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+DotPanel.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "A764kf1v8kh9",
+            className: "DotPanel-div_25"
+        },
+        React.createElement("div", {
+                "data-tid": "Asejst0nf36a",
+                className: "DotPanel-div_25"
+            },
+            React.createElement("button", {
+                    "data-tid": "Abyjothnufnw",
+                    onClick: (e) => {
+                        prosp.remove(props.dot);;
+                    },
+                    className: "DotPanel-button_3"
+                },
+                React.createElement("i", {
+                    "data-tid": "Agcyn3czz9e9",
+                    className: " DotPanel-i_1" + (" fa fa-trash") + ''
+                }),
+                "remove"
+            ),
+            React.createElement("button", {
+                    "data-tid": "Akjan6j9each",
+                    className: "DotPanel-button_3"
+                },
+                React.createElement("i", {
+                    "data-tid": "Ayqgvkfs2xlh",
+                    className: " DotPanel-i_1" + (" fa fa-trash") + ''
+                }),
+                "remove"
+            ),
+            React.createElement("button", {
+                    "data-tid": "Aplb4tee2n99",
+                    className: "DotPanel-button_3"
+                },
+                React.createElement("i", {
+                    "data-tid": "Anz9kp6nyomk",
+                    className: " DotPanel-i_1" + (" fa fa-trash") + ''
+                }),
+                "remove"
+            ),
+            React.createElement("button", {
+                    "data-tid": "A4377s750nn8",
+                    className: "DotPanel-button_3"
+                },
+                React.createElement("i", {
+                    "data-tid": "Aa65bpuq3m39",
+                    className: " DotPanel-i_1" + (" fa fa-trash") + ''
+                }),
+                "remove"
+            )
+        )
+    )
+}
+        ReactDOM.render(
+            React.createElement(GraphPanel,{} ),
+            document.getElementById('app')
+        )
+   }catch(e){
+       alert(e.name+" "+e.message);
+   }
+</script></body></html>
