@@ -98,8 +98,6 @@
      z-index: 10000;
      left: 150px;
      right: 150px;
-     background-color: #fff;
-     box-shadow: 0 0 10px black;
  }
  
  .child_show_on_hover .hover_btn {
@@ -120,7 +118,7 @@
      right: 0;
      left: 0;
      bottom: 0;
-     background-color: rgba(0, 0, 0, 0.5);
+     background-color: rgba(0, 0, 0, 0.8);
  }
  
  .btnIcon {
