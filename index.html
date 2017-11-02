@@ -34,6 +34,25 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     max-width: 1170px;
     margin: 0 auto
 }
+.Index-button_1 {
+    position: fixed;
+    bottom: 40px;
+    right: 6px;
+    border-color: transparent;
+    background-color: Black;
+    color: #E4A910;
+    padding: 6px;
+    border-radius: 4px;
+    font-weight: 900;
+    z-index: 13
+}
+.Index-button_1:active {
+    transform: scale(0.95)
+}
+.Index-button_1:hover {
+    background: #E4A910;
+    color: #000
+}
 .Contents-div_1 {
     flex-direction: row;
     display: flex;
@@ -345,7 +364,13 @@ Index.prototype.render = function() {
         React.createElement(Footer, {
             "data-tid": "A5iuibpfujos",
             style: {}
-        })
+        }),
+        React.createElement("button", {
+                "data-tid": "Ab10pqh5zpei",
+                className: "Index-button_1"
+            },
+            "build with toffyjs"
+        )
     )
 }
 Index.prototype.componentWillMount = function() {
@@ -835,10 +860,23 @@ NotifyMe.prototype.render = function() {
             React.createElement("iframe", {
                 "data-tid": "Aua39hyrbj3",
                 className: "NotifyMe-iframe_1",
-                src: 'https://docs.google.com/forms/d/e/1FAIpQLSdub0NJDz3hcLZCLmRDqBDwkrniWtHF1rz1Zj0VLM2mlAivHQ/viewform?embedded=true'
+                src: state.src
             })
         )
     )
+}
+NotifyMe.prototype.componentDidMount = function() {
+    try {
+        setTimeout(() => {
+            this.setState({
+                src: 'https://docs.google.com/forms/d/e/1FAIpQLSdub0NJDz3hcLZCLmRDqBDwkrniWtHF1rz1Zj0VLM2mlAivHQ/viewform?embedded=true'
+            })
+        }, 5000);
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentDidMount')
+        console.log(e)
+    }
 }
 
 
