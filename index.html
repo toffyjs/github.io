@@ -60,6 +60,42 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     background: #E4A910;
     color: #000
 }
+.Steps-div_40 {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px
+}
+.Steps-div_34 {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+    width: 300px;
+    margin-right: 25px
+}
+.Steps-i_6 {
+    font-size: 58px
+}
+.Steps-h1_2 {
+    margin-top: 10px;
+    font-size: 40px
+}
+.Steps-p_6 {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 22px;
+    line-height: 32px;
+    height: 1px
+}
+.Steps-div_170 {
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    flex-direction: column
+}
 .Contents-div_1 {
     flex-direction: row;
     display: flex;
@@ -152,12 +188,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Contents-div_131 {
     position: fixed;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
+    left: 150px;
+    right: 150px;
+    bottom: 100px;
+    top: 100px;
     background-color: Black;
-    z-index: 262;
+    z-index: 260;
     justify-content: center;
     display: flex;
     align-items: center
@@ -180,8 +216,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 41px;
     position: absolute;
     right: 5px;
-    top: 5px;
-    background-color: #333
+    top: -52px;
+    background-color: #333;
+    z-index: -2
 }
 .NotifyMe-div_6 {
     justify-content: center;
@@ -367,6 +404,9 @@ Index.prototype.render = function() {
                     "data-tid": "Ax71lu9ijoo",
                     className: "Index-div_5"
                 },
+                React.createElement(Steps, {
+                    "data-tid": "Atctbyc3tn7k"
+                }),
                 React.createElement(Contents, {
                     "data-tid": "Alar03ji9mg"
                 }),
@@ -552,6 +592,96 @@ TopBarSite.prototype.render = function() {
                         "Privacy Policy"
                     )
                 )
+            )
+        )
+    )
+}
+
+
+var Steps = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Steps.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Ap3iotvb6dek",
+            className: "Steps-div_40"
+        },
+        React.createElement("div", {
+                "data-tid": "Azc32iqqy3do",
+                className: "Steps-div_34"
+            },
+            React.createElement("i", {
+                "data-tid": "A3sbip9ity1w",
+                className: " Steps-i_6" + (" fa fa-cubes") + ''
+            }),
+            React.createElement("h1", {
+                    "data-tid": "A21s8m4baqi1",
+                    className: "Steps-h1_2"
+                },
+                "Build"
+            ),
+            React.createElement("p", {
+                    "data-tid": "A9scb05pm9bf",
+                    className: "Steps-p_6"
+                },
+                "Create the element in the dom", React.createElement("br", {
+                    "data-tid": "Acl0xl0v619h"
+                }),
+                "And style them"
+            )
+        ),
+        React.createElement("div", {
+                "data-tid": "Af3szl00khgw",
+                className: "Steps-div_34"
+            },
+            React.createElement("i", {
+                "data-tid": "A1126e1o5dr8g",
+                className: " Steps-i_6" + (" fa fa-code") + ''
+            }),
+            React.createElement("h1", {
+                    "data-tid": "Arb2yknkh6lq",
+                    className: "Steps-h1_2"
+                },
+                "Code"
+            ),
+            React.createElement("p", {
+                    "data-tid": "Azsnjze05qeo",
+                    className: "Steps-p_6"
+                },
+                "Add code to the component and handle the flow"
+            )
+        ),
+        React.createElement("div", {
+                "data-tid": "Arlbm3y2z3hg",
+                className: "Steps-div_34"
+            },
+            React.createElement("div", {
+                    "data-tid": "Ae9cgin59jj5",
+                    className: "Steps-div_170"
+                },
+                React.createElement("i", {
+                    "data-tid": "Agrl0l8e99e7",
+                    className: " Steps-i_6" + (" fa fa-github") + ''
+                }),
+                React.createElement("h1", {
+                        "data-tid": "Aqk3bymj4hxj",
+                        className: "Steps-h1_2"
+                    },
+                    "Deploy"
+                )
+            ),
+            React.createElement("p", {
+                    "data-tid": "Acj18aisyzd",
+                    className: "Steps-p_6"
+                },
+                "Deploy your  component`s  code  just from your browser  to github"
             )
         )
     )
