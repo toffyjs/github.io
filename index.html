@@ -84,19 +84,31 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     width: 300px;
     margin-right: 25px
 }
+.Steps-div_413 {
+    width: 150px;
+    height: 150px;
+    background-color: Orange;
+    border-radius: 50%;
+    justify-content: center;
+    display: flex;
+    align-items: center
+}
 .Steps-i_6 {
-    font-size: 58px
+    font-size: 58px;
+    color: AliceBlue
 }
 .Steps-h1_2 {
-    margin-top: 10px;
-    font-size: 40px
+    margin-top: 23px;
+    font-size: 40px;
+    font-weight: 100;
+    color: Grey
 }
 .Steps-p_6 {
     text-align: center;
     font-size: 22px;
-    margin-top: 22px;
     line-height: 32px;
-    height: 1px
+    height: 1px;
+    color: DimGray
 }
 .Steps-div_170 {
     justify-content: flex-start;
@@ -630,10 +642,18 @@ Steps.prototype.render = function() {
                 "data-tid": "Azc32iqqy3do",
                 className: "Steps-div_34"
             },
-            React.createElement("i", {
-                "data-tid": "A3sbip9ity1w",
-                className: " Steps-i_6" + (" fa fa-cubes") + ''
-            }),
+            React.createElement("div", {
+                    "data-tid": "Aaohrp3ualk9",
+                    className: "Steps-div_413"
+                },
+                React.createElement("i", {
+                    "data-tid": "A3sbip9ity1w",
+                    style: {
+                        textShadow: this.ts
+                    },
+                    className: " Steps-i_6" + (" fa fa-cubes") + ''
+                })
+            ),
             React.createElement("h1", {
                     "data-tid": "A21s8m4baqi1",
                     className: "Steps-h1_2"
@@ -654,10 +674,18 @@ Steps.prototype.render = function() {
                 "data-tid": "Af3szl00khgw",
                 className: "Steps-div_34"
             },
-            React.createElement("i", {
-                "data-tid": "A1126e1o5dr8g",
-                className: " Steps-i_6" + (" fa fa-code") + ''
-            }),
+            React.createElement("div", {
+                    "data-tid": "A8e7ellwh82c",
+                    className: "Steps-div_413"
+                },
+                React.createElement("i", {
+                    "data-tid": "A1126e1o5dr8g",
+                    style: {
+                        textShadow: this.ts
+                    },
+                    className: " Steps-i_6" + (" fa fa-code") + ''
+                })
+            ),
             React.createElement("h1", {
                     "data-tid": "Arb2yknkh6lq",
                     className: "Steps-h1_2"
@@ -679,10 +707,18 @@ Steps.prototype.render = function() {
                     "data-tid": "Ae9cgin59jj5",
                     className: "Steps-div_170"
                 },
-                React.createElement("i", {
-                    "data-tid": "Agrl0l8e99e7",
-                    className: " Steps-i_6" + (" fa fa-github") + ''
-                }),
+                React.createElement("div", {
+                        "data-tid": "Aa8d1wde70kh",
+                        className: "Steps-div_413"
+                    },
+                    React.createElement("i", {
+                        "data-tid": "Agrl0l8e99e7",
+                        style: {
+                            textShadow: this.ts
+                        },
+                        className: " Steps-i_6" + (" fa fa-github") + ''
+                    })
+                ),
                 React.createElement("h1", {
                         "data-tid": "Aqk3bymj4hxj",
                         className: "Steps-h1_2"
@@ -698,6 +734,31 @@ Steps.prototype.render = function() {
             )
         )
     )
+}
+Steps.prototype.componentWillMount = function() {
+    try {
+        this.ts = this.createTextShadow();
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Steps.prototype.createTextShadow = function() {
+    try {
+        var s = [];
+        var r = 50;
+        for (var i = 1; i < 25; i++) {
+            if (r == 10) r++;
+            s.push('hsl(35, 85%, ' + r + '%) ' + i + 'px ' + i + 'px');
+        }
+        $print(s);
+        return s;
+    } catch (e) {
+        console.log("=========================")
+        console.log('createTextShadow')
+        console.log(e)
+    }
 }
 
 
