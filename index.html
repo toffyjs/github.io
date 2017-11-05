@@ -480,6 +480,9 @@ Index.prototype.componentWillMount = function() {
             facebook: "http://facebook.com"
         }
         try {
+            if (Klasses) {
+                return
+            }
             window.smartlook || (function(d) {
                 var o = smartlook = function() {
                         o.api.push(arguments)
