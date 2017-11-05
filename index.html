@@ -190,7 +190,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     animation-duration: .3s;
     animation-name: zoomIn
 }
-.Contents-div_16:hover {}
+.Contents-div_16:hover {
+    box-shadow: 0 0 5px
+}
+.Contents-div_16:hover:active {
+    box-shadow: inset 0 0 5px
+}
 .Contents-div_20 {
     position: absolute;
     left: 1px;
@@ -221,9 +226,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Contents-div_131:hover {
     cursor: nwse-resize
 }
+.Contents-div_104 {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    background-color: Black
+}
 .Contents-div_17 {
     width: 100%;
-    height: 100%
+    height: 100%;
+    position: relative
 }
 .Contents-iframe_1 {
     border-style: none;
@@ -232,13 +246,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Contents-button_1 {
     color: AliceBlue;
-    border-color: transparent;
     font-size: 41px;
-    position: absolute;
+    position: fixed;
     right: 5px;
-    top: -52px;
-    background-color: #333;
-    z-index: -2
+    top: 25px;
+    background-color: transparent;
+    z-index: 0;
+    border-top-left-radius: 11px;
+    border-bottom-right-radius: 19px;
+    border-color: transparent
 }
 .NotifyMe-div_6 {
     justify-content: center;
@@ -845,6 +861,10 @@ Contents.prototype.render = function() {
                 "data-tid": "Av92cst39n6",
                 className: "Contents-div_131"
             },
+            React.createElement("div", {
+                "data-tid": "Aj6uwhsq0bh",
+                className: "Contents-div_104"
+            }),
             React.createElement("div", {
                     "data-tid": "Aimy9611ywsk",
                     className: "Contents-div_17"
