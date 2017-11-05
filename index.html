@@ -232,7 +232,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     right: 0px;
     bottom: 0px;
     top: 0px;
-    background-color: Black
+    background-color: rgba(0, 0, 0, 0.5)
 }
 .Contents-div_17 {
     width: 100%;
@@ -768,7 +768,6 @@ Steps.prototype.createTextShadow = function() {
             if (r == 10) r++;
             s.push('hsl(35, 85%, ' + r + '%) ' + i + 'px ' + i + 'px');
         }
-        $print(s);
         return s;
     } catch (e) {
         console.log("=========================")
@@ -863,6 +862,7 @@ Contents.prototype.render = function() {
             },
             React.createElement("div", {
                 "data-tid": "Aj6uwhsq0bh",
+                onClick: this.close.bind(this),
                 className: "Contents-div_104"
             }),
             React.createElement("div", {
