@@ -464,7 +464,7 @@ Index.prototype.render = function() {
                 "data-tid": "Ab10pqh5zpei",
                 className: "Index-button_1"
             },
-            "built with toffyjs"
+            "built with toffyjs."
         )
     )
 }
@@ -986,20 +986,6 @@ Contents.prototype.play = function() {
         this.setState({
             play: true
         });
-        var r = setInterval(() => {
-            if (!window.player) return;
-            $print(window.player);
-            window.player.addEventListener("onStateChange", function(state) {
-                $print(999);
-                if (state === 0) {
-                    this.close();
-                }
-            });
-            clearInterval(r);
-        }, 1000);
-        window.onYouTubeIframeAPIReady = () => {
-            alert(56745)
-        };
     } catch (e) {
         console.log("=========================")
         console.log('play')
