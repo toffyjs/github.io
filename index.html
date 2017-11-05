@@ -480,7 +480,7 @@ Index.prototype.componentWillMount = function() {
             facebook: "http://facebook.com"
         }
         try {
-            if (Klasses) {
+            if (typeof Klasses !== "undefined") {
                 return
             }
             window.smartlook || (function(d) {
