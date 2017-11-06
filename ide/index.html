@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="/animate.css"><link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico"><title>ToffyJS</title><style>body,html{background-color:#2f2f2f}</style><script src="https://html2canvas.hertzen.com/build/html2canvas.js"></script><link href="https://oppy.s3.amazonaws.com/static/css/main.7a336a8a.css" rel="stylesheet"></head><body><script src="https://unpkg.com/react@0.13.3/dist/JSXTransformer.js"></script><script>window.isLocalHost = window.location.origin.indexOf("localhost") != -1
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="/animate.css"><link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico"><title>ToffyJS</title><style>body,html{background-color:#2f2f2f}</style><link href="https://oppy.s3.amazonaws.com/static/css/main.7a336a8a.css" rel="stylesheet"></head><body><script src="https://unpkg.com/react@0.13.3/dist/JSXTransformer.js"></script><script>window.isLocalHost = window.location.origin.indexOf("localhost") != -1
         var useAnalytics = !window.isLocalHost;
         if (!useAnalytics) return;
 
@@ -11,6 +11,7 @@
             s.async = 1;
             d.getElementsByTagName("head")[0].appendChild(s);
         })();
+        // =======================================================
         (function(e, a) {
             if (!a.__SV) {
                 var b = window;
@@ -73,16 +74,17 @@
         var uid = localStorage.uid;
         mixpanel.identify(uid);
         window.track = function(e, n) {
-            if (!useAnalytics) return
-            var id = e.currentTarget.attributes['data-tid'];
-            if (!id) return;
+                if (!useAnalytics) return
+                var id = e.currentTarget.attributes['data-tid'];
+                if (!id) return;
 
-            mixpanel.track(e.type, {
-                id: id.value,
-                p: e.currentTarget && e.currentTarget.innerText && e.currentTarget.innerText.slice(0, 30),
-                t: n.items && n.items[0] && n.items[0].value
-            });
-        }
+                mixpanel.track(e.type, {
+                    id: id.value,
+                    p: e.currentTarget && e.currentTarget.innerText && e.currentTarget.innerText.slice(0, 30),
+                    t: n.items && n.items[0] && n.items[0].value
+                });
+            }
+            //========================smartlook================================================
         if (useAnalytics) {
             window.smartlook || (function(d) {
                 var o = smartlook = function() {
@@ -98,4 +100,4 @@
                 h.appendChild(c);
             })(document);
             smartlook('init', '9ef33d5a1f55d2484cb267425f544ca348710784');
-        }</script><div id="root"></div><script type="text/javascript" src="https://oppy.s3.amazonaws.com/static/js/main.a3114163.js"></script></body></html>
+        }</script><div id="root"></div><script type="text/javascript" src="https://oppy.s3.amazonaws.com/static/js/main.5d1fb421.js"></script></body></html>
