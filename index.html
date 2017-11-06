@@ -464,7 +464,7 @@ Index.prototype.render = function() {
                 "data-tid": "Ab10pqh5zpei",
                 className: "Index-button_1"
             },
-            "built with toffyjs."
+            "built with toffyjs"
         )
     )
 }
@@ -500,6 +500,15 @@ Index.prototype.componentWillMount = function() {
         } catch (e) {
             console.log(e);
         }
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "7f5ffb29-104b-4794-9e5c-4c52988543e5";
+        (function() {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
     } catch (e) {
         console.log("=========================")
         console.log('componentWillMount')
