@@ -470,6 +470,9 @@ Index.prototype.render = function() {
 }
 Index.prototype.componentWillMount = function() {
     try {
+        if (typeof Klasses !== "undefined") {
+            return
+        }
         this.state.isMobile = document.documentElement.offsetWidth < 410;
         this.links = {
             home: "/",
@@ -481,9 +484,6 @@ Index.prototype.componentWillMount = function() {
         }
         this.addMixpanel();
         try {
-            if (typeof Klasses !== "undefined") {
-                return
-            }
             window.smartlook || (function(d) {
                 var o = smartlook = function() {
                         o.api.push(arguments)
