@@ -470,9 +470,6 @@ Index.prototype.render = function() {
 }
 Index.prototype.componentWillMount = function() {
     try {
-        if (typeof Klasses !== "undefined") {
-            return
-        }
         this.state.isMobile = document.documentElement.offsetWidth < 410;
         this.links = {
             home: "/",
@@ -481,6 +478,9 @@ Index.prototype.componentWillMount = function() {
             terms: "/dashboard",
             privecy: "/dashboard",
             facebook: "http://facebook.com"
+        }
+        if (typeof Klasses !== "undefined") {
+            return
         }
         this.addMixpanel();
         try {
