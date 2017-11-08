@@ -1,3 +1,22 @@
+//window.toffyjs = (function() {
+
+function updateTag(type, name, id) {
+    var tag = this[id];
+    if (!tag) {
+        var tag = document.createElement(type == "js" ? "script" : "link");
+        tag[type == "js" ? "src" : "href"] = name;
+        tag.id = id;
+        document.head.appendChild(tag);
+    }
+
+    if (type === "css") {
+        tag.rel = "stylesheet";
+        tag.href = name;
+    } else {
+        tag.src = name;
+    }
+}
+
 function updateCode(code) {
     if (!code) return;
     var scr = `
@@ -62,7 +81,12 @@ function updateMethods(name, obj) {
     for (var k in obj) {
         try {
             if (k === 'render') Klasses[name].prototype.render = Function(obj[k]);
-            else Klasses[name].prototype[k] = Function.apply(Function, obj[k]);
+            else {
+                if (obj[k] === -1) {
+                    delete Klasses[name].prototype[k];
+                } else if (obj[k] !== 0)
+                    Klasses[name].prototype[k] = Function.apply(Function, obj[k]);
+            }
 
 
         } catch (e) {
@@ -124,7 +148,7 @@ function $print() {
     window.openFromView && window.openFromView("log", arguments, Klasses)
 }
 
-let oldHTMLFocus = HTMLElement.prototype.focus;
+// let oldHTMLFocus = HTMLElement.prototype.focus;
 HTMLElement.prototype.focus = function() {
     if (!window.canFocus) return;
     oldHTMLFocus.apply(this, arguments);
@@ -134,3 +158,4 @@ HTMLElement.prototype.focus = function() {
 console.log("App ready!!!")
 
 var inspector = document.getElementById('inspector');
+//})()
