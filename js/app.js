@@ -37,14 +37,13 @@ function updateCode(code) {
     }
 }
 
-function run(name, propsstr) {
+function run2(name, propsstr) {
     let props;
     eval("props=" + (propsstr || "{}"));
     ReactDOM.render(
         React.createElement("div"),
         document.getElementById('app')
     );
-
     try {
         ReactDOM.render(
             React.createElement(Klasses[name], props),
@@ -53,6 +52,22 @@ function run(name, propsstr) {
     } catch (e) {
         debugger
     }
+}
+
+function run(name, propsstr, style) {
+
+    style = style || {
+        opacity: 0.3
+    }
+    ReactDOM.render(
+        React.createElement("div"),
+        document.getElementById('app')
+    );
+    eval("props=" + (propsstr || "{}"));
+    ReactDOM.render(
+        React.createElement('div', { style }, React.createElement(Klasses[name], props)),
+        document.getElementById('app')
+    );
 }
 
 function updateStyle(css, code) {
