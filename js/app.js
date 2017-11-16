@@ -1,20 +1,42 @@
 //window.toffyjs = (function() {
 
+var Tag = {
+    css: function(src, callback) {
+        var tag = document.createElement('link'),
+            loaded;
+        tag.setAttribute('href', src);
+        tag.rel = "stylesheet";
+        document.getElementsByTagName('head')[0].appendChild(tag);
+    },
+    js: function(src, callback) {
+        var script = document.createElement('script'),
+            loaded;
+        script.setAttribute('src', src);
+        if (callback) {
+            script.onreadystatechange = script.onload = function() {
+                if (!loaded) {
+                    callback();
+                }
+                loaded = true;
+            };
+        }
+        document.getElementsByTagName('head')[0].appendChild(script);
+    }
+};
+
+
+
 function updateTag(type, name, id) {
     var tag = this[id];
     if (!tag) {
-        var tag = document.createElement(type == "js" ? "script" : "link");
-        tag[type == "js" ? "src" : "href"] = name;
-        tag.id = id;
-        document.head.appendChild(tag);
+        Tag[type](name, () => {
+            window.openFromView("extranal", [name], Klasses)
+        })
+    } else {
+        tag[type == "js" ? "src" : "link"] = name;
     }
 
-    if (type === "css") {
-        tag.rel = "stylesheet";
-        tag.href = name;
-    } else {
-        tag.src = name;
-    }
+
 }
 
 function updateCode(code) {
