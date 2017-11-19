@@ -271,6 +271,15 @@ Dashboard.prototype.render = function() {
 }
 Dashboard.prototype.componentWillMount = function() {
     try {
+        return
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Dashboard.prototype.componentDidMount = function() {
+    try {
         this.state.tab = "MY";
         this.state.page = "projects";
         this.state.tab = 'style';
@@ -287,7 +296,7 @@ Dashboard.prototype.componentWillMount = function() {
             this.getMyProject();
     } catch (e) {
         console.log("=========================")
-        console.log('componentWillMount')
+        console.log('componentDidMount')
         console.log(e)
     }
 }
@@ -312,10 +321,10 @@ Dashboard.prototype.remove = function(item) {
         if (window.confirm("Are you sure t remove:" + item.path) == false) return;
         var that = this;
         function r() {
-            var idx = that.props.list.findIndex(p => p.name === name);
-            that.props.list.splice(idx, 1);
+            var idx = that.state.list.indexOf(item);
+            that.state.list.splice(idx, 1);
             that.setState({
-                list: that.props.list
+                list: that.state.list
             })
         }
         var url = 'https://api.dropboxapi.com/2/files/delete_v2';
@@ -797,11 +806,8 @@ Table.prototype.componentWillMount = function() {
     }
 }
         ReactDOM.render(
-            React.createElement(Dashboard,
-{
-    projects:[{
-        name:"Toffy",lastTime:"2017/6/7",isPublic:false
-    }]
+            React.createElement(Dashboard,{
+    
 } ),
             document.getElementById('app')
         )
