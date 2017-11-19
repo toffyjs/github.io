@@ -18,7 +18,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     position: fixed;
     left: 0px;
     right: 0px;
-    top: 0px
+    top: 0px;
+    z-index: 4
 }
 .Dashboard-h1_1 {
     height: 100vh;
@@ -124,25 +125,36 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding: 4px;
     justify-content: space-between;
     border-radius: 1px;
-    color: #555
+    color: #555;
+    position: relative
 }
-.Table-div_13:hover {
-    background-color: #eee;
-    cursor: pointer
-}
+.Table-div_13:hover {}
 .Table-div_13:active {}
 .Table-div_14 {
-    width: 220px
+    width: 220px;
+    position: relative
 }
 .Table-span_4 {}
 .Table-button_2 {
     border-color: transparent;
     background-color: transparent;
     font-size: 24px;
-    color: #bbb
+    color: #bbb;
+    position: relative
 }
 .Table-button_2:active {
     transform: scale(0.99) translate(4px, 3px)
+}
+.Table-div_9 {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px
+}
+.Table-div_9:hover {
+    background: #eee;
+    cursor: pointer
 }
 .Table-i_9 {
     color: #bbb;
@@ -157,7 +169,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 8px;
     color: #bbb
 }
-.Table-h4_2 {}
+.Table-h4_2 {
+    position: relative
+}
 .Table-div_8 {
     position: fixed;
     bottom: 25px;
@@ -243,6 +257,7 @@ Dashboard.prototype.render = function() {
             null, React.createElement(Table, {
                 "data-tid": "Ahrgglvnqoj6",
                 setProject: this.setProject.bind(this),
+                remove: this.remove.bind(this),
                 list: state.list
             })
         ) :
@@ -292,10 +307,9 @@ Dashboard.prototype.download = function(i) {
         console.log(e)
     }
 }
-Dashboard.prototype.remove = function(name) {
+Dashboard.prototype.remove = function(item) {
     try {
-        var path = "/" + name + ".json";
-        if (window.confirm("Are you sure") == false) return;
+        if (window.confirm("Are you sure t remove:" + item.path) == false) return;
         var that = this;
         function r() {
             var idx = that.props.list.findIndex(p => p.name === name);
@@ -304,13 +318,12 @@ Dashboard.prototype.remove = function(name) {
                 list: that.props.list
             })
         }
-        if (window.inspector) return r();
         var url = 'https://api.dropboxapi.com/2/files/delete_v2';
         fetch(url, {
             mode: 'cors',
             method: 'post',
             body: JSON.stringify({
-                path: path
+                path: item.path
             }),
             headers: this.headers
         }).then(function(response) {
@@ -499,9 +512,10 @@ Dashboard.prototype.setProject = function(p) {
         this.makeReq("/" + p + "/Components", "list_folder").then((l) => {
             this.setState({
                 list: l.entries.map(a => ({
+                    path: "/" + p + "/Components/" + a.name,
                     lastTime: new Date(a.client_modified).toDateString(),
                     name: a.name.split(".")[0]
-                }))
+                })).sort((a, b) => b.lastTime < a.lastTime ? -1 : 1)
             });
         })
     } catch (e) {
@@ -702,11 +716,15 @@ Table.prototype.render = function() {
                         React.createElement("div", {
                                 key: j,
                                 "data-tid": "Anv0fjnuvrxk",
+                                className: "Table-div_13"
+                            },
+                            React.createElement("div", {
+                                "data-tid": "A0p8b21f4649f",
                                 onClick: (e) => {
                                     props.setProject(i.name);
                                 },
-                                className: "Table-div_13"
-                            },
+                                className: "Table-div_9"
+                            }),
                             React.createElement("div", {
                                     "data-tid": "Agxfx9h90cw",
                                     className: "Table-div_14"
@@ -738,6 +756,9 @@ Table.prototype.render = function() {
                             ),
                             React.createElement("button", {
                                     "data-tid": "Akb3ct7wnfy",
+                                    onClick: (e) => {
+                                        props.remove(i);
+                                    },
                                     className: "Table-button_2"
                                 },
                                 React.createElement("i", {
