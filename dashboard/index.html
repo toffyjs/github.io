@@ -256,7 +256,7 @@ Dashboard.prototype.render = function() {
             ) :
             null, React.createElement(Table, {
                 "data-tid": "Ahrgglvnqoj6",
-                setProject: this.setProject.bind(this),
+                goto: this.goto.bind(this),
                 create: this.create.bind(this),
                 remove: this.remove.bind(this),
                 list: state.list
@@ -310,6 +310,7 @@ Dashboard.prototype.componentDidMount = function() {
             })
         } else
             this.getMyProjects();
+        window.onhashchange = this.changeHash.bind(this);
     } catch (e) {
         console.log("=========================")
         console.log('componentDidMount')
@@ -365,7 +366,12 @@ Dashboard.prototype.remove = function(item) {
 }
 Dashboard.prototype.goto = function(i) {
     try {
-        window.location.href = "/ide/#" + this.state.project + "/" + i.name;
+        if (i.type === "project") {
+            let url = window.location.href.split("#")[0];
+            window.location.href = url + "#" + (i.name || "");
+        } else {
+            window.location.href = "/ide/#" + this.state.project + "/" + i.name;
+        }
     } catch (e) {
         console.log("=========================")
         console.log('goto')
@@ -488,7 +494,7 @@ Dashboard.prototype.connect = function() {
         console.log(e)
     }
 }
-Dashboard.prototype.setProject = function(p) {
+Dashboard.prototype.gotoProject = function(p) {
     try {
         this.setState({
             page: p,
@@ -507,7 +513,7 @@ Dashboard.prototype.setProject = function(p) {
         })
     } catch (e) {
         console.log("=========================")
-        console.log('setProject')
+        console.log('gotoProject')
         console.log(e)
     }
 }
@@ -563,6 +569,19 @@ Dashboard.prototype.create = function() {
     } catch (e) {
         console.log("=========================")
         console.log('create')
+        console.log(e)
+    }
+}
+Dashboard.prototype.changeHash = function(e) {
+    try {
+        var p = window.location.hash.substr(1);
+        if (!p) {
+            this.getMyProjects();
+        } else
+            this.gotoProject(p);
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeHash')
         console.log(e)
     }
 }
@@ -709,7 +728,7 @@ Table.prototype.render = function() {
                             React.createElement("div", {
                                 "data-tid": "A0p8b21f4649f",
                                 onClick: (e) => {
-                                    props.setProject(i.name);
+                                    props.goto(i);
                                 },
                                 className: "Table-div_9"
                             }),
