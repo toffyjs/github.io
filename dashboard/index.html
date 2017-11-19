@@ -237,7 +237,7 @@ Dashboard.prototype.render = function() {
                 "data-tid": "Avvjsz550dmq",
                 className: "Dashboard-div_15"
             },
-            state.page != 'projects1' ?
+            state.page != 'projects' ?
             React.createElement("div", {
                     "data-tid": "Acnaitokti3"
                 },
@@ -309,8 +309,9 @@ Dashboard.prototype.componentDidMount = function() {
             return this.setState({
                 notLogin: true
             })
-        } else
-            this.getMyProjects();
+        } else {
+            this.changeHash()
+        }
         window.onhashchange = this.changeHash.bind(this);
     } catch (e) {
         console.log("=========================")
