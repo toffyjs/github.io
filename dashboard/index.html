@@ -167,7 +167,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: black;
     font-weight: 700
 }
-.Table-span_4 {}
+.Table-span_4 {
+    font-weight: 800
+}
 .Table-button_2 {
     border-color: transparent;
     background-color: transparent;
@@ -515,6 +517,7 @@ Dashboard.prototype.connect = function() {
 Dashboard.prototype.gotoProject = function(p) {
     try {
         this.setState({
+            list: null,
             page: p,
             project: p
         });
@@ -811,11 +814,8 @@ Table.prototype.componentWillMount = function() {
     }
 }
         ReactDOM.render(
-            React.createElement(Dashboard,
-{
-    projects:[{
-        name:"Toffy",lastTime:"2017/6/7",isPublic:false
-    }]
+            React.createElement(Dashboard,{
+    
 } ),
             document.getElementById('app')
         )
