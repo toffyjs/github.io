@@ -494,6 +494,7 @@ Dashboard.prototype.setProject = function(p) {
             page: p,
             project: p
         });
+        window.location.hash = p;
         if (this.state.tab === "PUBLIC") return alert("we will do public later");
         this.makeReq("/" + p + "/Components", "list_folder").then((l) => {
             this.setState({
