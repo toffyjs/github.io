@@ -27,7 +27,29 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     align-items: center
 }
 .Dashboard-div_15 {
-    margin-top: 92px
+    margin-top: 92px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto
+}
+.Dashboard-button_13 {
+    border-color: transparent;
+    background-color: transparent;
+    margin: 6px;
+    padding: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 2px;
+    text-transform: capitalize
+}
+.Dashboard-button_13:hover {
+    background-color: #fafafa
+}
+.Dashboard-button_selected {
+    background-color: #eee
+}
+.Dashboard-button_selected:hover {
+    background-color: #eee
 }
 .Topbar-div_1 {
     width: 100%;
@@ -89,13 +111,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin-left: 3px;
     color: GoldenRod
 }
-.Table-div_10 {
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    max-width: 95vw
-}
+.Table-div_10 {}
 .Table-div_13 {
     height: 40px;
     border-color: #ddd;
@@ -189,6 +205,7 @@ Dashboard.prototype.render = function() {
             },
             React.createElement(Topbar, {
                 "data-tid": "A0k7px5cfgjrm",
+                search: this.search.bind(this),
                 page: state.page
             })
         ),
@@ -204,7 +221,24 @@ Dashboard.prototype.render = function() {
                 "data-tid": "Avvjsz550dmq",
                 className: "Dashboard-div_15"
             },
-            React.createElement(Table, {
+            state.page != 'projects1' ?
+            React.createElement("div", {
+                    "data-tid": "Acnaitokti3"
+                },
+                this.tabs && this.tabs.map && this.tabs.length ? this.tabs.map((i, j) => (
+                    React.createElement("button", {
+                            key: j,
+                            "data-tid": "Ak4hu4z9v3d",
+                            onClick: (e) => {
+                                this.setTab(i);
+                            },
+                            className: " Dashboard-button_13" + (state.tab === i && ' Dashboard-button_selected ' || '') + ''
+                        },
+                        i
+                    )
+                )) : undefined
+            ) :
+            null, React.createElement(Table, {
                 "data-tid": "Ahrgglvnqoj6",
                 setProject: this.setProject.bind(this),
                 list: state.list
@@ -221,7 +255,9 @@ Dashboard.prototype.render = function() {
 Dashboard.prototype.componentWillMount = function() {
     try {
         this.state.tab = "MY";
-        this.state.page = "Projects";
+        this.state.page = "projects";
+        this.state.tab = 'style';
+        this.tabs = ["style", "components", "setting"]
         if (this.props.projects) {
             this.state.list = this.props.projects;
             return
@@ -515,6 +551,17 @@ Dashboard.prototype.onBlurEdit = function(i, e) {
         console.log(e)
     }
 }
+Dashboard.prototype.setTab = function(i) {
+    try {
+        this.setState({
+            tab: i
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('setTab')
+        console.log(e)
+    }
+}
 
 
 var Topbar = React.createClass({
@@ -726,11 +773,8 @@ Table.prototype.componentWillMount = function() {
     }
 }
         ReactDOM.render(
-            React.createElement(Dashboard,
-{
-    projects:[{
-        name:"Toffy",lastTime:"2017/6/7",isPublic:false
-    }]
+            React.createElement(Dashboard,{
+    
 } ),
             document.getElementById('app')
         )
