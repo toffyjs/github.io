@@ -163,6 +163,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     width: 220px;
     position: relative
 }
+.Table-div_14:hover {
+    color: black;
+    font-weight: 700
+}
 .Table-span_4 {}
 .Table-button_2 {
     border-color: transparent;
@@ -191,7 +195,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Table-span_3 {
     margin-left: 8px;
-    font-weight: 500;
     font-size: 16px
 }
 .Table-i_6 {
@@ -808,8 +811,11 @@ Table.prototype.componentWillMount = function() {
     }
 }
         ReactDOM.render(
-            React.createElement(Dashboard,{
-    
+            React.createElement(Dashboard,
+{
+    projects:[{
+        name:"Toffy",lastTime:"2017/6/7",isPublic:false
+    }]
 } ),
             document.getElementById('app')
         )
