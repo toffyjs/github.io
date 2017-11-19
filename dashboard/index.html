@@ -231,63 +231,73 @@ Dashboard.prototype.render = function() {
             })
         ),
         state.list ?
-        state.list.length === 0 ?
-        React.createElement("h1", {
-                "data-tid": "Aixoz05kj9v",
-                className: "Dashboard-h1_1"
-            },
-            "Empty"
-        ) :
         React.createElement("div", {
-                "data-tid": "Avvjsz550dmq",
-                className: "Dashboard-div_15"
+                "data-tid": "Atvqrnxn4dkl"
             },
-            state.page != 'projects' ?
-            React.createElement("div", {
-                    "data-tid": "Acnaitokti3"
+            state.list.length === 0 ?
+            React.createElement("h1", {
+                    "data-tid": "Aixoz05kj9v",
+                    className: "Dashboard-h1_1"
                 },
-                this.tabs && this.tabs.map && this.tabs.length ? this.tabs.map((i, j) => (
-                    React.createElement("button", {
-                            key: j,
-                            "data-tid": "Ak4hu4z9v3d",
-                            onClick: (e) => {
-                                this.setTab(i);
-                            },
-                            className: " Dashboard-button_13" + (state.tab === i && ' Dashboard-button_selected ' || '') + ''
-                        },
-                        i
-                    )
-                )) : undefined
+                "Empty"
             ) :
-            null, React.createElement(Table, {
-                "data-tid": "Ahrgglvnqoj6",
-                goto: this.goto.bind(this),
-                create: this.create.bind(this),
-                remove: this.remove.bind(this),
-                list: state.list,
-                isProject: state.page === 'projects'
-            })
+            React.createElement("div", {
+                    "data-tid": "Avvjsz550dmq",
+                    className: "Dashboard-div_15"
+                },
+                state.page != 'projects' ?
+                React.createElement("div", {
+                        "data-tid": "Acnaitokti3"
+                    },
+                    this.tabs && this.tabs.map && this.tabs.length ? this.tabs.map((i, j) => (
+                        React.createElement("button", {
+                                key: j,
+                                "data-tid": "Ak4hu4z9v3d",
+                                onClick: (e) => {
+                                    this.setTab(i);
+                                },
+                                className: " Dashboard-button_13" + (state.tab === i && ' Dashboard-button_selected ' || '') + ''
+                            },
+                            i
+                        )
+                    )) : undefined
+                ) :
+                null, React.createElement(Table, {
+                    "data-tid": "Ahrgglvnqoj6",
+                    goto: this.goto.bind(this),
+                    create: this.create.bind(this),
+                    remove: this.remove.bind(this),
+                    list: state.list,
+                    isProject: state.page === 'projects'
+                })
+            ),
+            React.createElement("h1", {
+                    "data-tid": "An840ablj4a",
+                    className: "Dashboard-h1_1"
+                },
+                "Empty"
+            ),
+            React.createElement("div", {
+                    "data-tid": "Aoasvwe1xmzn",
+                    className: "Table-div_8"
+                },
+                React.createElement("button", {
+                        "data-tid": "Auy09ad7je3",
+                        onClick: this.create.bind(this),
+                        className: "Table-button_1"
+                    },
+                    React.createElement("i", {
+                        "data-tid": "Ahrw46eyavw7",
+                        className: (" fa fa-plus") + ''
+                    })
+                )
+            )
         ) :
         React.createElement("h1", {
-                "data-tid": "An840ablj4a",
+                "data-tid": "A5k5gc7g5z58",
                 className: "Dashboard-h1_1"
             },
-            "Empty"
-        ),
-        React.createElement("div", {
-                "data-tid": "Aoasvwe1xmzn",
-                className: "Table-div_8"
-            },
-            React.createElement("button", {
-                    "data-tid": "Auy09ad7je3",
-                    onClick: this.create.bind(this),
-                    className: "Table-button_1"
-                },
-                React.createElement("i", {
-                    "data-tid": "Ahrw46eyavw7",
-                    className: (" fa fa-plus") + ''
-                })
-            )
+            "Loading..."
         )
     )
 }
@@ -413,6 +423,10 @@ Dashboard.prototype.changeTab = function(tab) {
 }
 Dashboard.prototype.getMyProjects = function() {
     try {
+        this.setState({
+            loading: true,
+            list: null
+        })
         this.makeReq("", "list_folder").then((l) => {
             this.props.MY = l.entries.map(a => ({
                 type: "project",
