@@ -513,9 +513,10 @@ Dashboard.prototype.gotoProject = function(p) {
             this.setState({
                 list: l.entries && l.entries.map(a => ({
                     path: "/" + p + "/Components/" + a.name,
+                    rawTime: new Date(a.client_modified),
                     lastTime: moment(new Date(a.client_modified)).fromNow(),
                     name: a.name.split(".")[0]
-                })).sort((a, b) => b.lastTime < a.lastTime ? -1 : 1) || []
+                })).sort((a, b) => b.rawTime < a.rawTime ? -1 : 1) || []
             });
         })
     } catch (e) {
