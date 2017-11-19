@@ -259,7 +259,8 @@ Dashboard.prototype.render = function() {
                 goto: this.goto.bind(this),
                 create: this.create.bind(this),
                 remove: this.remove.bind(this),
-                list: state.list
+                list: state.list,
+                isProject: state.page === 'projects'
             })
         ) :
         React.createElement("h1", {
@@ -706,13 +707,14 @@ Table.prototype.render = function() {
                         ),
                         React.createElement("div", {
                                 "data-tid": "Anatwwi4wl8e"
-                            },
+                            }, !props.isProject ?
                             React.createElement("span", {
                                     "data-tid": "A55d6iadrxy7",
                                     className: "Table-span_4"
                                 },
                                 "Last Open"
-                            )
+                            ) :
+                            null
                         ),
                         React.createElement("button", {
                             "data-tid": "Akb3ct7wnfy",
