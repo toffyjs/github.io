@@ -114,15 +114,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-div_10 {}
 .Table-div_13 {
     height: 40px;
-    border-color: #ddd;
+    border-color: #eee;
     width: 100%;
     border-style: solid;
+    border-bottom: none;
     border-width: 1px;
     align-items: center;
     display: flex;
     padding: 4px;
     justify-content: space-between;
-    border-radius: 1px
+    border-radius: 1px;
+    color: #555
 }
 .Table-div_13:hover {
     background-color: #eee;
@@ -148,14 +150,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Table-span_3 {
     margin-left: 8px;
-    font-weight: 700;
-    color: #333;
-    font-size: 15px
+    font-weight: 500;
+    font-size: 16px
 }
 .Table-i_6 {
     font-size: 8px;
     color: #bbb
 }
+.Table-h4_2 {}
 .Table-div_8 {
     position: fixed;
     bottom: 25px;
@@ -728,8 +730,9 @@ Table.prototype.render = function() {
                                     className: " Table-i_6" + (" fa fa-pencil") + ''
                                 })
                             ),
-                            React.createElement("h4", {
-                                    "data-tid": "Awi236nil8nq"
+                            React.createElement("span", {
+                                    "data-tid": "Awi236nil8nq",
+                                    className: "Table-h4_2"
                                 },
                                 i.lastTime || ''
                             ),
@@ -773,8 +776,11 @@ Table.prototype.componentWillMount = function() {
     }
 }
         ReactDOM.render(
-            React.createElement(Dashboard,{
-    
+            React.createElement(Dashboard,
+{
+    projects:[{
+        name:"Toffy",lastTime:"2017/6/7",isPublic:false
+    }]
 } ),
             document.getElementById('app')
         )
