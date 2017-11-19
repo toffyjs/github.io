@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- 
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js'  ></script>
 <style type="text/css">
 
 body{
@@ -51,6 +51,30 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Dashboard-button_selected:hover {
     background-color: #eee
+}
+.Table-div_8 {
+    position: fixed;
+    bottom: 25px;
+    left: 25px
+}
+.Table-button_1 {
+    border-radius: 50%;
+    outline: none;
+    width: 70px;
+    height: 70px;
+    padding: 0px;
+    font-size: 35px;
+    line-height: 70px;
+    border-color: transparent;
+    background-color: Orange;
+    color: WhiteSmoke;
+    box-shadow: 3px 3px 15px #888, 0px 0px 15px #ddd
+}
+.Table-button_1:active {
+    transform: scale(0.9)
+}
+.Table-button_1:hover {
+    cursor: pointer
 }
 .Topbar-div_1 {
     width: 100%;
@@ -172,30 +196,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-h4_2 {
     position: relative
 }
-.Table-div_8 {
-    position: fixed;
-    bottom: 25px;
-    left: 25px
-}
-.Table-button_1 {
-    border-radius: 50%;
-    outline: none;
-    width: 70px;
-    height: 70px;
-    padding: 0px;
-    font-size: 35px;
-    line-height: 70px;
-    border-color: transparent;
-    background-color: Orange;
-    color: WhiteSmoke;
-    box-shadow: 3px 3px 15px #888, 0px 0px 15px #ddd
-}
-.Table-button_1:active {
-    transform: scale(0.9)
-}
-.Table-button_1:hover {
-    cursor: pointer
-}
 </style>
  </head><body><script type="text/javascript">
  </script><div id="app"></div><script type="text/javascript">
@@ -257,6 +257,7 @@ Dashboard.prototype.render = function() {
             null, React.createElement(Table, {
                 "data-tid": "Ahrgglvnqoj6",
                 setProject: this.setProject.bind(this),
+                create: this.create.bind(this),
                 remove: this.remove.bind(this),
                 list: state.list
             })
@@ -266,6 +267,21 @@ Dashboard.prototype.render = function() {
                 className: "Dashboard-h1_1"
             },
             "Empty"
+        ),
+        React.createElement("div", {
+                "data-tid": "Aoasvwe1xmzn",
+                className: "Table-div_8"
+            },
+            React.createElement("button", {
+                    "data-tid": "Auy09ad7je3",
+                    onClick: this.create.bind(this),
+                    className: "Table-button_1"
+                },
+                React.createElement("i", {
+                    "data-tid": "Ahrw46eyavw7",
+                    className: (" fa fa-plus") + ''
+                })
+            )
         )
     )
 }
@@ -293,7 +309,7 @@ Dashboard.prototype.componentDidMount = function() {
                 notLogin: true
             })
         } else
-            this.getMyProject();
+            this.getMyProjects();
     } catch (e) {
         console.log("=========================")
         console.log('componentDidMount')
@@ -302,7 +318,7 @@ Dashboard.prototype.componentDidMount = function() {
 }
 Dashboard.prototype.download = function(i) {
     try {
-        this.makeReq("/" + this.state.project + "/Components/" + i.name + ".json", "download").then(a => a.json()).then((t) => {
+        this.makeReq(i.path, "download").then(a => a.json()).then((t) => {
             var data = JSON.stringify(t, null, 2);
             var link = document.createElement('a');
             link.download = i.name + ".json";
@@ -318,6 +334,7 @@ Dashboard.prototype.download = function(i) {
 }
 Dashboard.prototype.remove = function(item) {
     try {
+        if (item.type === "project") return alert("you can`t remove project so easy...")
         if (window.confirm("Are you sure t remove:" + item.path) == false) return;
         var that = this;
         function r() {
@@ -364,7 +381,6 @@ Dashboard.prototype.search = function(e) {
                 return ~l.indexOf(v);
             })
         })
-        $print(v)
     } catch (e) {
         console.log("=========================")
         console.log('search')
@@ -382,55 +398,12 @@ Dashboard.prototype.changeTab = function(tab) {
         console.log(e)
     }
 }
-Dashboard.prototype.fetch = function() {
-    try {
-        if (window.Klasses) {
-            this.setState({
-                list: this.props.list
-            })
-            return;
-        }
-        if (!localStorage.toffy_dropbox) {
-            return this.setState({
-                notLogin: true
-            })
-        }
-        var token = 'Bearer ' + localStorage.toffy_dropbox;
-        this.headers = new Headers({
-            'Content-Type': 'application/json',
-            Authorization: token
-        });
-        var url = "https://api.dropboxapi.com/2/files/list_folder";
-        fetch(url, {
-            mode: 'cors',
-            method: 'post',
-            body: JSON.stringify({
-                path: "/" + this.state.project + "/Components"
-            }),
-            headers: this.headers
-        }).then(function(response) {
-            return response.json();
-        }).then((l) => {
-            this.props.list = l.entries.map((a) => ({
-                name: a.name.split(".")[0],
-                updated: a.client_modified
-            }));
-            this.setState({
-                list: this.props.list
-            })
-        }).catch(function(err) {
-            console.log(err)
-        });
-    } catch (e) {
-        console.log("=========================")
-        console.log('fetch')
-        console.log(e)
-    }
-}
-Dashboard.prototype.getMyProject = function() {
+Dashboard.prototype.getMyProjects = function() {
     try {
         this.makeReq("", "list_folder").then((l) => {
             this.props.MY = l.entries.map(a => ({
+                type: "project",
+                path: "/" + a.name,
                 name: a.name
             }));
             this.setState({
@@ -439,7 +412,7 @@ Dashboard.prototype.getMyProject = function() {
         })
     } catch (e) {
         console.log("=========================")
-        console.log('getMyProject')
+        console.log('getMyProjects')
         console.log(e)
     }
 }
@@ -461,8 +434,12 @@ Dashboard.prototype.makeReq = function(path, method) {
                 "mode": "overwrite"
             });
             h['Content-Type'] = "application/octet-stream";
+            var cname = path.split("/").pop().split(".")[0];
             body = JSON.stringify({
-                name: path.split("/").pop().split(".")[0]
+                name: cname,
+                component: {
+                    name: cname,
+                }
             });
         }
         if (method === "download") {
@@ -520,44 +497,16 @@ Dashboard.prototype.setProject = function(p) {
         if (this.state.tab === "PUBLIC") return alert("we will do public later");
         this.makeReq("/" + p + "/Components", "list_folder").then((l) => {
             this.setState({
-                list: l.entries.map(a => ({
+                list: l.entries && l.entries.map(a => ({
                     path: "/" + p + "/Components/" + a.name,
-                    lastTime: new Date(a.client_modified).toDateString(),
+                    lastTime: moment(new Date(a.client_modified)).fromNow(),
                     name: a.name.split(".")[0]
-                })).sort((a, b) => b.lastTime < a.lastTime ? -1 : 1)
+                })).sort((a, b) => b.lastTime < a.lastTime ? -1 : 1) || []
             });
         })
     } catch (e) {
         console.log("=========================")
         console.log('setProject')
-        console.log(e)
-    }
-}
-Dashboard.prototype.createComponent = function() {
-    try {
-        var name = this.refs.inoc.value;
-        this.makeReq("/" + this.state.project + "/Components/" + name + ".json", "upload").then(() => {
-            alert("saved!!!");
-        }).catch(e => {
-            alert(e);
-        });
-    } catch (e) {
-        console.log("=========================")
-        console.log('createComponent')
-        console.log(e)
-    }
-}
-Dashboard.prototype.createProject = function(name) {
-    try {
-        var name = this.refs.inop.value;
-        this.makeReq("/" + name, "create_folder").then(() => {
-            alert("saved!!!");
-        }).catch(e => {
-            alert(e);
-        });
-    } catch (e) {
-        console.log("=========================")
-        console.log('createProject')
         console.log(e)
     }
 }
@@ -584,6 +533,35 @@ Dashboard.prototype.setTab = function(i) {
     } catch (e) {
         console.log("=========================")
         console.log('setTab')
+        console.log(e)
+    }
+}
+Dashboard.prototype.create = function() {
+    try {
+        var name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
+        if (!name) return;
+        let path;
+        var m = "upload";
+        if (this.state.page === "projects") {
+            path = "/" + name;
+            m = "create_folder";
+        } else {
+            path = "/" + this.state.project + "/Components/" + name + ".json";
+        }
+        this.makeReq(path, m).then(() => {
+            alert("saved!!!");
+            this.state.list.push({
+                name: name,
+                path: path,
+                type: this.state.page === "project" ? "project" : "component"
+            });
+            this.setState({});
+        }).catch(e => {
+            alert(e);
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('create')
         console.log(e)
     }
 }
@@ -778,20 +756,6 @@ Table.prototype.render = function() {
                         )
                     )) : undefined
                 )
-            )
-        ),
-        React.createElement("div", {
-                "data-tid": "Aoasvwe1xmzn",
-                className: "Table-div_8"
-            },
-            React.createElement("button", {
-                    "data-tid": "Auy09ad7je3",
-                    className: "Table-button_1"
-                },
-                React.createElement("i", {
-                    "data-tid": "Ahrw46eyavw7",
-                    className: (" fa fa-plus") + ''
-                })
             )
         )
     )
