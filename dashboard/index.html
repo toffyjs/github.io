@@ -14,7 +14,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
  <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 
 <style type="text/css">
- .Dashboard-div_28 {
+ .Dashboard {
+    margin: 20px
+}
+.Dashboard-div_28 {
     position: fixed;
     left: 0px;
     right: 0px;
@@ -104,6 +107,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     display: flex;
     padding-right: 23px
 }
+.Topbar-h2_1 {
+    color: #fff;
+    font-size: 21px;
+    text-transform: uppercase
+}
+.Topbar-span_1 {
+    margin-left: 3px;
+    color: GoldenRod
+}
 .Topbar-form_1 {
     align-items: stretch;
     display: flex;
@@ -127,26 +139,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 20px;
     max-width: 54vw
 }
-.Topbar-h2_1 {
-    color: #fff;
-    font-size: 21px;
-    text-transform: uppercase
-}
-.Topbar-span_1 {
-    margin-left: 3px;
-    color: GoldenRod
-}
-.Table-div_389 {
+.Table-div_84 {
     border-color: #eee;
-    border-bottom-style: solid;
+    border-style: solid;
     border-width: 1px
 }
-.Table-div_10 {}
 .Table-div_13 {
     border-color: #eee;
     width: 100%;
-    border-style: solid;
-    border-bottom: none;
+    border-top: 1px #eee solid;
     border-width: 1px;
     align-items: center;
     display: flex;
@@ -174,15 +175,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-span_4 {
     font-weight: 800
 }
-.Table-button_2 {
-    border-color: transparent;
-    background-color: transparent;
-    font-size: 24px;
-    color: #bbb;
-    position: relative
-}
-.Table-button_2:active {
-    transform: scale(0.99) translate(4px, 3px)
+.Table-div_85 {
+    width: 200px;
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start
 }
 .Table-div_9 {
     position: absolute;
@@ -209,6 +207,19 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Table-h4_2 {
     position: relative
+}
+.Table-button_2 {
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 24px;
+    color: #bbb;
+    position: relative
+}
+.Table-button_2:active {
+    transform: scale(0.99) translate(4px, 3px)
+}
+.Table-button_2:hover {
+    color: #777
 }
 </style>
  </head><body><script type="text/javascript">
@@ -276,6 +287,7 @@ Dashboard.prototype.render = function() {
                     goto: this.goto.bind(this),
                     create: this.create.bind(this),
                     remove: this.remove.bind(this),
+                    download: this.download.bind(this),
                     list: state.list,
                     isProject: state.page === 'projects'
                 })
@@ -320,7 +332,9 @@ Dashboard.prototype.componentDidMount = function() {
         this.state.tab = 'components';
         this.tabs = ["style", "components", "setting"]
         if (this.props.projects) {
-            this.state.list = this.props.projects;
+            this.setState({
+                list: this.props.projects
+            })
             return
         }
         if (!localStorage.toffy_dropbox) {
@@ -648,6 +662,17 @@ Topbar.prototype.render = function() {
                 "data-tid": "Aww1y3rjijzc",
                 className: "Topbar-div_3"
             },
+            React.createElement("h2", {
+                    "data-tid": "A38qcodngby5",
+                    className: "Topbar-h2_1"
+                },
+                "Toffy", React.createElement("span", {
+                        "data-tid": "Ap6ze4nv54x",
+                        className: "Topbar-span_1"
+                    },
+                    props.page
+                )
+            ),
             React.createElement("form", {
                     "data-tid": "Ayd0xxov3ucl",
                     className: "Topbar-form_1"
@@ -662,17 +687,6 @@ Topbar.prototype.render = function() {
                     type: 'text',
                     placeholder: 'Search...'
                 })
-            ),
-            React.createElement("h2", {
-                    "data-tid": "A38qcodngby5",
-                    className: "Topbar-h2_1"
-                },
-                "Toffy", React.createElement("span", {
-                        "data-tid": "Ap6ze4nv54x",
-                        className: "Topbar-span_1"
-                    },
-                    props.page
-                )
             )
         )
     )
@@ -700,117 +714,133 @@ Table.prototype.render = function() {
     var props = this.props;
     var state = this.state;
     return React.createElement("div", {
-            "data-tid": "Asbl4g4dbrz"
+            "data-tid": "Asbl4g4dbrz",
+            className: "Table-div_84"
         },
         React.createElement("div", {
-                "data-tid": "Atbb9w13xo7k",
-                className: "Table-div_389"
+                "data-tid": "A3u2gqqujtg",
+                style: {
+                    border: 'none',
+                    backgroundColor: 'transparent'
+                },
+                className: "Table-div_13"
             },
             React.createElement("div", {
-                    "data-tid": "Afi9zhir8bjs",
-                    className: "Table-div_10"
+                    "data-tid": "Agxfx9h90cw",
+                    style: {
+                        textAlign: 'center'
+                    },
+                    className: "Table-div_14"
+                },
+                React.createElement("span", {
+                        "data-tid": "A55d6iadrxy7",
+                        style: {},
+                        className: "Table-span_4"
+                    },
+                    "Name"
+                )
+            ),
+            React.createElement("div", {
+                    "data-tid": "Anatwwi4wl8e"
+                }, !props.isProject ?
+                React.createElement("span", {
+                        "data-tid": "A55d6iadrxy7",
+                        className: "Table-span_4"
+                    },
+                    "Last Open"
+                ) :
+                null
+            ),
+            React.createElement("div", {
+                "data-tid": "Asrwseg7eb7q",
+                className: "Table-div_85"
+            })
+        ),
+        props.list && props.list.map && props.list.length ? props.list.map((i, j) => (
+            React.createElement("div", {
+                    key: j,
+                    "data-tid": "Anv0fjnuvrxk",
+                    className: "Table-div_13"
                 },
                 React.createElement("div", {
-                        "data-tid": "A1t0dpefz0x4"
+                    "data-tid": "A0p8b21f4649f",
+                    onClick: (e) => {
+                        props.goto(i);
                     },
-                    React.createElement("div", {
-                            "data-tid": "A3u2gqqujtg",
-                            style: {
-                                border: 'none',
-                                backgroundColor: 'transparent'
+                    className: "Table-div_9"
+                }),
+                React.createElement("div", {
+                        "data-tid": "Agxfx9h90cw",
+                        className: "Table-div_14"
+                    },
+                    React.createElement("i", {
+                        "data-tid": "Aygu7uyzw3oa",
+                        className: " Table-i_9" + (" fa fa-folder") + ''
+                    }),
+                    React.createElement("span", {
+                            "data-tid": "Acxbtrkajpmc",
+                            onBlur: (e) => {
+                                this.onBlurEdit(i, e);
                             },
-                            className: "Table-div_13"
+                            className: "Table-span_3",
+                            contentEditable: true
                         },
-                        React.createElement("div", {
-                                "data-tid": "Agxfx9h90cw",
-                                style: {
-                                    textAlign: 'center'
-                                },
-                                className: "Table-div_14"
+                        i.name
+                    ),
+                    React.createElement("i", {
+                        "data-tid": "Aefotn9e1va",
+                        className: " Table-i_6" + (" fa fa-pencil") + ''
+                    })
+                ),
+                React.createElement("span", {
+                        "data-tid": "Awi236nil8nq",
+                        className: "Table-h4_2"
+                    },
+                    i.lastTime || ''
+                ),
+                React.createElement("div", {
+                        "data-tid": "Abh4q6wl561h",
+                        className: "Table-div_85"
+                    },
+                    React.createElement("button", {
+                            "data-tid": "Ax74mkpdgqw",
+                            onClick: (e) => {
+                                props.goto(i);
                             },
-                            React.createElement("span", {
-                                    "data-tid": "A55d6iadrxy7",
-                                    style: {},
-                                    className: "Table-span_4"
-                                },
-                                "Name"
-                            )
-                        ),
-                        React.createElement("div", {
-                                "data-tid": "Anatwwi4wl8e"
-                            }, !props.isProject ?
-                            React.createElement("span", {
-                                    "data-tid": "A55d6iadrxy7",
-                                    className: "Table-span_4"
-                                },
-                                "Last Open"
-                            ) :
-                            null
-                        ),
-                        React.createElement("button", {
-                            "data-tid": "Akb3ct7wnfy",
                             className: "Table-button_2"
+                        },
+                        React.createElement("i", {
+                            "data-tid": "Af5oh1b7g23j",
+                            className: (" fa fa-pencil") + ''
                         })
                     ),
-                    props.list && props.list.map && props.list.length ? props.list.map((i, j) => (
-                        React.createElement("div", {
-                                key: j,
-                                "data-tid": "Anv0fjnuvrxk",
-                                className: "Table-div_13"
+                    React.createElement("button", {
+                            "data-tid": "Akb3ct7wnfy",
+                            onClick: (e) => {
+                                props.download(i);
                             },
-                            React.createElement("div", {
-                                "data-tid": "A0p8b21f4649f",
-                                onClick: (e) => {
-                                    props.goto(i);
-                                },
-                                className: "Table-div_9"
-                            }),
-                            React.createElement("div", {
-                                    "data-tid": "Agxfx9h90cw",
-                                    className: "Table-div_14"
-                                },
-                                React.createElement("i", {
-                                    "data-tid": "Aygu7uyzw3oa",
-                                    className: " Table-i_9" + (" fa fa-folder") + ''
-                                }),
-                                React.createElement("span", {
-                                        "data-tid": "Acxbtrkajpmc",
-                                        onBlur: (e) => {
-                                            this.onBlurEdit(i, e);
-                                        },
-                                        className: "Table-span_3",
-                                        contentEditable: true
-                                    },
-                                    i.name
-                                ),
-                                React.createElement("i", {
-                                    "data-tid": "Aefotn9e1va",
-                                    className: " Table-i_6" + (" fa fa-pencil") + ''
-                                })
-                            ),
-                            React.createElement("span", {
-                                    "data-tid": "Awi236nil8nq",
-                                    className: "Table-h4_2"
-                                },
-                                i.lastTime || ''
-                            ),
-                            React.createElement("button", {
-                                    "data-tid": "Akb3ct7wnfy",
-                                    onClick: (e) => {
-                                        props.remove(i);
-                                    },
-                                    className: "Table-button_2"
-                                },
-                                React.createElement("i", {
-                                    "data-tid": "Af5oh1b7g23j",
-                                    className: (" fa fa-trash") + ''
-                                })
-                            )
-                        )
-                    )) : undefined
+                            className: "Table-button_2"
+                        },
+                        React.createElement("i", {
+                            "data-tid": "Af5oh1b7g23j",
+                            className: (" fa fa-download") + ''
+                        })
+                    ),
+                    React.createElement("button", {
+                            "data-tid": "A4bd4sj0gg5o",
+                            onClick: (e) => {
+                                props.remove(i);
+                            },
+                            className: "Table-button_2"
+                        },
+                        React.createElement("i", {
+                            "data-tid": "Af5oh1b7g23j",
+                            className: (" fa fa-trash") + ''
+                        })
+                    )
                 )
             )
-        )
+        )) : undefined
     )
 }
 Table.prototype.componentWillMount = function() {
@@ -823,8 +853,14 @@ Table.prototype.componentWillMount = function() {
     }
 }
         ReactDOM.render(
-            React.createElement(Dashboard,{
+            React.createElement(Dashboard,
+{
     
+    projects:[{
+        type:"project",
+        path:"/test",
+        name:"test"
+    }]
 } ),
             document.getElementById('app')
         )
