@@ -57,7 +57,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     bottom: 25px;
     left: 25px
 }
-.Table-button_1 {
+.Dashboard-button_1 {
     border-radius: 50%;
     outline: none;
     width: 70px;
@@ -70,10 +70,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: WhiteSmoke;
     box-shadow: 3px 3px 15px #888, 0px 0px 15px #ddd
 }
-.Table-button_1:active {
+.Dashboard-button_1:active {
     transform: scale(0.9)
 }
-.Table-button_1:hover {
+.Dashboard-button_1:hover {
     cursor: pointer
 }
 .Topbar-div_1 {
@@ -143,7 +143,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Table-div_10 {}
 .Table-div_13 {
-    height: 40px;
     border-color: #eee;
     width: 100%;
     border-style: solid;
@@ -151,7 +150,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-width: 1px;
     align-items: center;
     display: flex;
-    padding: 4px;
     justify-content: space-between;
     border-radius: 1px;
     color: #555;
@@ -161,7 +159,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-div_13:active {}
 .Table-div_14 {
     width: 220px;
-    position: relative
+    position: relative;
+    background-color: transparent;
+    height: 40px;
+    line-height: 40px;
+    border-color: #eee;
+    border-right-style: solid;
+    border-width: 1px
 }
 .Table-div_14:hover {
     color: black;
@@ -283,7 +287,7 @@ Dashboard.prototype.render = function() {
                 React.createElement("button", {
                         "data-tid": "Auy09ad7je3",
                         onClick: this.create.bind(this),
-                        className: "Table-button_1"
+                        className: "Dashboard-button_1"
                     },
                     React.createElement("i", {
                         "data-tid": "Ahrw46eyavw7",
@@ -579,7 +583,8 @@ Dashboard.prototype.create = function() {
         }
         this.makeReq(path, m).then(() => {
             alert("saved!!!");
-            this.state.list.push({
+            this.state.list.unshift({
+                lastTime: "now",
                 name: name,
                 path: path,
                 type: this.state.page === "project" ? "project" : "component"
@@ -718,10 +723,14 @@ Table.prototype.render = function() {
                         },
                         React.createElement("div", {
                                 "data-tid": "Agxfx9h90cw",
+                                style: {
+                                    textAlign: 'center'
+                                },
                                 className: "Table-div_14"
                             },
                             React.createElement("span", {
                                     "data-tid": "A55d6iadrxy7",
+                                    style: {},
                                     className: "Table-span_4"
                                 },
                                 "Name"
