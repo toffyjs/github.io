@@ -180,7 +180,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     flex-direction: row;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start
+    align-items: flex-start;
+    margin-right: 7px
 }
 .Table-div_9 {
     position: absolute;
@@ -211,9 +212,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-button_2 {
     border-color: transparent;
     background-color: transparent;
-    font-size: 24px;
+    font-size: 18px;
     color: #bbb;
-    position: relative
+    position: relative;
+    line-height: 34px;
+    margin-left: 7px
 }
 .Table-button_2:active {
     transform: scale(0.99) translate(4px, 3px)
@@ -802,6 +805,7 @@ Table.prototype.render = function() {
                         "data-tid": "Abh4q6wl561h",
                         className: "Table-div_85"
                     },
+                    i.type != 'project' ?
                     React.createElement("button", {
                             "data-tid": "Ax74mkpdgqw",
                             onClick: (e) => {
@@ -813,7 +817,8 @@ Table.prototype.render = function() {
                             "data-tid": "Af5oh1b7g23j",
                             className: (" fa fa-pencil") + ''
                         })
-                    ),
+                    ) :
+                    null, i.type != 'project' ?
                     React.createElement("button", {
                             "data-tid": "Akb3ct7wnfy",
                             onClick: (e) => {
@@ -825,8 +830,8 @@ Table.prototype.render = function() {
                             "data-tid": "Af5oh1b7g23j",
                             className: (" fa fa-download") + ''
                         })
-                    ),
-                    React.createElement("button", {
+                    ) :
+                    null, React.createElement("button", {
                             "data-tid": "A4bd4sj0gg5o",
                             onClick: (e) => {
                                 props.remove(i);
@@ -853,14 +858,8 @@ Table.prototype.componentWillMount = function() {
     }
 }
         ReactDOM.render(
-            React.createElement(Dashboard,
-{
+            React.createElement(Dashboard,{
     
-    projects:[{
-        type:"project",
-        path:"/test",
-        name:"test"
-    }]
 } ),
             document.getElementById('app')
         )
