@@ -44,16 +44,21 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding-left: 12px;
     padding-right: 12px;
     border-radius: 2px;
-    text-transform: capitalize
+    text-transform: capitalize;
+    color: #666
 }
 .Dashboard-button_13:hover {
     background-color: #fafafa
 }
 .Dashboard-button_selected {
-    background-color: #eee
+    background-color: #eee;
+    color: #000
 }
 .Dashboard-button_selected:hover {
     background-color: #eee
+}
+.Dashboard-i_17 {
+    margin-right: 7px
 }
 .Table-div_8 {
     position: fixed;
@@ -156,8 +161,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: #555;
     position: relative
 }
-.Table-div_13:hover {}
-.Table-div_13:active {}
+
+
 .Table-div_14 {
     width: 220px;
     position: relative;
@@ -281,7 +286,11 @@ Dashboard.prototype.render = function() {
                                 },
                                 className: " Dashboard-button_13" + (state.tab === i && ' Dashboard-button_selected ' || '') + ''
                             },
-                            i
+                            React.createElement("i", {
+                                "data-tid": "Atkefqzt9gr",
+                                className: " Dashboard-i_17" + (' fa fa-' + (i.icon)) + ''
+                            }),
+                            i.name
                         )
                     )) : undefined
                 ) :
@@ -333,7 +342,16 @@ Dashboard.prototype.componentDidMount = function() {
         this.state.tab = "MY";
         this.state.page = "projects";
         this.state.tab = 'components';
-        this.tabs = ["style", "components", "setting"]
+        this.tabs = [{
+            name: "style",
+            icon: "paint-brush"
+        }, {
+            icon: "cubes",
+            name: "components",
+        }, {
+            name: "setting",
+            icon: "cogs",
+        }];
         if (this.props.projects) {
             this.setState({
                 list: this.props.projects
