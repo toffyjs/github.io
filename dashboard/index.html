@@ -52,7 +52,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Dashboard-button_selected {
     background-color: #eee;
-    color: #000
+    color: #000;
+    font-weight: 900
 }
 .Dashboard-button_selected:hover {
     background-color: #eee
@@ -68,21 +69,26 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Dashboard-button_1 {
     border-radius: 50%;
     outline: none;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     padding: 0px;
-    font-size: 35px;
-    line-height: 70px;
+    font-size: 25px;
+    line-height: 60px;
     border-color: transparent;
     background-color: Orange;
     color: WhiteSmoke;
-    box-shadow: 3px 3px 15px #888, 0px 0px 15px #ddd
+    box-shadow: 3px 3px 15px #ddd, 0px 0px 5px rgba(0, 0, 0, 0.2)
 }
 .Dashboard-button_1:active {
     transform: scale(0.9)
 }
 .Dashboard-button_1:hover {
     cursor: pointer
+}
+@media (min-width: 1200px) {
+    .Dashboard-button_1 {
+        background: black
+    }
 }
 .Topbar-div_1 {
     width: 100%;
@@ -330,18 +336,6 @@ Dashboard.prototype.render = function() {
 }
 Dashboard.prototype.componentWillMount = function() {
     try {
-        return
-    } catch (e) {
-        console.log("=========================")
-        console.log('componentWillMount')
-        console.log(e)
-    }
-}
-Dashboard.prototype.componentDidMount = function() {
-    try {
-        this.state.tab = "MY";
-        this.state.page = "projects";
-        this.state.tab = 'components';
         this.tabs = [{
             name: "style",
             icon: "paint-brush"
@@ -352,6 +346,16 @@ Dashboard.prototype.componentDidMount = function() {
             name: "setting",
             icon: "cogs",
         }];
+        this.state.tab = this.tabs[1];
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Dashboard.prototype.componentDidMount = function() {
+    try {
+        this.state.page = "projects";
         if (this.props.projects) {
             this.setState({
                 list: this.props.projects
