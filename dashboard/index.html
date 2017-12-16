@@ -150,6 +150,39 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 20px;
     max-width: 54vw
 }
+.Style-div_7 {
+    border-color: Black
+}
+.Style-span_1 {
+    width: 25px;
+    display: inline-block;
+    height: 25px;
+    border-radius: 34px;
+    margin-right: 13px;
+    border-style: solid;
+    border-color: AliceBlue;
+    border-width: 1px
+}
+.Style-div_8 {
+    border-style: solid;
+    border-width: 1px;
+    border-bottom: none;
+    border-color: #888
+}
+.Style-span_2 {
+    width: 71px;
+    display: inline-block;
+    padding: 10px
+}
+.Style-div_9 {
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
+}
+.Style-h1_3 {
+    margin: 14px
+}
 .Table-div_84 {
     border-color: #eee;
     border-style: solid;
@@ -235,44 +268,26 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-button_2:hover {
     color: #777
 }
-.Style-div_7 {
-    margin-top: 16px
-}
-.Style-span_1 {
-    width: 40px;
-    display: inline-block;
-    height: 40px;
-    border-radius: 34px;
-    margin-right: 13px;
-    border-style: solid
-}
-.Style-div_8 {
-    border-style: solid;
-    border-width: 1px
-}
-.Style-span_2 {
-    border-right-style: solid;
-    border-width: 1px;
-    margin-right: 10px;
-    width: 71px;
-    display: inline-block;
-    padding: 10px
-}
-.Style-div_9 {
-    flex-direction: row;
-    display: flex;
-    justify-content: flex-start
-}
-.Style-h1_3 {
-    margin: 14px
-}
+
 .StyleSection-div_2 {
-    padding: 22px
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-top: 12px
 }
 .StyleSection-h1_1 {
     font-weight: 300;
-    color: DarkOrange;
-    font-style: italic
+    color: AliceBlue;
+    font-style: italic;
+    font-size: 15px;
+    background-color: #333;
+    padding: 5px;
+    text-transform: uppercase
+}
+.StyleSection-div_37 {
+    border-color: Azure;
+    padding: 8px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #fff
 }
 </style>
  </head><body><script type="text/javascript">
@@ -770,6 +785,113 @@ Topbar.prototype.componentWillMount = function() {
 }
 
 
+var Style = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Style.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Afw5dfmchdz7"
+        },
+        React.createElement(StyleSection, {
+                "data-tid": "Amyw2ibtccpc",
+                title: 'Colors'
+            },
+            React.createElement("div", {
+                    "data-tid": "Ayq2b64xqqa",
+                    className: "Style-div_7"
+                },
+                this.colors && this.colors.map && this.colors.length ? this.colors.map((i, j) => (
+                    React.createElement("span", {
+                        key: j,
+                        "data-tid": "Am7zb4tjlfh",
+                        style: {
+                            backgroundColor: i
+                        },
+                        className: "Style-span_1"
+                    })
+                )) : undefined
+            )
+        ),
+        React.createElement(StyleSection, {
+                "data-tid": "Alsnwka2l4eb",
+                title: 'Sizes'
+            },
+            React.createElement("div", {
+                    "data-tid": "Aozafj2nlpo",
+                    style: {
+                        borderBottom: '1px solid #888'
+                    },
+                    className: "Style-div_7"
+                },
+                Object.keys(this.sizes) && Object.keys(this.sizes).map && Object.keys(this.sizes).length ? Object.keys(this.sizes).map((i, j) => (
+                    React.createElement("div", {
+                            key: j,
+                            "data-tid": "At8a35yvf77t",
+                            className: "Style-div_8"
+                        },
+                        React.createElement("span", {
+                                "data-tid": "Aldsi05uhnu",
+                                className: "Style-span_2"
+                            },
+                            i
+                        ),
+                        React.createElement("span", {
+                                "data-tid": "Ayswy4xn36u9"
+                            },
+                            this.sizes[i]
+                        )
+                    )
+                )) : undefined
+            )
+        ),
+        React.createElement(StyleSection, {
+                "data-tid": "Aw2qntsyc2s9",
+                title: 'Fonts'
+            },
+            React.createElement("div", {
+                    "data-tid": "Ao9x96sxjclt",
+                    className: "Style-div_9"
+                },
+                this.fonts && this.fonts.map && this.fonts.length ? this.fonts.map((i, j) => (
+                    React.createElement("h1", {
+                            key: j,
+                            "data-tid": "An83o7j3o709",
+                            style: {
+                                fontFamily: i
+                            },
+                            className: "Style-h1_3"
+                        },
+                        i
+                    )
+                )) : undefined
+            )
+        )
+    )
+}
+Style.prototype.componentWillMount = function() {
+    try {
+        this.colors = ['red', 'blue', 'yellow', 'brown'];
+        this.sizes = {
+            iphone: "max(780px)",
+            ipad: "max(1024px)",
+            large: "min(1800px)"
+        }
+        this.fonts = ["arial", "Open Sans Condensed", "Raleway", "'Indie Flower'"]
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+
+
 var Table = React.createClass({
     getInitialState: function() {
         return {}
@@ -924,109 +1046,6 @@ Table.prototype.componentWillMount = function() {
 }
 
 
-var Style = React.createClass({
-    getInitialState: function() {
-        return {}
-    },
-    render: function() {
-        return null
-    }
-});
-Style.prototype.render = function() {
-    var props = this.props;
-    var state = this.state;
-    return React.createElement("div", {
-            "data-tid": "Afw5dfmchdz7"
-        },
-        React.createElement(StyleSection, {
-                "data-tid": "Amyw2ibtccpc",
-                title: 'Colors'
-            },
-            React.createElement("div", {
-                    "data-tid": "Ayq2b64xqqa",
-                    className: "Style-div_7"
-                },
-                this.colors && this.colors.map && this.colors.length ? this.colors.map((i, j) => (
-                    React.createElement("span", {
-                        key: j,
-                        "data-tid": "Am7zb4tjlfh",
-                        style: {
-                            backgroundColor: i
-                        },
-                        className: "Style-span_1"
-                    })
-                )) : undefined
-            )
-        ),
-        React.createElement(StyleSection, {
-                "data-tid": "Alsnwka2l4eb",
-                title: 'Sizes'
-            },
-            React.createElement("div", {
-                    "data-tid": "Aozafj2nlpo",
-                    className: "Style-div_7"
-                },
-                Object.keys(this.sizes) && Object.keys(this.sizes).map && Object.keys(this.sizes).length ? Object.keys(this.sizes).map((i, j) => (
-                    React.createElement("div", {
-                            key: j,
-                            "data-tid": "At8a35yvf77t",
-                            className: "Style-div_8"
-                        },
-                        React.createElement("span", {
-                                "data-tid": "Aldsi05uhnu",
-                                className: "Style-span_2"
-                            },
-                            i
-                        ),
-                        React.createElement("span", {
-                                "data-tid": "Ayswy4xn36u9"
-                            },
-                            this.sizes[i]
-                        )
-                    )
-                )) : undefined
-            )
-        ),
-        React.createElement(StyleSection, {
-                "data-tid": "Aw2qntsyc2s9",
-                title: 'Fonts'
-            },
-            React.createElement("div", {
-                    "data-tid": "Ao9x96sxjclt",
-                    className: "Style-div_9"
-                },
-                this.fonts && this.fonts.map && this.fonts.length ? this.fonts.map((i, j) => (
-                    React.createElement("h1", {
-                            key: j,
-                            "data-tid": "An83o7j3o709",
-                            style: {
-                                fontFamily: i
-                            },
-                            className: "Style-h1_3"
-                        },
-                        i
-                    )
-                )) : undefined
-            )
-        )
-    )
-}
-Style.prototype.componentWillMount = function() {
-    try {
-        this.colors = ['red', 'blue', 'yellow', 'brown'];
-        this.sizes = {
-            iphone: "max(780px)",
-            large: "min(1800px)"
-        }
-        this.fonts = ["arial", "Open Sans Condensed", "Raleway", "'Indie Flower'"]
-    } catch (e) {
-        console.log("=========================")
-        console.log('componentWillMount')
-        console.log(e)
-    }
-}
-
-
 var StyleSection = React.createClass({
     getInitialState: function() {
         return {}
@@ -1049,7 +1068,8 @@ StyleSection.prototype.render = function() {
             props.title
         ),
         React.createElement("div", {
-                "data-tid": "Awd4e81ghb9q"
+                "data-tid": "Awd4e81ghb9q",
+                className: "StyleSection-div_37"
             },
             props.children
         )
