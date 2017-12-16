@@ -2,6 +2,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js'  ></script>
+<link href='https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans+Condensed:300|Raleway' rel="stylesheet" ></link>
 <style type="text/css">
 
 body{
@@ -536,6 +537,7 @@ Dashboard.prototype.getMyProjects = function() {
             this.setState({
                 list: this.props.MY
             });
+            this.updateLocal("projects", this.props.MY);
         })
     } catch (e) {
         console.log("=========================")
@@ -625,14 +627,16 @@ Dashboard.prototype.gotoProject = function(p) {
         window.location.hash = p;
         if (this.state.tab === "PUBLIC") return alert("we will do public later");
         this.makeReq("/" + p + "/Components", "list_folder").then((l) => {
+            const list = l.entries && l.entries.map(a => ({
+                path: "/" + p + "/Components/" + a.name,
+                rawTime: new Date(a.client_modified),
+                lastTime: moment(new Date(a.client_modified)).fromNow(),
+                name: a.name.split(".")[0]
+            })).sort((a, b) => b.rawTime < a.rawTime ? -1 : 1) || [];
             this.setState({
-                list: l.entries && l.entries.map(a => ({
-                    path: "/" + p + "/Components/" + a.name,
-                    rawTime: new Date(a.client_modified),
-                    lastTime: moment(new Date(a.client_modified)).fromNow(),
-                    name: a.name.split(".")[0]
-                })).sort((a, b) => b.rawTime < a.rawTime ? -1 : 1) || []
+                list: list
             });
+            this.updateLocal("components", list);
         })
     } catch (e) {
         console.log("=========================")
@@ -706,6 +710,16 @@ Dashboard.prototype.changeHash = function(e) {
     } catch (e) {
         console.log("=========================")
         console.log('changeHash')
+        console.log(e)
+    }
+}
+Dashboard.prototype.updateLocal = function(type, data) {
+    try {
+        localStorage.edittime = Date.now();
+        localStorage[type] = JSON.stringify(data);
+    } catch (e) {
+        console.log("=========================")
+        console.log('updateLocal')
         console.log(e)
     }
 }
