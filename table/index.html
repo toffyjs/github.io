@@ -1,0 +1,272 @@
+<!DOCTYPE html><html><head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+<style type="text/css">
+
+body{
+    font-family:Roboto
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}</style><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js">
+</script><title></title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> 
+ <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+
+<style type="text/css">
+ .Table-div_84 {
+    border-color: #eee;
+    border-style: solid;
+    border-width: 1px
+}
+.Table-div_13 {
+    border-color: #eee;
+    width: 100%;
+    border-top: 1px #eee solid;
+    border-width: 1px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 1px;
+    color: #555;
+    position: relative
+}
+
+
+.Table-div_14 {
+    width: 220px;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    text-align: center
+}
+.Table-div_14:hover {
+    color: black;
+    font-weight: 700
+}
+.Table-span_4 {
+    font-weight: 800
+}
+.Table-i_9 {
+    color: #bbb
+}
+.Table-span_3 {
+    margin-left: 8px;
+    font-size: 16px
+}
+.Table-i_6 {
+    font-size: 8px;
+    color: #bbb
+}
+.Table-h4_2 {
+    position: relative
+}
+.Table-button_2 {
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 18px;
+    color: #bbb;
+    position: relative;
+    line-height: 34px;
+    margin-left: 7px
+}
+.Table-button_2:active {
+    transform: scale(0.99) translate(4px, 3px)
+}
+.Table-button_2:hover {
+    color: #777
+}
+</style>
+ </head><body><script type="text/javascript">
+ </script><div id="app"></div><script type="text/javascript">
+   try{
+        
+        var Table = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Table.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Asbl4g4dbrz",
+            className: "Table-div_84"
+        },
+        React.createElement("div", {
+                "data-tid": "A3u2gqqujtg",
+                style: {
+                    border: 'none',
+                    backgroundColor: 'transparent'
+                },
+                className: "Table-div_13"
+            },
+            React.createElement("div", {
+                    "data-tid": "Agxfx9h90cw",
+                    style: {
+                        textAlign: 'center'
+                    },
+                    className: "Table-div_14"
+                },
+                React.createElement("span", {
+                        "data-tid": "A55d6iadrxy7",
+                        style: {},
+                        className: "Table-span_4"
+                    },
+                    "Name"
+                )
+            ),
+            React.createElement("div", {
+                    "data-tid": "Anatwwi4wl8e",
+                    className: "Table-div_14"
+                }, !props.isProject ?
+                React.createElement("span", {
+                        "data-tid": "A55d6iadrxy7",
+                        className: "Table-span_4"
+                    },
+                    "Last Open"
+                ) :
+                null
+            ),
+            React.createElement("div", {
+                "data-tid": "Asrwseg7eb7q",
+                className: "Table-div_14"
+            })
+        ),
+        props.list && props.list.map && props.list.length ? props.list.map((i, j) => (
+            React.createElement("div", {
+                    key: j,
+                    "data-tid": "Anv0fjnuvrxk",
+                    onClick: (e) => {
+                        this.gotTo(e, i);;
+                    },
+                    className: "Table-div_13",
+                    "data-isRow": true
+                },
+                React.createElement("div", {
+                        "data-tid": "Agxfx9h90cw",
+                        style: {},
+                        className: "Table-div_14"
+                    },
+                    React.createElement("i", {
+                        "data-tid": "Aygu7uyzw3oa",
+                        className: " Table-i_9" + (" fa fa-folder") + ''
+                    }),
+                    React.createElement("span", {
+                            "data-tid": "Acxbtrkajpmc",
+                            onBlur: (e) => {
+                                this.onBlurEdit(i, e);
+                            },
+                            className: "Table-span_3",
+                            contentEditable: true
+                        },
+                        i.name
+                    ),
+                    React.createElement("i", {
+                        "data-tid": "Aefotn9e1va",
+                        className: " Table-i_6" + (" fa fa-pencil") + ''
+                    })
+                ),
+                React.createElement("div", {
+                        "data-tid": "Auk84hi3ui1",
+                        style: {},
+                        className: "Table-div_14"
+                    },
+                    React.createElement("span", {
+                            "data-tid": "Awi236nil8nq",
+                            className: "Table-h4_2"
+                        },
+                        i.lastTime || ''
+                    )
+                ),
+                React.createElement("div", {
+                        "data-tid": "Abh4q6wl561h",
+                        className: "Table-div_14"
+                    },
+                    i.type != 'project' ?
+                    React.createElement("button", {
+                            "data-tid": "Ax74mkpdgqw",
+                            onClick: (e) => {
+                                props.goto(i);
+                            },
+                            className: "Table-button_2"
+                        },
+                        React.createElement("i", {
+                            "data-tid": "Af5oh1b7g23j",
+                            className: (" fa fa-pencil") + ''
+                        })
+                    ) :
+                    null, i.type != 'project' ?
+                    React.createElement("button", {
+                            "data-tid": "Akb3ct7wnfy",
+                            onClick: (e) => {
+                                props.download(i);
+                            },
+                            className: "Table-button_2"
+                        },
+                        React.createElement("i", {
+                            "data-tid": "Af5oh1b7g23j",
+                            className: (" fa fa-download") + ''
+                        })
+                    ) :
+                    null, React.createElement("button", {
+                            "data-tid": "A4bd4sj0gg5o",
+                            onClick: (e) => {
+                                props.remove(i);
+                            },
+                            className: "Table-button_2"
+                        },
+                        React.createElement("i", {
+                            "data-tid": "Af5oh1b7g23j",
+                            className: (" fa fa-trash") + ''
+                        })
+                    )
+                )
+            )
+        )) : undefined
+    )
+}
+Table.prototype.componentWillMount = function() {
+    try {
+        return
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Table.prototype.gotTo = function(e, i) {
+    try {
+        if (e.currentTarget.dataset.isrow) {
+            this.props.goto(i)
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('gotTo')
+        console.log(e)
+    }
+}
+        ReactDOM.render(
+            React.createElement(Table,{
+    isProject:false,
+    remove:()=>{
+        alert(7856)
+    },
+    goto:()=>{
+        alert(7856)
+    },
+    list: [{
+        type:"1project",
+        lastTime: "2017",
+        name: "Site"
+    }]
+} ),
+            document.getElementById('app')
+        )
+   }catch(e){
+       alert(e.name+" "+e.message);
+   }
+</script></body></html>
