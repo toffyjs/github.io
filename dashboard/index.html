@@ -207,12 +207,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 
 .Table-div_14 {
-    width: 220px;
     position: relative;
     height: 40px;
     line-height: 40px;
-    text-align: left;
-    padding-left: 12px
+    text-align: center;
+    padding-left: 12px;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    flex: 1
 }
 .Table-div_14:hover {
     color: black;
@@ -231,9 +234,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-i_6 {
     font-size: 8px;
     color: #bbb
-}
-.Table-h4_2 {
-    position: relative
 }
 .Table-button_2 {
     border-color: transparent;
@@ -962,7 +962,8 @@ Table.prototype.render = function() {
                 },
                 React.createElement("div", {
                         "data-tid": "Agxfx9h90cw",
-                        className: "Table-div_14"
+                        className: "Table-div_14",
+                        "data-isRow": true
                     },
                     React.createElement("i", {
                         "data-tid": "Aygu7uyzw3oa",
@@ -985,18 +986,15 @@ Table.prototype.render = function() {
                 ),
                 React.createElement("div", {
                         "data-tid": "Auk84hi3ui1",
-                        className: "Table-div_14"
+                        className: "Table-div_14",
+                        "data-isRow": true
                     },
-                    React.createElement("span", {
-                            "data-tid": "Awi236nil8nq",
-                            className: "Table-h4_2"
-                        },
-                        i.lastTime || ''
-                    )
+                    i.lastTime || ''
                 ),
                 React.createElement("div", {
                         "data-tid": "Abh4q6wl561h",
-                        className: "Table-div_14"
+                        className: "Table-div_14",
+                        "data-isRow": true
                     },
                     i.type != 'project' ?
                     React.createElement("button", {
@@ -1052,7 +1050,7 @@ Table.prototype.componentWillMount = function() {
 }
 Table.prototype.gotTo = function(e, i) {
     try {
-        if (e.currentTarget.dataset.isrow) {
+        if (e.target.dataset.isrow) {
             this.props.goto(i)
         }
     } catch (e) {
@@ -1093,8 +1091,14 @@ StyleSection.prototype.render = function() {
     )
 }
         ReactDOM.render(
-            React.createElement(Dashboard,{
+            React.createElement(Dashboard,
+{
     
+    projects:[{
+        type:"project",
+        path:"/test",
+        name:"test"
+    }]
 } ),
             document.getElementById('app')
         )
