@@ -65,7 +65,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-div_8 {
     position: fixed;
     bottom: 25px;
-    left: 25px
+    left: 25px;
+    text-align: center
 }
 .Dashboard-button_1 {
     border-radius: 50%;
@@ -201,17 +202,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: #555;
     position: relative
 }
-
+.Table-div_13:hover {
+    background-color: #eee
+}
 
 .Table-div_14 {
     width: 220px;
     position: relative;
-    background-color: transparent;
     height: 40px;
     line-height: 40px;
-    border-color: #eee;
-    border-right-style: solid;
-    border-width: 1px
+    text-align: left;
+    padding-left: 12px
 }
 .Table-div_14:hover {
     color: black;
@@ -220,28 +221,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-span_4 {
     font-weight: 800
 }
-.Table-div_85 {
-    width: 200px;
-    flex-direction: row;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-right: 7px
-}
-.Table-div_9 {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px
-}
-.Table-div_9:hover {
-    background: #eee;
-    cursor: pointer
-}
 .Table-i_9 {
-    color: #bbb;
-    margin-left: 8px
+    color: #bbb
 }
 .Table-span_3 {
     margin-left: 8px;
@@ -878,7 +859,8 @@ Style.prototype.render = function() {
                             key: j,
                             "data-tid": "An83o7j3o709",
                             style: {
-                                fontFamily: i
+                                fontFamily: i,
+                                color: this.getColor(j)
                             },
                             className: "Style-h1_3"
                         },
@@ -901,6 +883,15 @@ Style.prototype.componentWillMount = function() {
     } catch (e) {
         console.log("=========================")
         console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Style.prototype.getColor = function(j) {
+    try {
+        return `rgb(100,${j?j*50:255},100)`
+    } catch (e) {
+        console.log("=========================")
+        console.log('getColor')
         console.log(e)
     }
 }
@@ -931,9 +922,7 @@ Table.prototype.render = function() {
             },
             React.createElement("div", {
                     "data-tid": "Agxfx9h90cw",
-                    style: {
-                        textAlign: 'center'
-                    },
+                    style: {},
                     className: "Table-div_14"
                 },
                 React.createElement("span", {
@@ -945,7 +934,8 @@ Table.prototype.render = function() {
                 )
             ),
             React.createElement("div", {
-                    "data-tid": "Anatwwi4wl8e"
+                    "data-tid": "Anatwwi4wl8e",
+                    className: "Table-div_14"
                 }, !props.isProject ?
                 React.createElement("span", {
                         "data-tid": "A55d6iadrxy7",
@@ -957,22 +947,19 @@ Table.prototype.render = function() {
             ),
             React.createElement("div", {
                 "data-tid": "Asrwseg7eb7q",
-                className: "Table-div_85"
+                className: "Table-div_14"
             })
         ),
         props.list && props.list.map && props.list.length ? props.list.map((i, j) => (
             React.createElement("div", {
                     key: j,
                     "data-tid": "Anv0fjnuvrxk",
-                    className: "Table-div_13"
-                },
-                React.createElement("div", {
-                    "data-tid": "A0p8b21f4649f",
                     onClick: (e) => {
-                        props.goto(i);
+                        this.gotTo(e, i);;
                     },
-                    className: "Table-div_9"
-                }),
+                    className: "Table-div_13",
+                    "data-isRow": true
+                },
                 React.createElement("div", {
                         "data-tid": "Agxfx9h90cw",
                         className: "Table-div_14"
@@ -996,15 +983,20 @@ Table.prototype.render = function() {
                         className: " Table-i_6" + (" fa fa-pencil") + ''
                     })
                 ),
-                React.createElement("span", {
-                        "data-tid": "Awi236nil8nq",
-                        className: "Table-h4_2"
+                React.createElement("div", {
+                        "data-tid": "Auk84hi3ui1",
+                        className: "Table-div_14"
                     },
-                    i.lastTime || ''
+                    React.createElement("span", {
+                            "data-tid": "Awi236nil8nq",
+                            className: "Table-h4_2"
+                        },
+                        i.lastTime || ''
+                    )
                 ),
                 React.createElement("div", {
                         "data-tid": "Abh4q6wl561h",
-                        className: "Table-div_85"
+                        className: "Table-div_14"
                     },
                     i.type != 'project' ?
                     React.createElement("button", {
@@ -1055,6 +1047,17 @@ Table.prototype.componentWillMount = function() {
     } catch (e) {
         console.log("=========================")
         console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Table.prototype.gotTo = function(e, i) {
+    try {
+        if (e.currentTarget.dataset.isrow) {
+            this.props.goto(i)
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('gotTo')
         console.log(e)
     }
 }
