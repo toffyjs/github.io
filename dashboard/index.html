@@ -96,24 +96,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     width: 100%;
     height: 75px;
     background-color: #2f2f2f;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
     align-items: stretch
-}
-.Topbar-div_2 {
-    align-items: center;
-    display: flex;
-    padding: 12px;
-    color: AliceBlue
-}
-.Topbar-img_1 {
-    width: 30px;
-    height: 30px;
-    border-radius: 43px;
-    margin-right: 25px
-}
-.Topbar-i_4 {
-    font-size: 31px
 }
 .Topbar-div_3 {
     align-items: center;
@@ -250,6 +235,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-button_2:hover {
     color: #777
 }
+.Projects-div_33 {
+    flex-wrap: wrap;
+    display: flex
+}
+.Projects-div_35 {
+    margin: 10px
+}
 
 .StyleSection-div_2 {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -270,6 +262,33 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-style: solid;
     border-width: 1px;
     background-color: #fff
+}
+
+.ProjectItem-div_18 {
+    width: 200px;
+    height: 100px;
+    border-color: Orange;
+    background-color: Orange;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    color: AliceBlue;
+    padding: 6px;
+    position: relative
+}
+.ProjectItem-div_18:hover {
+    background-color: #333;
+    cursor: pointer
+}
+.ProjectItem-div_18:active {
+    box-shadow: inset 0 0 5px
+}
+
+.ProjectItem-button_1 {
+    border-color: transparent;
+    background-color: transparent;
+    color: Beige;
+    position: absolute;
+    right: 1px;
+    bottom: 1px
 }
 </style>
  </head><body><script type="text/javascript">
@@ -317,37 +336,47 @@ Dashboard.prototype.render = function() {
                 },
                 state.page != 'projects' ?
                 React.createElement("div", {
-                        "data-tid": "Acnaitokti3"
+                        "data-tid": "Apisk7f6yjhg"
                     },
-                    this.tabs && this.tabs.map && this.tabs.length ? this.tabs.map((i, j) => (
-                        React.createElement("button", {
-                                key: j,
-                                "data-tid": "Ak4hu4z9v3d",
-                                onClick: (e) => {
-                                    this.setTab(i);
+                    React.createElement("div", {
+                            "data-tid": "Acnaitokti3"
+                        },
+                        this.tabs && this.tabs.map && this.tabs.length ? this.tabs.map((i, j) => (
+                            React.createElement("button", {
+                                    key: j,
+                                    "data-tid": "Ak4hu4z9v3d",
+                                    onClick: (e) => {
+                                        this.setTab(i);
+                                    },
+                                    className: " Dashboard-button_13" + (state.tab === i && ' Dashboard-button_selected ' || '') + ''
                                 },
-                                className: " Dashboard-button_13" + (state.tab === i && ' Dashboard-button_selected ' || '') + ''
-                            },
-                            React.createElement("i", {
-                                "data-tid": "Atkefqzt9gr",
-                                className: " Dashboard-i_17" + (' fa fa-' + (i.icon)) + ''
-                            }),
-                            i.name
-                        )
-                    )) : undefined
+                                React.createElement("i", {
+                                    "data-tid": "Atkefqzt9gr",
+                                    className: " Dashboard-i_17" + (' fa fa-' + (i.icon)) + ''
+                                }),
+                                i.name
+                            )
+                        )) : undefined
+                    ),
+                    state.tab.name == 'style' ?
+                    React.createElement(Style, {
+                        "data-tid": "Asmeq8t8pqi8"
+                    }) :
+                    React.createElement(Table, {
+                        "data-tid": "Ahrgglvnqoj6",
+                        goto: this.goto.bind(this),
+                        create: this.create.bind(this),
+                        remove: this.remove.bind(this),
+                        download: this.download.bind(this),
+                        changeName: this.changeName.bind(this),
+                        list: state.list,
+                        isProject: state.page === 'projects'
+                    })
                 ) :
-                null, state.tab.name == 'style' ?
-                React.createElement(Style, {
-                    "data-tid": "Asmeq8t8pqi8"
-                }) :
-                React.createElement(Table, {
-                    "data-tid": "Ahrgglvnqoj6",
+                React.createElement(Projects, {
+                    "data-tid": "Afehktgu3nc4",
                     goto: this.goto.bind(this),
-                    create: this.create.bind(this),
-                    remove: this.remove.bind(this),
-                    download: this.download.bind(this),
-                    list: state.list,
-                    isProject: state.page === 'projects'
+                    list: state.list
                 })
             ),
             React.createElement("div", {
@@ -509,7 +538,10 @@ Dashboard.prototype.getMyProjects = function() {
             loading: true,
             list: null
         })
-        this.makeReq("", "list_folder").then((l) => {
+        const body = {
+            path: ""
+        };
+        this.call({}, "list_folder", body).then((l) => {
             this.props.MY = l.entries.map(a => ({
                 type: "project",
                 path: "/" + a.name,
@@ -625,21 +657,6 @@ Dashboard.prototype.gotoProject = function(p) {
         console.log(e)
     }
 }
-Dashboard.prototype.onBlurEdit = function(i, e) {
-    try {
-        if (i.name != e.target.innerText) {
-            // window.confirm("save...." + e.target.innerText)
-            i.name = e.target.innerText.charAt(0).toUpperCase() + e.target.innerText.substr(1);
-            this.setState({
-                projects: this.props.projects
-            })
-        }
-    } catch (e) {
-        console.log("=========================")
-        console.log('onBlurEdit')
-        console.log(e)
-    }
-}
 Dashboard.prototype.setTab = function(i) {
     try {
         this.setState({
@@ -704,6 +721,47 @@ Dashboard.prototype.updateLocal = function(type, data) {
         console.log(e)
     }
 }
+Dashboard.prototype.changeName = function(i, newName) {
+    try {
+        const oldPath = i.path;
+        i.path = "/" + newName;
+        const params = {
+            "from_path": oldPath,
+            "to_path": i.path,
+            "allow_shared_folder": false,
+            "autorename": false,
+            "allow_ownership_transfer": false
+        }
+        this.call({}, 'move_v2', params)
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeName')
+        console.log(e)
+    }
+}
+Dashboard.prototype.call = function(header, method, body) {
+    try {
+        header = header || {};
+        header['Content-Type'] = 'application/json';
+        header.Authorization = 'Bearer ' + localStorage.toffy_dropbox;
+        const prefix = ["list_folder", "move_v2"].indexOf(method) != -1 ? "api.dropboxapi.com/2/files" : "content.dropboxapi.com/2/files";
+        const url = `https://${prefix}/${method}`;
+        var p = fetch(url, {
+            mode: 'cors',
+            method: 'post',
+            body: body && JSON.stringify(body),
+            headers: new Headers(header)
+        });
+        if (method === "download") return p;
+        return p.then(function(response) {
+            return response.json();
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('call')
+        console.log(e)
+    }
+}
 
 
 var Topbar = React.createClass({
@@ -721,21 +779,6 @@ Topbar.prototype.render = function() {
             "data-tid": "Ad3unxl81oqi",
             className: "Topbar-div_1"
         },
-        React.createElement("div", {
-                "data-tid": "Aw7z6th3anur",
-                className: "Topbar-div_2"
-            },
-            React.createElement("img", {
-                "data-tid": "Akelu8ta0iu9",
-                style: {},
-                className: "Topbar-img_1",
-                src: 'https://developers.google.com/_static/268f0926ba/images/silhouette36.png?sz=64'
-            }),
-            React.createElement("i", {
-                "data-tid": "Arr1tx3q8mx",
-                className: " Topbar-i_4" + (" fa fa-cog") + ''
-            })
-        ),
         React.createElement("div", {
                 "data-tid": "Aww1y3rjijzc",
                 className: "Topbar-div_3"
@@ -1059,6 +1102,47 @@ Table.prototype.gotTo = function(e, i) {
         console.log(e)
     }
 }
+Table.prototype.onBlurEdit = function(i, e) {
+    try {
+        this.props.changeName(i, e.target.innerText);
+    } catch (e) {
+        console.log("=========================")
+        console.log('onBlurEdit')
+        console.log(e)
+    }
+}
+
+
+var Projects = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Projects.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Aq7y4fwnr8jj",
+            className: "Projects-div_33"
+        },
+        props.list && props.list.map && props.list.length ? props.list.map((i, j) => (
+            React.createElement("div", {
+                    key: j,
+                    "data-tid": "Ake75cs79tib",
+                    className: "Projects-div_35"
+                },
+                React.createElement(ProjectItem, {
+                    "data-tid": "Aotyyp9wclw",
+                    goto: this.props.goto.bind(this),
+                    item: i
+                })
+            )
+        )) : undefined
+    )
+}
 
 
 var StyleSection = React.createClass({
@@ -1089,6 +1173,55 @@ StyleSection.prototype.render = function() {
             props.children
         )
     )
+}
+
+
+var ProjectItem = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+ProjectItem.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Agrgdhg08ikc",
+            onClick: this.goto.bind(this),
+            className: "ProjectItem-div_18"
+        },
+        React.createElement("h1", {
+                "data-tid": "A72gp7fuscjf",
+                className: "ProjectItem-h1_2"
+            },
+            props.item.name || ''
+        ),
+        React.createElement("span", {
+                "data-tid": "Aujqvwjh07ia"
+            },
+            props.item.lasTedit || ''
+        ),
+        React.createElement("button", {
+                "data-tid": "Alqnxcsbbkqn",
+                className: "ProjectItem-button_1 btn_hover"
+            },
+            React.createElement("i", {
+                "data-tid": "An086c0oilc",
+                className: (" fa fa-trash") + ''
+            })
+        )
+    )
+}
+ProjectItem.prototype.goto = function() {
+    try {
+        this.props.goto(this.props.item)
+    } catch (e) {
+        console.log("=========================")
+        console.log('goto')
+        console.log(e)
+    }
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
