@@ -406,7 +406,7 @@ Dashboard.prototype.render = function() {
                         create: this.create.bind(this),
                         remove: this.remove.bind(this),
                         download: this.download.bind(this),
-                        changeName: this.changeName.bind(this),
+                        changeName: this.changeComponenetName.bind(this),
                         list: state.list,
                         isProject: state.page === 'projects'
                     })
@@ -518,6 +518,15 @@ Dashboard.prototype.call = function(header, method, body) {
     } catch (e) {
         console.log("=========================")
         console.log('call')
+        console.log(e)
+    }
+}
+Dashboard.prototype.changeComponenetName = function(i, e) {
+    try {
+        alert("we will fix it");
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeComponenetName')
         console.log(e)
     }
 }
