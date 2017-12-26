@@ -92,6 +92,21 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
         background: black
     }
 }
+.Dashboard-div_258 {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    z-index: 40;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2)
+}
+.Dashboard-h1_45 {
+    color: Black
+}
 .Topbar-div_1 {
     width: 100%;
     height: 75px;
@@ -263,10 +278,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-width: 1px;
     background-color: #fff
 }
+.ProjectItem-div_161 {
+    position: relative;
+    width: 210px
+}
 .ProjectItem-div_41 {
     padding: 5px;
     background-color: Orange;
-    width: 200px;
+    width: 100%;
     height: 120px;
     color: AliceBlue;
     z-index: 1;
@@ -284,9 +303,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     background-color: transparent;
     color: AliceBlue;
     right: 1px;
-    bottom: 1px;
     position: absolute;
-    font-size: 24px
+    font-size: 24px;
+    z-index: 4;
+    bottom: 1px
 }
 </style>
  </head><body><script type="text/javascript">
@@ -374,6 +394,7 @@ Dashboard.prototype.render = function() {
                 React.createElement(Projects, {
                     "data-tid": "Afehktgu3nc4",
                     goto: this.goto.bind(this),
+                    remove: this.remove.bind(this),
                     list: state.list
                 })
             ),
@@ -398,7 +419,20 @@ Dashboard.prototype.render = function() {
                 className: "Dashboard-h1_1"
             },
             "Loading..."
-        )
+        ),
+        state.makeAction ?
+        React.createElement("div", {
+                "data-tid": "A01ba9h2h450e",
+                className: "Dashboard-div_258"
+            },
+            React.createElement("h1", {
+                    "data-tid": "Avrd6o6abusp",
+                    className: "Dashboard-h1_45"
+                },
+                state.makeAction
+            )
+        ) :
+        null
     )
 }
 Dashboard.prototype.componentWillMount = function() {
@@ -423,6 +457,7 @@ Dashboard.prototype.componentWillMount = function() {
 }
 Dashboard.prototype.componentDidMount = function() {
     try {
+        debugger
         this.state.page = "projects";
         if (this.props.projects) {
             this.setState({
@@ -470,28 +505,20 @@ Dashboard.prototype.download = function(i) {
 }
 Dashboard.prototype.remove = function(item) {
     try {
-        if (item.type === "project") return alert("you can`t remove project so easy...")
         if (window.confirm("Are you sure t remove:" + item.path) == false) return;
-        var that = this;
-        function r() {
-            var idx = that.state.list.indexOf(item);
-            that.state.list.splice(idx, 1);
-            that.setState({
-                list: that.state.list
+        const body = {
+            path: item.path
+        };
+        this.setState({
+            makeAction: "removeing... " + item.path
+        });
+        this.call({}, "delete_v2", body).then((l) => {
+            var idx = this.state.list.indexOf(item);
+            this.state.list.splice(idx, 1);
+            this.setState({
+                makeAction: null,
+                list: this.state.list
             })
-        }
-        var url = 'https://api.dropboxapi.com/2/files/delete_v2';
-        fetch(url, {
-            mode: 'cors',
-            method: 'post',
-            body: JSON.stringify({
-                path: item.path
-            }),
-            headers: this.headers
-        }).then(function(response) {
-            return response.json();
-        }).then(r).catch(function(err) {
-            console.log(err)
         });
     } catch (e) {
         console.log("=========================")
@@ -565,57 +592,6 @@ Dashboard.prototype.getMyProjects = function() {
         console.log(e)
     }
 }
-Dashboard.prototype.makeReq = function(path, method) {
-    try {
-        var token = 'Bearer ' + localStorage.toffy_dropbox;
-        var h = {
-            'Content-Type': 'application/json',
-            Authorization: token
-        };
-        var url = 'https://api.dropboxapi.com/2/files/' + method;
-        var body = JSON.stringify({
-            path: path
-        });
-        if (method === "upload") {
-            url = 'https://content.dropboxapi.com/2/files/upload';
-            h["Dropbox-API-Arg"] = JSON.stringify({
-                path: path,
-                "mode": "overwrite"
-            });
-            h['Content-Type'] = "application/octet-stream";
-            var cname = path.split("/").pop().split(".")[0];
-            body = JSON.stringify({
-                name: cname,
-                component: {
-                    name: cname,
-                }
-            });
-        }
-        if (method === "download") {
-            url = 'https://content.dropboxapi.com/2/files/download';
-            h["Dropbox-API-Arg"] = JSON.stringify({
-                path: path
-            });
-            h['Content-Type'] = "text/plain";
-            body = null;
-        }
-        this.headers = new Headers(h);
-        var p = fetch(url, {
-            mode: 'cors',
-            method: 'post',
-            body: body,
-            headers: this.headers
-        });
-        if (method === "download") return p;
-        return p.then(function(response) {
-            return response.json();
-        })
-    } catch (e) {
-        console.log("=========================")
-        console.log('makeReq')
-        console.log(e)
-    }
-}
 Dashboard.prototype.connect = function() {
     try {
         var redirect_uri = this.props.redirect;
@@ -676,48 +652,37 @@ Dashboard.prototype.setTab = function(i) {
         console.log(e)
     }
 }
-Dashboard.prototype.create = function() {
+Dashboard.prototype.createComponent = function() {
     try {
-        /*
-          url = 'https://content.dropboxapi.com/2/files/upload';
-            h["Dropbox-API-Arg"] = JSON.stringify({
-                path: path,
-                "mode": "overwrite"
-            });
-            h['Content-Type'] = "application/octet-stream";
-            var cname = path.split("/").pop().split(".")[0];
-            body = JSON.stringify({
-                name: cname,
-                component: {
-                    name: cname,
-                }
-            });
-        */
         var name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
         if (!name) return;
-        let path;
-        var m = "upload";
-        if (this.state.page === "projects") {
-            path = "/" + name;
-            m = "create_folder";
-        } else {
-            path = "/" + this.state.project + "/Components/" + name + ".json";
-        }
-        this.makeReq(path, m).then(() => {
+        let path = `/${ this.state.project}/Components/${name}.json`;
+        const h = {
+            'Content-Type': "application/octet-stream",
+            "Dropbox-API-Arg": JSON.stringify({
+                path: path,
+                "mode": "overwrite"
+            })
+        };
+        const body = {
+            name: name,
+            component: {
+                name: name,
+            }
+        };
+        this.call(h, "upload", body).then((l) => {
             alert("saved!!!");
             this.state.list.unshift({
                 lastTime: "now",
                 name: name,
                 path: path,
-                type: this.state.page === "project" ? "project" : "component"
+                type: "component"
             });
             this.setState({});
-        }).catch(e => {
-            alert(e);
         });
     } catch (e) {
         console.log("=========================")
-        console.log('create')
+        console.log('createComponent')
         console.log(e)
     }
 }
@@ -767,9 +732,9 @@ Dashboard.prototype.changeName = function(i, newName) {
 Dashboard.prototype.call = function(header, method, body) {
     try {
         header = header || {};
-        header['Content-Type'] = 'application/json';
+        header['Content-Type'] = header['Content-Type'] || 'application/json';
         header.Authorization = 'Bearer ' + localStorage.toffy_dropbox;
-        const prefix = ["list_folder", "move_v2"].indexOf(method) != -1 ? "api.dropboxapi.com/2/files" : "content.dropboxapi.com/2/files";
+        const prefix = ["list_folder", "move_v2", "delete_v2", 'create_folder_v2'].indexOf(method) != -1 ? "api.dropboxapi.com/2/files" : "content.dropboxapi.com/2/files";
         const url = `https://${prefix}/${method}`;
         var p = fetch(url, {
             mode: 'cors',
@@ -784,6 +749,47 @@ Dashboard.prototype.call = function(header, method, body) {
     } catch (e) {
         console.log("=========================")
         console.log('call')
+        console.log(e)
+    }
+}
+Dashboard.prototype.createProject = function() {
+    try {
+        var name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
+        if (!name) return;
+        const path = `/${name}`;
+        this.setState({
+            makeAction: `creating ${path}`
+        });
+        this.call({}, "create_folder_v2", {
+            path: path
+        }).then((l) => {
+            alert("saved!!!");
+            this.state.list.unshift({
+                lastTime: "now",
+                name: name,
+                path: path,
+                type: "project"
+            });
+            this.setState({
+                makeAction: null
+            });
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('createProject')
+        console.log(e)
+    }
+}
+Dashboard.prototype.create = function() {
+    try {
+        if (this.state.page === 'projects') {
+            this.createProject();
+        } else {
+            this.createComponent();
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('create')
         console.log(e)
     }
 }
@@ -1162,6 +1168,7 @@ Projects.prototype.render = function() {
                 React.createElement(ProjectItem, {
                     "data-tid": "Aotyyp9wclw",
                     goto: this.props.goto.bind(this),
+                    remove: this.props.remove.bind(this),
                     item: i
                 })
             )
@@ -1213,19 +1220,25 @@ ProjectItem.prototype.render = function() {
     var props = this.props;
     var state = this.state;
     return React.createElement("div", {
-            "data-tid": "A283dl7a9aeg",
-            onClick: (e) => {
-                props.goto(props.item);
-            },
-            className: "ProjectItem-div_41"
+            "data-tid": "Awvk272pn9dd",
+            className: "ProjectItem-div_161"
         },
-        React.createElement("h1", {
-                "data-tid": "Axm9kxmmlonq"
+        React.createElement("div", {
+                "data-tid": "A283dl7a9aeg",
+                onClick: (e) => {
+                    props.goto(props.item);
+                },
+                className: "ProjectItem-div_41"
             },
-            props.item.name
+            React.createElement("h1", {
+                    "data-tid": "Axm9kxmmlonq"
+                },
+                props.item.name
+            )
         ),
         React.createElement("button", {
                 "data-tid": "Axguck1syurl",
+                onClick: this.remove.bind(this),
                 className: "ProjectItem-button_1"
             },
             React.createElement("i", {
@@ -1234,6 +1247,16 @@ ProjectItem.prototype.render = function() {
             })
         )
     )
+}
+ProjectItem.prototype.remove = function(e) {
+    try {
+        e.preventDefault();
+        this.props.remove(this.props.item);
+    } catch (e) {
+        console.log("=========================")
+        console.log('remove')
+        console.log(e)
+    }
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
