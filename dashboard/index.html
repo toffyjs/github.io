@@ -549,6 +549,10 @@ Dashboard.prototype.changeName = function(i, newName) {
     try {
         const oldPath = i.path;
         i.path = "/" + newName;
+        i.name = newName;
+        this.setState({
+            makeAction: `change to :  ${i.path}`
+        });
         const params = {
             "from_path": oldPath,
             "to_path": i.path,
@@ -556,7 +560,11 @@ Dashboard.prototype.changeName = function(i, newName) {
             "autorename": false,
             "allow_ownership_transfer": false
         }
-        this.call({}, 'move_v2', params)
+        this.call({}, 'move_v2', params).then(() => {
+            this.setState({
+                makeAction: null
+            });
+        })
     } catch (e) {
         console.log("=========================")
         console.log('changeName')
