@@ -415,6 +415,7 @@ Dashboard.prototype.componentWillMount = function() {
             name: "setting",
             icon: "cogs",
         }];
+        $print(this.state.page)
         this.state.tab = this.tabs[1];
     } catch (e) {
         console.log("=========================")
@@ -701,7 +702,9 @@ Dashboard.prototype.create = function() {
 Dashboard.prototype.changeHash = function(e) {
     try {
         var p = window.location.hash.substr(1);
+        debugger
         if (!p) {
+            this.state.page = "projects";
             this.getMyProjects();
         } else
             this.gotoProject(p);
