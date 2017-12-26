@@ -105,7 +105,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     background-color: rgba(0, 0, 0, 0.2)
 }
 .Dashboard-h1_45 {
-    color: Black
+    color: Black;
+    background-color: Azure;
+    padding: 8px;
+    padding-left: 14px;
+    padding-right: 14px
 }
 .Topbar-div_1 {
     width: 100%;
@@ -190,6 +194,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-style: solid;
     border-width: 1px
 }
+
 .Table-div_13 {
     border-color: #eee;
     width: 100%;
@@ -203,7 +208,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     position: relative
 }
 .Table-div_13:hover {
-    background-color: #eee
+    background-color: #eee;
+    cursor: pointer
 }
 
 .Table-div_14 {
@@ -297,6 +303,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .ProjectItem-div_41:hover {
     cursor: pointer
+}
+.ProjectItem-button_19 {
+    border-color: transparent;
+    background-color: transparent;
+    color: FloralWhite;
+    position: absolute;
+    top: 1px;
+    right: -10px;
+    z-index: 9
 }
 .ProjectItem-button_1 {
     border-color: transparent;
@@ -395,6 +410,7 @@ Dashboard.prototype.render = function() {
                     "data-tid": "Afehktgu3nc4",
                     goto: this.goto.bind(this),
                     remove: this.remove.bind(this),
+                    changeName: this.changeName.bind(this),
                     list: state.list
                 })
             ),
@@ -596,6 +612,9 @@ Dashboard.prototype.createComponent = function() {
                 name: name,
             }
         };
+        this.setState({
+            makeAction: `creating:  ${path}`
+        });
         this.call(h, "upload", body).then((l) => {
             alert("saved!!!");
             this.state.list.unshift({
@@ -604,7 +623,9 @@ Dashboard.prototype.createComponent = function() {
                 path: path,
                 type: "component"
             });
-            this.setState({});
+            this.setState({
+                makeAction: null
+            });
         });
     } catch (e) {
         console.log("=========================")
@@ -1166,6 +1187,7 @@ Projects.prototype.render = function() {
                     "data-tid": "Aotyyp9wclw",
                     goto: this.props.goto.bind(this),
                     remove: this.props.remove.bind(this),
+                    changeName: this.props.changeName.bind(this),
                     item: i
                 })
             )
@@ -1234,6 +1256,16 @@ ProjectItem.prototype.render = function() {
             )
         ),
         React.createElement("button", {
+                "data-tid": "Aailshctme7m",
+                onClick: this.change.bind(this),
+                className: "ProjectItem-button_19"
+            },
+            React.createElement("i", {
+                "data-tid": "Apmzj0uyi5y",
+                className: (" fa fa-pencil") + ''
+            })
+        ),
+        React.createElement("button", {
                 "data-tid": "Axguck1syurl",
                 onClick: this.remove.bind(this),
                 className: "ProjectItem-button_1"
@@ -1244,6 +1276,17 @@ ProjectItem.prototype.render = function() {
             })
         )
     )
+}
+ProjectItem.prototype.change = function(e) {
+    try {
+        const newname = prompt("enter name.");
+        if (!newname) return;
+        this.props.changeName(this.props.item, newname);
+    } catch (e) {
+        console.log("=========================")
+        console.log('change')
+        console.log(e)
+    }
 }
 ProjectItem.prototype.remove = function(e) {
     try {
