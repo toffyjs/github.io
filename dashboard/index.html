@@ -435,29 +435,8 @@ Dashboard.prototype.render = function() {
         null
     )
 }
-Dashboard.prototype.componentWillMount = function() {
-    try {
-        this.tabs = [{
-            name: "style",
-            icon: "paint-brush"
-        }, {
-            icon: "cubes",
-            name: "components",
-        }, {
-            name: "setting",
-            icon: "cogs",
-        }];
-        $print(this.state.page)
-        this.state.tab = this.tabs[1];
-    } catch (e) {
-        console.log("=========================")
-        console.log('componentWillMount')
-        console.log(e)
-    }
-}
 Dashboard.prototype.componentDidMount = function() {
     try {
-        debugger
         this.state.page = "projects";
         if (this.props.projects) {
             this.setState({
@@ -479,79 +458,78 @@ Dashboard.prototype.componentDidMount = function() {
         console.log(e)
     }
 }
-Dashboard.prototype.download = function(i) {
+Dashboard.prototype.componentWillMount = function() {
     try {
-        /*  
-            url = 'https://content.dropboxapi.com/2/files/download';
-            h["Dropbox-API-Arg"] = JSON.stringify({
-                path: path
-            });
-            h['Content-Type'] = "text/plain";
-            body = null;
-        */
-        this.makeReq(i.path, "download").then(a => a.json()).then((t) => {
-            var data = JSON.stringify(t, null, 2);
-            var link = document.createElement('a');
-            link.download = i.name + ".json";
-            link.setAttribute('href',
-                'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-            link.click();
-        });
+        this.tabs = [{
+            name: "style",
+            icon: "paint-brush"
+        }, {
+            icon: "cubes",
+            name: "components",
+        }, {
+            name: "setting",
+            icon: "cogs",
+        }];
+        this.state.tab = this.tabs[1];
     } catch (e) {
         console.log("=========================")
-        console.log('download')
+        console.log('componentWillMount')
         console.log(e)
     }
 }
-Dashboard.prototype.remove = function(item) {
+Dashboard.prototype.call = function(header, method, body) {
     try {
-        if (window.confirm("Are you sure t remove:" + item.path) == false) return;
-        const body = {
-            path: item.path
-        };
-        this.setState({
-            makeAction: "removeing... " + item.path
+        header = header || {};
+        header['Content-Type'] = header['Content-Type'] || 'application/json';
+        header.Authorization = 'Bearer ' + localStorage.toffy_dropbox;
+        const prefix = ["list_folder", "move_v2", "delete_v2", 'create_folder_v2'].indexOf(method) != -1 ? "api.dropboxapi.com/2/files" : "content.dropboxapi.com/2/files";
+        const url = `https://${prefix}/${method}`;
+        var p = fetch(url, {
+            mode: 'cors',
+            method: 'post',
+            body: body && JSON.stringify(body),
+            headers: new Headers(header)
         });
-        this.call({}, "delete_v2", body).then((l) => {
-            var idx = this.state.list.indexOf(item);
-            this.state.list.splice(idx, 1);
-            this.setState({
-                makeAction: null,
-                list: this.state.list
-            })
-        });
-    } catch (e) {
-        console.log("=========================")
-        console.log('remove')
-        console.log(e)
-    }
-}
-Dashboard.prototype.goto = function(i) {
-    try {
-        if (i.type === "project") {
-            let url = window.location.href.split("#")[0];
-            window.location.href = url + "#" + (i.name || "");
-        } else {
-            window.location.href = "/ide/#" + this.state.project + "/" + i.name;
-        }
-    } catch (e) {
-        console.log("=========================")
-        console.log('goto')
-        console.log(e)
-    }
-}
-Dashboard.prototype.search = function(e) {
-    try {
-        var v = e.currentTarget.value.toLowerCase();
-        this.setState({
-            list: this.props.list.filter(a => {
-                var l = a.name.toLowerCase();
-                return ~l.indexOf(v);
-            })
+        if (method === "download") return p;
+        return p.then(function(response) {
+            return response.json();
         })
     } catch (e) {
         console.log("=========================")
-        console.log('search')
+        console.log('call')
+        console.log(e)
+    }
+}
+Dashboard.prototype.changeHash = function(e) {
+    try {
+        var p = window.location.hash.substr(1);
+        if (!p) {
+            this.state.page = "projects";
+            this.getMyProjects();
+        } else {
+            this.gotoProject(p);
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeHash')
+        console.log(e)
+    }
+}
+Dashboard.prototype.changeName = function(i, newName) {
+    try {
+        const oldPath = i.path;
+        i.path = "/" + newName;
+        const params = {
+            "from_path": oldPath,
+            "to_path": i.path,
+            "allow_shared_folder": false,
+            "autorename": false,
+            "allow_ownership_transfer": false
+        }
+        this.call({}, 'move_v2', params)
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeName')
         console.log(e)
     }
 }
@@ -563,32 +541,6 @@ Dashboard.prototype.changeTab = function(tab) {
     } catch (e) {
         console.log("=========================")
         console.log('changeTab')
-        console.log(e)
-    }
-}
-Dashboard.prototype.getMyProjects = function() {
-    try {
-        this.setState({
-            loading: true,
-            list: null
-        })
-        const body = {
-            path: ""
-        };
-        this.call({}, "list_folder", body).then((l) => {
-            this.props.MY = l.entries.map(a => ({
-                type: "project",
-                path: "/" + a.name,
-                name: a.name
-            }));
-            this.setState({
-                list: this.props.MY
-            });
-            this.updateLocal("projects", this.props.MY);
-        })
-    } catch (e) {
-        console.log("=========================")
-        console.log('getMyProjects')
         console.log(e)
     }
 }
@@ -613,42 +565,16 @@ Dashboard.prototype.connect = function() {
         console.log(e)
     }
 }
-Dashboard.prototype.gotoProject = function(p) {
+Dashboard.prototype.create = function() {
     try {
-        this.setState({
-            list: null,
-            page: p,
-            tab: this.tabs[1],
-            project: p
-        });
-        window.location.hash = p;
-        if (this.state.tab === "PUBLIC") return alert("we will do public later");
-        this.makeReq("/" + p + "/Components", "list_folder").then((l) => {
-            const list = l.entries && l.entries.map(a => ({
-                path: "/" + p + "/Components/" + a.name,
-                rawTime: new Date(a.client_modified),
-                lastTime: moment(new Date(a.client_modified)).fromNow(),
-                name: a.name.split(".")[0]
-            })).sort((a, b) => b.rawTime < a.rawTime ? -1 : 1) || [];
-            this.setState({
-                list: list
-            });
-            this.updateLocal("components", list);
-        })
+        if (this.state.page === 'projects') {
+            this.createProject();
+        } else {
+            this.createComponent();
+        }
     } catch (e) {
         console.log("=========================")
-        console.log('gotoProject')
-        console.log(e)
-    }
-}
-Dashboard.prototype.setTab = function(i) {
-    try {
-        this.setState({
-            tab: i
-        })
-    } catch (e) {
-        console.log("=========================")
-        console.log('setTab')
+        console.log('create')
         console.log(e)
     }
 }
@@ -686,72 +612,6 @@ Dashboard.prototype.createComponent = function() {
         console.log(e)
     }
 }
-Dashboard.prototype.changeHash = function(e) {
-    try {
-        var p = window.location.hash.substr(1);
-        if (!p) {
-            this.state.page = "projects";
-            this.getMyProjects();
-        } else {
-            this.gotoProject(p);
-        }
-    } catch (e) {
-        console.log("=========================")
-        console.log('changeHash')
-        console.log(e)
-    }
-}
-Dashboard.prototype.updateLocal = function(type, data) {
-    try {
-        localStorage.edittime = Date.now();
-        localStorage[type] = JSON.stringify(data);
-    } catch (e) {
-        console.log("=========================")
-        console.log('updateLocal')
-        console.log(e)
-    }
-}
-Dashboard.prototype.changeName = function(i, newName) {
-    try {
-        const oldPath = i.path;
-        i.path = "/" + newName;
-        const params = {
-            "from_path": oldPath,
-            "to_path": i.path,
-            "allow_shared_folder": false,
-            "autorename": false,
-            "allow_ownership_transfer": false
-        }
-        this.call({}, 'move_v2', params)
-    } catch (e) {
-        console.log("=========================")
-        console.log('changeName')
-        console.log(e)
-    }
-}
-Dashboard.prototype.call = function(header, method, body) {
-    try {
-        header = header || {};
-        header['Content-Type'] = header['Content-Type'] || 'application/json';
-        header.Authorization = 'Bearer ' + localStorage.toffy_dropbox;
-        const prefix = ["list_folder", "move_v2", "delete_v2", 'create_folder_v2'].indexOf(method) != -1 ? "api.dropboxapi.com/2/files" : "content.dropboxapi.com/2/files";
-        const url = `https://${prefix}/${method}`;
-        var p = fetch(url, {
-            mode: 'cors',
-            method: 'post',
-            body: body && JSON.stringify(body),
-            headers: new Headers(header)
-        });
-        if (method === "download") return p;
-        return p.then(function(response) {
-            return response.json();
-        })
-    } catch (e) {
-        console.log("=========================")
-        console.log('call')
-        console.log(e)
-    }
-}
 Dashboard.prototype.createProject = function() {
     try {
         var name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
@@ -760,7 +620,7 @@ Dashboard.prototype.createProject = function() {
         this.setState({
             makeAction: `creating ${path}`
         });
-        this.call({}, "create_folder_v2", {
+        this.call(h, "create_folder_v2", {
             path: path
         }).then((l) => {
             alert("saved!!!");
@@ -780,16 +640,154 @@ Dashboard.prototype.createProject = function() {
         console.log(e)
     }
 }
-Dashboard.prototype.create = function() {
+Dashboard.prototype.download = function(i) {
     try {
-        if (this.state.page === 'projects') {
-            this.createProject();
+        /*  
+            url = 'https://content.dropboxapi.com/2/files/download';
+            h["Dropbox-API-Arg"] = JSON.stringify({
+                path: path
+            });
+            h['Content-Type'] = "text/plain";
+            body = null;
+        */
+        this.makeReq(i.path, "download").then(a => a.json()).then((t) => {
+            var data = JSON.stringify(t, null, 2);
+            var link = document.createElement('a');
+            link.download = i.name + ".json";
+            link.setAttribute('href',
+                'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+            link.click();
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('download')
+        console.log(e)
+    }
+}
+Dashboard.prototype.getMyProjects = function() {
+    try {
+        this.setState({
+            loading: true,
+            list: null
+        })
+        const body = {
+            path: ""
+        };
+        this.call({}, "list_folder", body).then((l) => {
+            this.props.MY = l.entries.map(a => ({
+                type: "project",
+                path: "/" + a.name,
+                name: a.name
+            }));
+            this.setState({
+                list: this.props.MY
+            });
+            this.updateLocal("projects", this.props.MY);
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('getMyProjects')
+        console.log(e)
+    }
+}
+Dashboard.prototype.goto = function(i) {
+    try {
+        if (i.type === "project") {
+            let url = window.location.href.split("#")[0];
+            window.location.href = url + "#" + (i.name || "");
         } else {
-            this.createComponent();
+            window.location.href = "/ide/#" + this.state.project + "/" + i.name;
         }
     } catch (e) {
         console.log("=========================")
-        console.log('create')
+        console.log('goto')
+        console.log(e)
+    }
+}
+Dashboard.prototype.gotoProject = function(p) {
+    try {
+        this.setState({
+            list: null,
+            page: p,
+            tab: this.tabs[1],
+            project: p
+        });
+        window.location.hash = p;
+        if (this.state.tab === "PUBLIC") return alert("we will do public later");
+        this.makeReq("/" + p + "/Components", "list_folder").then((l) => {
+            const list = l.entries && l.entries.map(a => ({
+                path: "/" + p + "/Components/" + a.name,
+                rawTime: new Date(a.client_modified),
+                lastTime: moment(new Date(a.client_modified)).fromNow(),
+                name: a.name.split(".")[0]
+            })).sort((a, b) => b.rawTime < a.rawTime ? -1 : 1) || [];
+            this.setState({
+                list: list
+            });
+            this.updateLocal("components", list);
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('gotoProject')
+        console.log(e)
+    }
+}
+Dashboard.prototype.remove = function(item) {
+    try {
+        if (window.confirm("Are you sure t remove:" + item.path) == false) return;
+        const body = {
+            path: item.path
+        };
+        this.setState({
+            makeAction: "removeing... " + item.path
+        });
+        this.call({}, "delete_v2", body).then((l) => {
+            var idx = this.state.list.indexOf(item);
+            this.state.list.splice(idx, 1);
+            this.setState({
+                makeAction: null,
+                list: this.state.list
+            })
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('remove')
+        console.log(e)
+    }
+}
+Dashboard.prototype.search = function(e) {
+    try {
+        var v = e.currentTarget.value.toLowerCase();
+        this.setState({
+            list: this.props.list.filter(a => {
+                var l = a.name.toLowerCase();
+                return ~l.indexOf(v);
+            })
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('search')
+        console.log(e)
+    }
+}
+Dashboard.prototype.setTab = function(i) {
+    try {
+        this.setState({
+            tab: i
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('setTab')
+        console.log(e)
+    }
+}
+Dashboard.prototype.updateLocal = function(type, data) {
+    try {
+        localStorage.edittime = Date.now();
+        localStorage[type] = JSON.stringify(data);
+    } catch (e) {
+        console.log("=========================")
+        console.log('updateLocal')
         console.log(e)
     }
 }
@@ -1260,7 +1258,7 @@ ProjectItem.prototype.remove = function(e) {
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
-    
+    projects:[]
 } ),
             document.getElementById('app')
         )
