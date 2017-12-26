@@ -129,6 +129,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 21px;
     text-transform: uppercase
 }
+.Topbar-a_1 {
+    color: White;
+    text-decoration: none
+}
 .Topbar-span_1 {
     margin-left: 3px;
     color: GoldenRod
@@ -349,6 +353,7 @@ Dashboard.prototype.render = function() {
             React.createElement(Topbar, {
                 "data-tid": "A0k7px5cfgjrm",
                 search: this.search.bind(this),
+                back: this.goto.bind(this),
                 page: state.page
             })
         ),
@@ -711,6 +716,9 @@ Dashboard.prototype.getMyProjects = function() {
 }
 Dashboard.prototype.goto = function(i) {
     try {
+        if (!i) {
+            window.location.href = "";
+        } else
         if (i.type === "project") {
             let url = window.location.href.split("#")[0];
             window.location.href = url + "#" + (i.name || "");
@@ -836,7 +844,15 @@ Topbar.prototype.render = function() {
                     "data-tid": "A38qcodngby5",
                     className: "Topbar-h2_1"
                 },
-                "Toffy", React.createElement("span", {
+                props.page !== 'projects' ?
+                React.createElement("a", {
+                        "data-tid": "Awejum8po48",
+                        className: "Topbar-a_1",
+                        href: '/dashboard'
+                    },
+                    "projects/"
+                ) :
+                null, React.createElement("span", {
                         "data-tid": "Ap6ze4nv54x",
                         className: "Topbar-span_1"
                     },
