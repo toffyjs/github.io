@@ -642,15 +642,13 @@ Dashboard.prototype.createProject = function() {
 }
 Dashboard.prototype.download = function(i) {
     try {
-        /*  
-            url = 'https://content.dropboxapi.com/2/files/download';
-            h["Dropbox-API-Arg"] = JSON.stringify({
-                path: path
-            });
-            h['Content-Type'] = "text/plain";
-            body = null;
-        */
-        this.makeReq(i.path, "download").then(a => a.json()).then((t) => {
+        const h = {
+            "Dropbox-API-Arg": JSON.stringify({
+                path: i.path
+            }),
+            'Content-Type': "text/plain"
+        }
+        this.call(h, "download").then(a => a.json()).then((t) => {
             var data = JSON.stringify(t, null, 2);
             var link = document.createElement('a');
             link.download = i.name + ".json";
@@ -713,8 +711,9 @@ Dashboard.prototype.gotoProject = function(p) {
             project: p
         });
         window.location.hash = p;
-        if (this.state.tab === "PUBLIC") return alert("we will do public later");
-        this.makeReq("/" + p + "/Components", "list_folder").then((l) => {
+        this.call({}, "list_folder", {
+            path: "/" + p + "/Components"
+        }).then((l) => {
             const list = l.entries && l.entries.map(a => ({
                 path: "/" + p + "/Components/" + a.name,
                 rawTime: new Date(a.client_modified),
@@ -725,7 +724,7 @@ Dashboard.prototype.gotoProject = function(p) {
                 list: list
             });
             this.updateLocal("components", list);
-        })
+        });
     } catch (e) {
         console.log("=========================")
         console.log('gotoProject')
@@ -1258,7 +1257,7 @@ ProjectItem.prototype.remove = function(e) {
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
-    projects:[]
+    
 } ),
             document.getElementById('app')
         )
