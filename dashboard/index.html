@@ -133,6 +133,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     color: White;
     text-decoration: none
 }
+.Topbar-span_15 {
+    font-size: 31px;
+    margin-right: 5px
+}
 .Topbar-span_1 {
     margin-left: 3px;
     color: GoldenRod
@@ -874,6 +878,12 @@ Topbar.prototype.render = function() {
                         className: "Topbar-a_1",
                         href: '/dashboard'
                     },
+                    React.createElement("span", {
+                            "data-tid": "A0kc8dhx1mlb",
+                            className: "Topbar-span_15"
+                        },
+                        "‹"
+                    ),
                     "projects/"
                 ) :
                 null, React.createElement("span", {
@@ -1341,7 +1351,7 @@ ProjectItem.prototype.remove = function(e) {
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
-    
+    projects:[]
 } ),
             document.getElementById('app')
         )
