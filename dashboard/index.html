@@ -754,6 +754,7 @@ Dashboard.prototype.gotoProject = function(p) {
                 lastTime: moment(new Date(a.client_modified)).fromNow(),
                 name: a.name.split(".")[0]
             })).sort((a, b) => b.rawTime < a.rawTime ? -1 : 1) || [];
+            this.props.components = list;
             this.setState({
                 list: list
             });
@@ -788,11 +789,12 @@ Dashboard.prototype.remove = function(item) {
         console.log(e)
     }
 }
-Dashboard.prototype.search = function(e) {
+Dashboard.prototype.search = function(value) {
     try {
-        var v = e.currentTarget.value.toLowerCase();
+        var v = value.toLowerCase();
+        const list = this.state.page === "projects" ? this.props.MY : this.props.components;
         this.setState({
-            list: this.props.list.filter(a => {
+            list: list.filter(a => {
                 var l = a.name.toLowerCase();
                 return ~l.indexOf(v);
             })
@@ -880,6 +882,7 @@ Topbar.prototype.render = function() {
                 }),
                 React.createElement("input", {
                     "data-tid": "A0pzdwpmtzxej",
+                    onChange: this.search.bind(this),
                     className: "Topbar-input_1",
                     type: 'text',
                     placeholder: 'Search...'
@@ -894,6 +897,15 @@ Topbar.prototype.componentWillMount = function() {
     } catch (e) {
         console.log("=========================")
         console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Topbar.prototype.search = function(e) {
+    try {
+        this.props.search(e.target.value)
+    } catch (e) {
+        console.log("=========================")
+        console.log('search')
         console.log(e)
     }
 }
