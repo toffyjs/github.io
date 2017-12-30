@@ -1316,10 +1316,14 @@ ProjectItem.prototype.render = function() {
             className: "ProjectItem-div_161"
         },
         React.createElement("h1", {
-                "data-tid": "Ag52pu3j8cml"
+                "data-tid": "Ag52pu3j8cml",
+                onClick: (e) => {
+                    props.goto(props.item);
+                }
             },
             React.createElement(EditName, {
                 "data-tid": "Agvk5r3jqrp6",
+                change: this.change.bind(this),
                 name: props.item.name
             })
         ),
@@ -1335,11 +1339,9 @@ ProjectItem.prototype.render = function() {
         )
     )
 }
-ProjectItem.prototype.change = function(e) {
+ProjectItem.prototype.change = function(text) {
     try {
-        const newname = prompt("enter name.");
-        if (!newname) return;
-        this.props.changeName(this.props.item, newname);
+        this.props.changeName(this.props.item, text);
     } catch (e) {
         console.log("=========================")
         console.log('change')
