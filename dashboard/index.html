@@ -529,6 +529,9 @@ Dashboard.prototype.changeHash = function(e) {
 }
 Dashboard.prototype.changeName = function(i, newName) {
     try {
+        if (!newName || i.name === newName.trim()) {
+            return;
+        }
         const oldPath = i.path;
         i.path = "/" + newName;
         i.name = newName;
@@ -1263,6 +1266,7 @@ EditName.prototype.render = function() {
                     display: 'inline-block'
                 },
                 onBlur: this.changeEdit.bind(this),
+                onClick: this.onClick.bind(this),
                 className: " EditName-span_15" + (state.edit && ' EditName-edit ' || '') + '',
                 ref: 'inp',
                 contentEditable: state.edit
@@ -1282,8 +1286,10 @@ EditName.prototype.render = function() {
         )
     )
 }
-EditName.prototype.changeEdit = function() {
+EditName.prototype.changeEdit = function(e) {
     try {
+        e.preventDefault();
+        e.stopPropagation();
         if (this.state.edit && this.props.change) {
             this.props.change(this.refs.inp.innerText);
         }
@@ -1295,6 +1301,17 @@ EditName.prototype.changeEdit = function() {
     } catch (e) {
         console.log("=========================")
         console.log('changeEdit')
+        console.log(e)
+    }
+}
+EditName.prototype.onClick = function(e) {
+    try {
+        if (this.state.edit) {
+            e.stopPropagation();
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('onClick')
         console.log(e)
     }
 }
