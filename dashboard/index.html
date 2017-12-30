@@ -300,6 +300,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding: 8px;
     border-bottom: 5px solid #ccc
 }
+.ProjectItem-h1_82 {
+    margin-bottom: 12px
+}
 .ProjectItem-button_1 {
     border-color: transparent;
     background-color: transparent;
@@ -1336,7 +1339,8 @@ ProjectItem.prototype.render = function() {
                 "data-tid": "Ag52pu3j8cml",
                 onClick: (e) => {
                     props.goto(props.item);
-                }
+                },
+                className: "ProjectItem-h1_82"
             },
             React.createElement(EditName, {
                 "data-tid": "Agvk5r3jqrp6",
