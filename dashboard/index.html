@@ -223,7 +223,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Table-div_14 {
     position: relative;
     height: 40px;
-    line-height: 40px;
+    line-height: 25px;
     text-align: center;
     padding-left: 12px;
     align-items: center;
@@ -231,22 +231,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     justify-content: flex-start;
     flex: 1
 }
-.Table-div_14:hover {
-    color: black;
-    font-weight: 700
-}
+
 .Table-span_4 {
     font-weight: 800
 }
 .Table-i_9 {
-    color: #bbb
-}
-.Table-span_3 {
-    margin-left: 8px;
-    font-size: 16px
-}
-.Table-i_6 {
-    font-size: 8px;
     color: #bbb
 }
 .Table-button_2 {
@@ -291,6 +280,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-style: solid;
     border-width: 1px;
     background-color: #fff
+}
+.EditName-span_15 {
+    padding-left: 4px;
+    padding-right: 4px
+}
+.EditName-edit {
+    border: 1px solid
+}
+.EditName-button_10 {
+    border-color: transparent;
+    background-color: transparent
 }
 
 .ProjectItem-div_161 {
@@ -1110,19 +1110,12 @@ Table.prototype.render = function() {
                         "data-tid": "Aygu7uyzw3oa",
                         className: " Table-i_9" + (" fa fa-folder") + ''
                     }),
-                    React.createElement("span", {
-                            "data-tid": "Acxbtrkajpmc",
-                            onBlur: (e) => {
-                                this.onBlurEdit(i, e);
-                            },
-                            className: "Table-span_3",
-                            contentEditable: true
-                        },
-                        i.name
-                    ),
-                    React.createElement("i", {
-                        "data-tid": "Aefotn9e1va",
-                        className: " Table-i_6" + (" fa fa-pencil") + ''
+                    React.createElement(EditName, {
+                        "data-tid": "A29uv408zlgr",
+                        name: i.name,
+                        change: (t) => {
+                            this.changeName(i, t)
+                        }
                     })
                 ),
                 React.createElement("div", {
@@ -1189,6 +1182,15 @@ Table.prototype.componentWillMount = function() {
         console.log(e)
     }
 }
+Table.prototype.changeName = function(i, text) {
+    try {
+        this.props.changeName(i, text);
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeName')
+        console.log(e)
+    }
+}
 Table.prototype.gotTo = function(e, i) {
     try {
         if (e.target.dataset.isrow) {
@@ -1197,15 +1199,6 @@ Table.prototype.gotTo = function(e, i) {
     } catch (e) {
         console.log("=========================")
         console.log('gotTo')
-        console.log(e)
-    }
-}
-Table.prototype.onBlurEdit = function(i, e) {
-    try {
-        this.props.changeName(i, e.target.innerText);
-    } catch (e) {
-        console.log("=========================")
-        console.log('onBlurEdit')
         console.log(e)
     }
 }
@@ -1273,6 +1266,65 @@ StyleSection.prototype.render = function() {
             props.children
         )
     )
+}
+
+
+var EditName = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+EditName.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Afz22l2ayjxo",
+            className: "child_show_on_hover"
+        },
+        React.createElement("span", {
+                "data-tid": "Ausqa0xuxn6p",
+                style: {
+                    minWidth: '20px',
+                    display: 'inline-block'
+                },
+                onBlur: this.changeEdit.bind(this),
+                className: " EditName-span_15" + (state.edit && ' EditName-edit ' || '') + '',
+                ref: 'inp',
+                contentEditable: state.edit
+            },
+            props.name
+        ),
+        React.createElement("button", {
+                "data-tid": "Amogww2gs6ba",
+                onClick: this.changeEdit.bind(this),
+                className: "EditName-button_10 hover_btn"
+            }, !state.edit ?
+            React.createElement("i", {
+                "data-tid": "A1v0nqc48qli",
+                className: (" fa fa-pencil") + ''
+            }) :
+            null
+        )
+    )
+}
+EditName.prototype.changeEdit = function() {
+    try {
+        if (this.state.edit && this.props.change) {
+            this.props.change(this.refs.inp.innerText);
+        }
+        this.setState({
+            edit: !this.state.edit
+        }, () => {
+            if (this.state.edit) this.refs.inp.focus();
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeEdit')
+        console.log(e)
+    }
 }
 
 
