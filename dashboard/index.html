@@ -281,6 +281,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-width: 1px;
     background-color: #fff
 }
+
 .EditName-span_15 {
     padding-left: 4px;
     padding-right: 4px
@@ -301,7 +302,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-bottom: 5px solid #ccc
 }
 .ProjectItem-div_161:hover {
-    cursor: pointer
+    cursor: pointer;
+    background-color: #eee
 }
 .ProjectItem-h1_82 {
     margin-bottom: 12px
@@ -1302,53 +1304,110 @@ EditName.prototype.render = function() {
                     minWidth: '20px',
                     display: 'inline-block'
                 },
-                onBlur: this.changeEdit.bind(this),
+                onBlur: this.update.bind(this),
                 onClick: this.onClick.bind(this),
                 className: " EditName-span_15" + (state.edit && ' EditName-edit ' || '') + '',
                 ref: 'inp',
                 contentEditable: state.edit
             },
             props.name
-        ),
+        ), !state.edit ?
         React.createElement("button", {
                 "data-tid": "Amogww2gs6ba",
-                onClick: this.changeEdit.bind(this),
+                onMouseDown: this.openEdit.bind(this),
                 className: "EditName-button_10 hover_btn"
-            }, !state.edit ?
+            },
             React.createElement("i", {
                 "data-tid": "A1v0nqc48qli",
                 className: (" fa fa-pencil") + ''
-            }) :
-            null
+            })
+        ) :
+        React.createElement("button", {
+                "data-tid": "Abhwp6ius0pv",
+                onMouseDown: this.closeEdit.bind(this),
+                className: "EditName-button_10 hover_btn"
+            },
+            React.createElement("i", {
+                "data-tid": "A947y6y3cyav",
+                className: (" fa fa-check") + ''
+            })
         )
     )
 }
-EditName.prototype.changeEdit = function(e) {
+EditName.prototype.componentDidMount = function() {
     try {
-        e.preventDefault();
-        e.stopPropagation();
-        if (this.state.edit && this.props.change) {
-            this.props.change(this.refs.inp.innerText);
-        }
-        this.setState({
-            edit: !this.state.edit
-        }, () => {
-            if (this.state.edit) this.refs.inp.focus();
-        });
+        ReactDOM.findDOMNode(this).addEventListener('click', (event) => {
+            if (this.state.edit) event.stopPropagation();
+        }, false);
     } catch (e) {
         console.log("=========================")
-        console.log('changeEdit')
+        console.log('componentDidMount')
+        console.log(e)
+    }
+}
+EditName.prototype.closeEdit = function(e) {
+    try {
+        this.stopEvent(e);
+        setTimeout(() => {
+            this.setState({
+                edit: false
+            });
+        }, 150)
+    } catch (e) {
+        console.log("=========================")
+        console.log('closeEdit')
         console.log(e)
     }
 }
 EditName.prototype.onClick = function(e) {
     try {
         if (this.state.edit) {
-            e.stopPropagation();
+            this.stopEvent(e);
         }
     } catch (e) {
         console.log("=========================")
         console.log('onClick')
+        console.log(e)
+    }
+}
+EditName.prototype.openEdit = function(e) {
+    try {
+        this.stopEvent(e);
+        this.setState({
+            edit: true
+        }, () => {
+            setTimeout(() => {
+                this.refs.inp.focus();
+            }, 500)
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('openEdit')
+        console.log(e)
+    }
+}
+EditName.prototype.stopEvent = function(e) {
+    try {
+        e.stopImmediatePropagation && e.stopImmediatePropagation()
+        e.nativeEvent && e.nativeEvent.stopImmediatePropagation();
+        e.stopPropagation();
+        e.preventDefault();
+    } catch (e) {
+        console.log("=========================")
+        console.log('stopEvent')
+        console.log(e)
+    }
+}
+EditName.prototype.update = function(e) {
+    try {
+        this.stopEvent(e);
+        if (this.state.edit && this.props.change) {
+            this.props.change(this.refs.inp.innerText);
+        }
+        this.closeEdit(e);
+    } catch (e) {
+        console.log("=========================")
+        console.log('update')
         console.log(e)
     }
 }
@@ -1367,9 +1426,7 @@ ProjectItem.prototype.render = function() {
     var state = this.state;
     return React.createElement("div", {
             "data-tid": "Awvk272pn9dd",
-            onClick: (e) => {
-                props.goto(props.item);
-            },
+            onClick: this.goto.bind(this),
             className: "ProjectItem-div_161"
         },
         React.createElement("h1", {
@@ -1379,7 +1436,8 @@ ProjectItem.prototype.render = function() {
             React.createElement(EditName, {
                 "data-tid": "Agvk5r3jqrp6",
                 change: this.change.bind(this),
-                name: props.item.name
+                name: props.item.name,
+                ref: 'edit'
             })
         ),
         React.createElement("button", {
@@ -1400,6 +1458,17 @@ ProjectItem.prototype.change = function(text) {
     } catch (e) {
         console.log("=========================")
         console.log('change')
+        console.log(e)
+    }
+}
+ProjectItem.prototype.goto = function(e) {
+    try {
+        console.log(e.isPropagationStopped())
+        if (this.refs.edit.state.edit) return;
+        this.props.goto(this.props.item);
+    } catch (e) {
+        console.log("=========================")
+        console.log('goto')
         console.log(e)
     }
 }
