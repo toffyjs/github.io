@@ -148,16 +148,24 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Style-div_784 {
     margin-top: 25px
 }
-
-.Style-span_1 {
-    width: 25px;
-    display: inline-block;
-    height: 25px;
-    border-radius: 34px;
-    margin-right: 13px;
-    border-style: solid;
-    border-color: AliceBlue;
-    border-width: 1px
+.Style-div_7 {
+    flex-direction: row;
+    display: flex
+}
+.Style-div_157 {
+    width: 147px;
+    height: 70px;
+    text-align: center;
+    margin-right: 1px;
+    border-color: Orange
+}
+.Style-div_158 {
+    height: 46px
+}
+.Style-span_25 {
+    color: Black;
+    font-weight: 900;
+    line-height: 24px
 }
 .Style-div_9 {
     flex-direction: row;
@@ -279,7 +287,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .StyleSection-div_37 {
     border-color: Azure;
-    padding: 8px;
     border-style: solid;
     border-width: 1px;
     background-color: #fff
@@ -956,15 +963,25 @@ Style.prototype.render = function() {
                         className: "Style-div_7"
                     },
                     this.colors && this.colors.map && this.colors.length ? this.colors.map((i, j) => (
-                        React.createElement("span", {
-                            key: j,
-                            "data-tid": "Am7zb4tjlfh",
-                            style: {
-                                backgroundColor: i,
-                                boxShadow: '0 0 2px ' + i
+                        React.createElement("div", {
+                                key: j,
+                                "data-tid": "A3qeozf3o3jv",
+                                className: "Style-div_157"
                             },
-                            className: "Style-span_1"
-                        })
+                            React.createElement("div", {
+                                "data-tid": "Ajx0rc0v344a",
+                                style: {
+                                    backgroundColor: i
+                                },
+                                className: "Style-div_158"
+                            }),
+                            React.createElement("span", {
+                                    "data-tid": "A1jr64qf4j8v",
+                                    className: "Style-span_25"
+                                },
+                                i
+                            )
+                        )
                     )) : undefined
                 )
             )
@@ -1010,7 +1027,7 @@ Style.prototype.render = function() {
                         style: {
                             borderBottom: '1px solid #ddd'
                         },
-                        className: "Style-div_7"
+                        className: "Style-sizes"
                     },
                     Object.keys(this.sizes) && Object.keys(this.sizes).map && Object.keys(this.sizes).length ? Object.keys(this.sizes).map((i, j) => (
                         React.createElement("div", {
