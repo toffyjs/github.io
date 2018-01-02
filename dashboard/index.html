@@ -33,7 +33,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Dashboard-div_15 {
     margin-top: 92px;
-    max-width: 1000px;
+    max-width: 1021px;
     margin-left: auto;
     margin-right: auto
 }
@@ -297,16 +297,19 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .ProjectItem-div_161 {
     position: relative;
     box-shadow: 0 0 5px #ddd;
-    width: 210px;
+    width: 300px;
     padding: 8px;
-    border-bottom: 5px solid #ccc
+    border-bottom: 5px solid #ccc;
+    font-size: 10px
 }
 .ProjectItem-div_161:hover {
     cursor: pointer;
     background-color: #eee
 }
 .ProjectItem-h1_82 {
-    margin-bottom: 12px
+    margin-bottom: 12px;
+    font-weight: 100;
+    color: #555
 }
 .ProjectItem-button_1 {
     border-color: transparent;
@@ -315,7 +318,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 18px;
     z-index: 4;
     bottom: -1px;
-    position: absolute
+    position: absolute;
+    color: #555
 }
 </style>
  </head><body><script type="text/javascript">
@@ -668,7 +672,7 @@ Dashboard.prototype.createProject = function() {
         this.setState({
             makeAction: `creating ${path}`
         });
-        this.call(h, "create_folder_v2", {
+        this.call({}, "create_folder_v2", {
             path: path
         }).then((l) => {
             alert("saved!!!");
@@ -793,11 +797,12 @@ Dashboard.prototype.remove = function(item) {
             makeAction: "removeing... " + item.path
         });
         this.call({}, "delete_v2", body).then((l) => {
-            var idx = this.state.list.indexOf(item);
-            this.state.list.splice(idx, 1);
+            const list = this.state.page === "projects" ? this.props.MY : this.props.components;
+            var idx = list.indexOf(item);
+            list.splice(idx, 1);
             this.setState({
                 makeAction: null,
-                list: this.state.list
+                list: list
             })
         });
     } catch (e) {
@@ -1475,7 +1480,7 @@ ProjectItem.prototype.change = function(text) {
 }
 ProjectItem.prototype.goto = function(e) {
     try {
-        console.log(e.isPropagationStopped())
+        if (e.target.tag === "button" || e.target.parentNode.tagName === "BUTTON") return;
         if (this.refs.edit.state.edit) return;
         this.props.goto(this.props.item);
     } catch (e) {
@@ -1496,7 +1501,7 @@ ProjectItem.prototype.remove = function(e) {
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
-    projects:[]
+    
 } ),
             document.getElementById('app')
         )
