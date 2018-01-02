@@ -162,8 +162,9 @@ function $print() {
   window.openFromView && window.openFromView("log", arguments, Klasses);
 }
 
-// let oldHTMLFocus = HTMLElement.prototype.focus;
+let oldHTMLFocus = HTMLElement.prototype.focus;
 HTMLElement.prototype.focus = function() {
+  console.log("try to focus!!!", window.canFocus);
   if (!window.canFocus) return;
   oldHTMLFocus.apply(this, arguments);
 };
