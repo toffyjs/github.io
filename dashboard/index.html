@@ -596,6 +596,16 @@ Dashboard.prototype.connect = function() {
         console.log(e)
     }
 }
+Dashboard.prototype.convertName = function(s) {
+    try {
+        if (!s) return;
+        return s.split(" ").map(a => a.charAt(0).toUpperCase() + a.substr(1)).join("");
+    } catch (e) {
+        console.log("=========================")
+        console.log('convertName')
+        console.log(e)
+    }
+}
 Dashboard.prototype.create = function() {
     try {
         if (this.state.page === 'projects') {
@@ -613,7 +623,8 @@ Dashboard.prototype.createComponent = function() {
     try {
         var name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
         if (!name) return;
-        let path = `/${ this.state.project}/Components/${name}.json`;
+        name = this.convertName(name);
+        let path = `/${this.state.project}/Components/${name}.json`;
         const h = {
             'Content-Type': "application/octet-stream",
             "Dropbox-API-Arg": JSON.stringify({
@@ -652,6 +663,7 @@ Dashboard.prototype.createProject = function() {
     try {
         var name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
         if (!name) return;
+        name = this.convertName(name);
         const path = `/${name}`;
         this.setState({
             makeAction: `creating ${path}`
@@ -1484,7 +1496,7 @@ ProjectItem.prototype.remove = function(e) {
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
-    
+    projects:[]
 } ),
             document.getElementById('app')
         )
