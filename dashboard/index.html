@@ -1057,7 +1057,8 @@ Style.prototype.componentWillMount = function() {
 }
 Style.prototype.getColor = function(j) {
     try {
-        return `rgb(100,${j?j*50:255},100)`
+        const r = Math.max((j / this.fonts.length), 0.2)
+        return `rgba(0 ,0,0,${r})`
     } catch (e) {
         console.log("=========================")
         console.log('getColor')
