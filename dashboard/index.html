@@ -18,6 +18,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
  .Dashboard {
     margin: 20px
 }
+.Dashboard-div_4 {
+    background-color: #fafafa;
+    min-height: 100vh;
+    border-color: MediumBlue
+}
 .Dashboard-div_28 {
     position: fixed;
     left: 0px;
@@ -32,7 +37,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     align-items: center
 }
 .Dashboard-div_15 {
-    margin-top: 92px;
+    margin-top: 75px;
     max-width: 1021px;
     margin-left: auto;
     margin-right: auto
@@ -310,7 +315,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     width: 300px;
     padding: 8px;
     border-bottom: 5px solid #ccc;
-    font-size: 10px
+    font-size: 10px;
+    background-color: #fff
 }
 .ProjectItem-div_161:hover {
     cursor: pointer;
@@ -348,7 +354,8 @@ Dashboard.prototype.render = function() {
     var props = this.props;
     var state = this.state;
     return React.createElement("div", {
-            "data-tid": "Auwkx1f4z6wq"
+            "data-tid": "Auwkx1f4z6wq",
+            className: "Dashboard-div_4"
         },
         React.createElement("div", {
                 "data-tid": "Achjzyqbf9ph",
