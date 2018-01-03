@@ -30,6 +30,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     top: 0px;
     z-index: 4
 }
+.Dashboard-div_475 {
+    padding-top: 40px
+}
 .Dashboard-h1_1 {
     height: 100vh;
     justify-content: center;
@@ -371,7 +374,8 @@ Dashboard.prototype.render = function() {
         ),
         state.list ?
         React.createElement("div", {
-                "data-tid": "Atvqrnxn4dkl"
+                "data-tid": "Atvqrnxn4dkl",
+                className: "Dashboard-div_475"
             },
             state.list.length === 0 ?
             React.createElement("h1", {
