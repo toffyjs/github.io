@@ -1,6 +1,20 @@
 //window.toffyjs = (function() {
 
 var Tag = {
+  jsInline: function(src, callback) {
+    var script = document.createElement("script");
+    script.async = false;
+    script.type = "text/javascript";
+    const d = "data:text/javascript;base64," + btoa(src);
+    script.src = d;
+    document.getElementsByTagName("head")[0].appendChild(script);
+    let loaded;
+    if (callback) {
+      script.onreadystatechange = script.onload = function() {
+        setTimeout(callback, 1);
+      };
+    }
+  },
   css: function(src, callback) {
     var tag = document.createElement("link"),
       loaded;
@@ -11,16 +25,18 @@ var Tag = {
   js: function(src, callback) {
     var script = document.createElement("script"),
       loaded;
+    script.type = "text/javascript";
     script.setAttribute("src", src);
+    script.async = false;
+    document.getElementsByTagName("head")[0].appendChild(script);
     if (callback) {
       script.onreadystatechange = script.onload = function() {
         if (!loaded) {
-          callback();
+          setTimeout(callback, 1);
         }
         loaded = true;
       };
     }
-    document.getElementsByTagName("head")[0].appendChild(script);
   }
 };
 
