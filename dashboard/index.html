@@ -159,22 +159,34 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 .Style-div_7 {
     flex-direction: row;
-    display: flex
+    display: flex;
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px
 }
 .Style-div_157 {
-    width: 147px;
-    height: 70px;
+    height: 80px;
     text-align: center;
-    margin-right: 1px;
-    border-color: Orange
+    border-color: Orange;
+    padding: 5px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
 }
 .Style-div_158 {
-    height: 46px
+    height: 50px;
+    border-radius: 57px;
+    width: 50px;
+    box-shadow: 0 0 8px
 }
 .Style-span_25 {
-    color: Black;
-    font-weight: 900;
-    line-height: 24px
+    color: #555;
+    font-weight: 100;
+    line-height: 24px;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px
 }
 .Style-div_9 {
     flex-direction: row;
@@ -987,7 +999,8 @@ Style.prototype.render = function() {
                             React.createElement("div", {
                                 "data-tid": "Ajx0rc0v344a",
                                 style: {
-                                    backgroundColor: i
+                                    backgroundColor: i,
+                                    color: i
                                 },
                                 className: "Style-div_158"
                             }),
