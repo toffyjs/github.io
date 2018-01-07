@@ -153,6 +153,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 20px;
     max-width: 54vw
 }
+
 .Style-div_784 {
     margin-top: 25px
 }
@@ -184,11 +185,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .Style-h1_3 {
     margin: 14px
 }
+
 .Style-div_8 {
-    border-style: solid;
-    border-width: 1px;
-    border-bottom: none;
-    border-color: #ddd
+    border-color: #ddd;
+    border-bottom-style: solid;
+    border-width: 1px
+}
+.Style-div_8:last-child {
+    border-bottom: none
 }
 .Style-span_2 {
     width: 71px;
@@ -282,7 +286,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 
 .StyleSection-div_2 {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5)
+    box-shadow: 0 0 2px #aaa
 }
 .StyleSection-h1_1 {
     font-weight: 300;
@@ -1036,9 +1040,7 @@ Style.prototype.render = function() {
                 },
                 React.createElement("div", {
                         "data-tid": "Aozafj2nlpo",
-                        style: {
-                            borderBottom: '1px solid #ddd'
-                        },
+                        style: {},
                         className: "Style-sizes"
                     },
                     Object.keys(this.sizes) && Object.keys(this.sizes).map && Object.keys(this.sizes).length ? Object.keys(this.sizes).map((i, j) => (
