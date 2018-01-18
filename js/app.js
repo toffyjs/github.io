@@ -140,11 +140,13 @@ function updateSelect(nodeid) {
     }
     return;
   }
-  var el = document.querySelector('[data-tid="' + nodeid + '"]');
+  const selector= /^\./.test(nodeid)?nodeid:'[data-tid="' + nodeid + '"]';
+  var el = document.querySelector(selector);
   if (window.elSelected === el) {
     return;
   } else if (window.elSelected) window.elSelected.style.outline = null;
   if (!el) return;
+
   var r = el.getBoundingClientRect();
   var cs = getComputedStyle(el);
   var w = r.width;
