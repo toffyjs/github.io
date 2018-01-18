@@ -140,7 +140,7 @@ function updateSelect(nodeid) {
     }
     return;
   }
-  const selector= /^\./.test(nodeid)?nodeid:'[data-tid="' + nodeid + '"]';
+  const selector = /^\./.test(nodeid) ? nodeid : '[data-tid="' + nodeid + '"]';
   var el = document.querySelector(selector);
   if (window.elSelected === el) {
     return;
