@@ -1,0 +1,97 @@
+<!DOCTYPE html><html><head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+<style type="text/css">
+
+body{
+    font-family:Roboto
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}</style><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js">
+</script><title></title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> 
+ <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+
+<style type="text/css">
+ 
+.Loading-div_3 {
+    height: 2px;
+    background-color: Orange
+}
+</style>
+ </head><body><script type="text/javascript">
+ </script><div id="app"></div><script type="text/javascript">
+   try{
+        
+        var Loading = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Loading.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Ahrhe9185fgv",
+            style: {
+                position: 'fixed',
+                top: '0',
+                bottom: '0',
+                right: '0',
+                left: '0',
+                backgroundColor: 'transparent',
+                zIndex: '10000'
+            },
+            className: "Loading-div27"
+        },
+        React.createElement("div", {
+            "data-tid": "Ahliopnkxvr",
+            style: {
+                width: state.width + '%'
+            },
+            className: "Loading-div_3"
+        })
+    )
+}
+Loading.prototype.componentWillMount = function() {
+    try {
+        this.state = {
+            width: 10
+        }
+        this.idv = setInterval(() => {
+            if (this.state.width === 100) {
+                return clearInterval(this.idv)
+            }
+            this.setState((s) => ({
+                width: Math.min(s.width + 1, 100)
+            }))
+        }, 100)
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+Loading.prototype.componentWillUnmount = function() {
+    try {
+        clearInterval(this.idv)
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillUnmount')
+        console.log(e)
+    }
+}
+        ReactDOM.render(
+            React.createElement(Loading,{
+    msg:"Loading </CodePage>"
+} ),
+            document.getElementById('app')
+        )
+   }catch(e){
+       alert(e.name+" "+e.message);
+   }
+</script></body></html>
