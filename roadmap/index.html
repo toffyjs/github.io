@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html><html><head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
 <style type="text/css">
 
 body{
@@ -11,15 +14,37 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
  <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 
 <style type="text/css">
-   
- .Footer-div_27 {
+ .Roadmap-div_4 {
+    color: Black
+}
+.Roadmap-div_6 {
+    background-color: WhiteSmoke;
+    color: Black;
+    padding: 26px;
+    box-shadow: 0 0 6px #ddd
+}
+.Roadmap-h1_3 {
+    font-size: 17px;
+    font-weight: 100;
+    font-style: italic;
+    border-color: Orange;
+    color: Orange
+}
+.Roadmap-textarea_1 {
+    border-color: #ddd;
+    padding: 3px
+}
+.Roadmap-button_2 {
+    border-color: transparent;
+    font-size: 20px
+}
+.Footer-div_27 {
     background-color: #444;
     background: flex;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 30px;
     padding-top: 60px
 }
 .Footer-div_12 {
@@ -27,14 +52,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 16px
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center
 }
 .Footer-a_10 {
     color: #fff;
     text-decoration: none;
-    font-size: 14px;
-    margin-left: 40px;
-    margin-right: 40px
+    font-size: 15px;
+    width: 135px;
+    text-align: center;
+    margin-bottom: 14px
 }
 .Footer-a_10:hover {
     cursor: pointer;
@@ -47,8 +75,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 </style>
  </head><body><script type="text/javascript">
  </script><div id="app"></div><script type="text/javascript">
-    
-        var Footer = React.createClass({
+   try{
+        
+        var Roadmap = React.createClass({
     getInitialState: function() {
         return {}
     },
@@ -56,60 +85,318 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
         return null
     }
 });
-Footer.prototype.render = function() {
+Roadmap.prototype.render = function() {
     var props = this.props;
     var state = this.state;
-    let links = Object.keys(this.links).map(a => {
-        return {
-            title: a,
-            link: this.links[a]
-        }
-    })
+    debugger
     return React.createElement("div", {
-            "data-tid": "Aaopts7pu67u",
-            className: "Footer-div_27"
+            "data-tid": "qvu0u2p97yr",
+            style: {
+                backgroundColor: '#333',
+                color: '#eee',
+                position: 'relative'
+            }
         },
+        React.createElement(TopBarSite, {
+            "data-tid": "3dffsp626e2"
+        }),
         React.createElement("div", {
-                "data-tid": "Aq5yrkqnvx9b",
-                className: "Footer-div_12"
-            },
-            links && links.map && links.length ? links.map((i, j) => (React.createElement("a", {
-                    key: j,
-                    "data-tid": "Aag72o7cdsx",
-                    className: "Footer-a_10",
-                    href: i.link,
-                    target: 'blank'
-                },
-                i.title
-            ))) : undefined
-        ),
-        React.createElement("div", {
-                "data-tid": "Aduqhox7tpr6",
+                "data-tid": "pempemdbin",
                 style: {
-                    color: 'white'
-                },
-                className: "Footer-div_64"
+                    display: 'flex',
+                    height: '100vh',
+                    padding: '100px 20px',
+                    maxWidth: '900px',
+                    zIndex: '-1'
+                }
             },
-            React.createElement("span", {
-                    "data-tid": "Alc6yl6q68pn",
-                    style: {}
+            state.list && state.list.map && state.list.length ? state.list.map((i, j) => (
+                React.createElement("div", {
+                        key: j,
+                        "data-tid": "7561j4abbp",
+                        style: {
+                            padding: '10px',
+                            backgroundColor: '#666',
+                            borderRadius: '4px',
+                            marginRight: '10px',
+                            position: 'relative'
+                        }
+                    },
+                    React.createElement("h1", {
+                            "data-tid": "r2r4ekjr9y",
+                            style: {
+                                fontSize: '20px',
+                                marginBottom: '12px',
+                                background: 'rgba(0,0,0,0)'
+                            }
+                        },
+                        i.name
+                    ),
+                    i.cards && i.cards.map && i.cards.length ? i.cards.map((i, j) => (
+                        React.createElement("div", {
+                                key: j,
+                                "data-tid": "l3tv3wsdc4r",
+                                style: {
+                                    backgroundColor: '#333',
+                                    marginBottom: '10px',
+                                    borderRadius: '4px',
+                                    padding: '8px',
+                                    width: '245px'
+                                }
+                            },
+                            React.createElement("h1", {
+                                    "data-tid": "xwnjd1omx6a",
+                                    style: {
+                                        fontWeight: '400px',
+                                        lineHeight: '23px',
+                                        fontSize: '16px',
+                                        marginBottom: '12px'
+                                    }
+                                },
+                                i.name
+                            ),
+                            React.createElement("span", {
+                                    "data-tid": "nlxlmfl1oxk",
+                                    style: {
+                                        fontSize: '11px',
+                                        color: '#aaa',
+                                        fontWeight: '900px'
+                                    }
+                                },
+                                i.time.toDateString()
+                            )
+                        )
+                    )) : undefined, React.createElement("button", {
+                            "data-tid": "bd1nxduidc4",
+                            style: {
+                                borderRadius: '50%',
+                                width: '30px',
+                                height: '30px',
+                                position: 'absolute',
+                                top: '-15px',
+                                right: '6px',
+                                zIndex: '5',
+                                borderStyle: 'none',
+                                boxShadow: '0 0px 10px rgba(0,0,0,0.7)',
+                                color: '#333'
+                            },
+                            onClick: (e) => {
+                                this.add(i);
+                            }
+                        },
+                        React.createElement("i", {
+                            "data-tid": "gaxv9ydabvg",
+                            className: (" fa fa-pencil") + ''
+                        })
+                    )
+                )
+            )) : undefined
+        ),
+        state.modal ?
+        React.createElement("div", {
+                "data-tid": "o9ysljtwh1h",
+                style: {
+                    top: '0',
+                    left: '0',
+                    right: '0',
+                    bottom: '0',
+                    position: 'absolute',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }
+            },
+            React.createElement("div", {
+                "data-tid": "2jxwfg26mm7",
+                style: {
+                    position: 'absolute',
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    zIndex: '0',
+                    top: '0',
+                    left: '0',
+                    right: '0',
+                    bottom: '0'
                 },
-                "© 2017, ToffyJS. All Rights Reserved."
+                onClick: this.close.bind(this),
+                className: "Roadmap-div_4"
+            }),
+            React.createElement("div", {
+                    "data-tid": "x76hy51wlzf",
+                    style: {
+                        position: 'relative',
+                        animationName: state.loading ? 'pulse' : null,
+                        top: '-82px',
+                        animationDuration: '2s',
+                        animationIterationCount: 'infinite'
+                    },
+                    className: "Roadmap-div_6"
+                },
+                React.createElement("h1", {
+                        "data-tid": "ux3xxv8yio",
+                        className: "Roadmap-h1_3"
+                    },
+                    "Enter what you want"
+                ),
+                React.createElement("textarea", {
+                    "data-tid": "po74qa2qg2",
+                    style: {
+                        width: '400px',
+                        minHeight: '100px'
+                    },
+                    className: "Roadmap-textarea_1",
+                    ref: 'inp',
+                    autoFocus: true
+                }),
+                React.createElement("div", {
+                        "data-tid": "rgd03bhzf38",
+                        style: {
+                            marginTop: '4px'
+                        }
+                    },
+                    React.createElement("button", {
+                            "data-tid": "01xd6x8wmm8t",
+                            style: {
+                                width: '100%',
+                                backgroundColor: '#333',
+                                color: '#eee',
+                                padding: '10px 0'
+                            },
+                            onClick: this.send.bind(this),
+                            className: "Roadmap-button_2"
+                        },
+                        React.createElement("span", {
+                                "data-tid": "7tz2mvmz03"
+                            },
+                            "Post it"
+                        )
+                    )
+                )
             )
-        )
+        ) :
+        null, React.createElement(Footer, {
+            "data-tid": "A2gbcihl2byl"
+        })
     )
 }
-Footer.prototype.componentWillMount = function() {
+Roadmap.prototype.componentDidMount = function() {
     try {
-        this.links = {
-            "Home": "/",
-            "Roadmap": "/roadmap",
-            "Terms Of Service": "/terms",
-            "Privacy Policy": "/PrivacyPolicy"
+        if (window.run)
+            return this.setList(this.props.cards);
+        var url = "https://api.trello.com/1/boards/s9LW4gmz/cards";
+        fetch(url).then((j) => {
+            return j.json()
+        }).then((a) => {
+            this.setList(a);
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentDidMount')
+        console.log(e)
+    }
+}
+Roadmap.prototype.close = function() {
+    try {
+        this.setState({
+            loading: false,
+            modal: false
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('close')
+        console.log(e)
+    }
+}
+Roadmap.prototype.send = function() {
+    try {
+        var id = this.state.modal.id;
+        var msg = this.refs.inp.value;
+        var headers = new Headers({
+            'Content-Type': 'application/json;charset=UTF-8'
+        });
+        this.setState({
+            loading: true
+        });
+        fetch("https://wt-2a19a7280eafe304acdacc39b2dbd22b-0.run.webtask.io/express/trello", {
+            method: "POST",
+            mode: 'cors',
+            headers: headers,
+            body: JSON.stringify({
+                name: msg,
+                id: id
+            })
+        }).then((r) => {
+            var t = r.json()
+            $print(t);
+            return t
+        }).then((r) => {
+            r.time = new Date();
+            this.state.modal.cards.push(r);
+            this.close()
+        }).
+        catch(() => {
+            this.close()
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('send')
+        console.log(e)
+    }
+}
+Roadmap.prototype.add = function(i) {
+    try {
+        this.setState({
+            modal: i
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('add')
+        console.log(e)
+    }
+}
+Roadmap.prototype.setList = function(cards) {
+    try {
+        var cards = cards.map(this.convert);
+        var list = {};
+        var names = {
+            '59c00c7b118b69d8a817b61c': "test",
+            '59bf993c5085574bdf2a74ca': "req feature"
+        }
+        if (this.props.list) {
+            this.props.list.forEach((a) => {
+                names[a.id] = a.name;
+            })
+        }
+        for (var c of cards) {
+            list[c.idList] = list[c.idList] || [];
+            list[c.idList].push(c);
+        }
+        this.setState({
+            list: Object.keys(list).map(a => {
+                return {
+                    id: a,
+                    name: names[a],
+                    cards: list[a]
+                }
+            })
+        })
+        debugger
+    } catch (e) {
+        console.log("=========================")
+        console.log('setList')
+        console.log(e)
+    }
+}
+Roadmap.prototype.convert = function(a) {
+    try {
+        return {
+            name: a.name,
+            idList: a.idList,
+            id: a.id,
+            time: new Date(a.dateLastActivity)
         }
     } catch (e) {
         console.log("=========================")
-        console.log('componentWillMount')
+        console.log('convert')
         console.log(e)
     }
 }
@@ -224,7 +511,7 @@ TopBarSite.prototype.render = function() {
                             color: '#aaa',
                             textDecoration: 'none'
                         },
-                        href: '/PrivacyPolicy'
+                        href: '/privacypolicy'
                     },
                     React.createElement("span", {
                             "data-tid": "b15ywokw1nv"
@@ -238,280 +525,71 @@ TopBarSite.prototype.render = function() {
 }
 
 
-class Roadmap extends React.Component {
-    render() {
-        var props = this.props;
-        var state = this.state;
-        debugger
-        return React.createElement("div", {
-                "data-tid": "qvu0u2p97yr",
-                style: {
-                    backgroundColor: '#333',
-                    color: '#eee',
-                    position: 'relative'
-                }
-            },
-            React.createElement(TopBarSite, {
-                "data-tid": "3dffsp626e2"
-            }),
-            React.createElement("div", {
-                    "data-tid": "pempemdbin",
-                    style: {
-                        display: 'flex',
-                        height: '100vh',
-                        padding: '100px 20px',
-                        maxWidth: '900px',
-                        zIndex: '-1'
-                    }
-                },
-                state.list && state.list.map && state.list.length ? state.list.map((i, j) => (React.createElement("div", {
-                        key: j,
-                        "data-tid": "7561j4abbp",
-                        style: {
-                            padding: '10px',
-                            backgroundColor: '#666',
-                            borderRadius: '4px',
-                            marginRight: '10px',
-                            position: 'relative'
-                        }
-                    },
-                    React.createElement("h1", {
-                            "data-tid": "r2r4ekjr9y",
-                            style: {
-                                fontSize: '20px',
-                                marginBottom: '12px',
-                                background: 'rgba(0,0,0,0)'
-                            }
-                        },
-                        i.name
-                    ),
-                    i.cards && i.cards.map && i.cards.length ? i.cards.map((i, j) => (React.createElement("div", {
-                            key: j,
-                            "data-tid": "l3tv3wsdc4r",
-                            style: {
-                                backgroundColor: '#333',
-                                marginBottom: '10px',
-                                borderRadius: '4px',
-                                padding: '8px',
-                                width: '245px'
-                            }
-                        },
-                        React.createElement("h1", {
-                                "data-tid": "xwnjd1omx6a",
-                                style: {
-                                    fontWeight: '400px',
-                                    lineHeight: '23px',
-                                    fontSize: '16px',
-                                    marginBottom: '12px'
-                                }
-                            },
-                            i.name
-                        ),
-                        React.createElement("span", {
-                                "data-tid": "nlxlmfl1oxk",
-                                style: {
-                                    fontSize: '11px',
-                                    color: '#aaa',
-                                    fontWeight: '900px'
-                                }
-                            },
-                            i.time.toDateString()
-                        )
-                    ))) : undefined, React.createElement("button", {
-                            "data-tid": "bd1nxduidc4",
-                            style: {
-                                borderRadius: '50%',
-                                width: '30px',
-                                height: '30px',
-                                position: 'absolute',
-                                top: '-15px',
-                                right: '6px',
-                                zIndex: '5',
-                                borderStyle: 'none',
-                                boxShadow: '0 0px 10px rgba(0,0,0,0.7)',
-                                color: '#333'
-                            },
-                            onClick: (e) => {
-                                this.add(i);
-                            }
-                        },
-                        React.createElement("i", {
-                            "data-tid": "gaxv9ydabvg",
-                            className: "fa fa-pencil"
-                        })
-                    )
-                ))) : undefined
-            ),
-            state.modal ?
-            React.createElement("div", {
-                    "data-tid": "o9ysljtwh1h",
-                    style: {
-                        top: '0',
-                        left: '0',
-                        right: '0',
-                        bottom: '0',
-                        position: 'absolute',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }
-                },
-                React.createElement("div", {
-                    "data-tid": "2jxwfg26mm7",
-                    style: {
-                        position: 'absolute',
-                        backgroundColor: 'rgba(0,0,0,0.6)',
-                        zIndex: '0',
-                        top: '0',
-                        left: '0',
-                        right: '0',
-                        bottom: '0'
-                    },
-                    onClick: this.close.bind(this)
-                }),
-                React.createElement("div", {
-                        "data-tid": "x76hy51wlzf",
-                        style: {
-                            position: 'relative',
-                            animationName: state.loading ? 'pulse' : null,
-                            top: '-82px',
-                            animationDuration: '2s',
-                            animationIterationCount: 'infinite'
-                        }
-                    },
-                    React.createElement("h1", {
-                            "data-tid": "ux3xxv8yio"
-                        },
-                        "Enter what you want"
-                    ),
-                    React.createElement("textarea", {
-                        "data-tid": "po74qa2qg2",
-                        style: {
-                            width: '400px',
-                            minHeight: '100px'
-                        },
-                        ref: 'inp',
-                        autoFocus: true
-                    }),
-                    React.createElement("div", {
-                            "data-tid": "rgd03bhzf38",
-                            style: {
-                                marginTop: '4px'
-                            }
-                        },
-                        React.createElement("button", {
-                                "data-tid": "01xd6x8wmm8t",
-                                style: {
-                                    width: '100%',
-                                    backgroundColor: '#333',
-                                    color: '#eee',
-                                    padding: '10px 0'
-                                },
-                                onClick: this.send.bind(this)
-                            },
-                            React.createElement("span", {
-                                    "data-tid": "7tz2mvmz03"
-                                },
-                                "Post it"
-                            )
-                        )
-                    )
-                )
-            ) :
-            null, React.createElement(Footer, {
-                "data-tid": "A2gbcihl2byl"
-            })
-        )
+var Footer = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
     }
-    constructor(props) {
-        super()
-        this.state = {}
-    }
-    close() {
-        this.setState({
-            loading: false,
-            modal: false
-        })
-    }
-    send() {
-        var id = this.state.modal.id;
-        var msg = this.refs.inp.value;
-        var headers = new Headers({
-            'Content-Type': 'application/json;charset=UTF-8'
-        });
-        this.setState({
-            loading: true
-        });
-        fetch("https://wt-2a19a7280eafe304acdacc39b2dbd22b-0.run.webtask.io/express/trello", {
-            method: "POST",
-            mode: 'cors',
-            headers: headers,
-            body: JSON.stringify({
-                name: msg,
-                id: id
-            })
-        }).then((r) => {
-            var t = r.json()
-            console.log(t);
-            return t
-        }).then((r) => {
-            r.time = new Date();
-            this.state.modal.cards.push(r);
-            this.close()
-        }).
-        catch(() => {
-            this.close()
-        })
-    }
-    add(i) {
-        this.setState({
-            modal: i
-        })
-    }
-    setList(cards) {
-        var cards = cards.map(this.convert);
-        var list = {};
-        var names = {
-            '59c00c7b118b69d8a817b61c': "test",
-            '59bf993c5085574bdf2a74ca': "req feature"
-        }
-        if (this.props.list) {
-            this.props.list.forEach((a) => {
-                names[a.id] = a.name;
-            })
-        }
-        for (var c of cards) {
-            list[c.idList] = list[c.idList] || [];
-            list[c.idList].push(c);
-        }
-        this.setState({
-            list: Object.keys(list).map(a => {
-                return {
-                    id: a,
-                    name: names[a],
-                    cards: list[a]
-                }
-            })
-        })
-        debugger
-    }
-    convert(a) {
+});
+Footer.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    let links = Object.keys(this.links).map(a => {
         return {
-            name: a.name,
-            idList: a.idList,
-            id: a.id,
-            time: new Date(a.dateLastActivity)
+            title: a,
+            link: this.links[a]
         }
-    }
-    componentDidMount() {
-        if (window.run)
-            return this.setList(this.props.cards);
-        var url = "https://api.trello.com/1/boards/s9LW4gmz/cards";
-        fetch(url).then((j) => {
-            return j.json()
-        }).then((a) => {
-            this.setList(a);
-        });
+    })
+    return React.createElement("div", {
+            "data-tid": "Aaopts7pu67u",
+            className: "Footer-div_27"
+        },
+        React.createElement("div", {
+                "data-tid": "Aq5yrkqnvx9b",
+                className: "Footer-div_12"
+            },
+            links && links.map && links.length ? links.map((i, j) => (
+                React.createElement("a", {
+                        key: j,
+                        "data-tid": "Aag72o7cdsx",
+                        className: "Footer-a_10",
+                        href: i.link,
+                        target: 'blank'
+                    },
+                    i.title
+                )
+            )) : undefined
+        ),
+        React.createElement("div", {
+                "data-tid": "Aduqhox7tpr6",
+                style: {
+                    color: 'white'
+                },
+                className: "Footer-div_64"
+            },
+            React.createElement("span", {
+                    "data-tid": "Alc6yl6q68pn",
+                    style: {}
+                },
+                "© 2017, ToffyJS. All Rights Reserved."
+            )
+        )
+    )
+}
+Footer.prototype.componentWillMount = function() {
+    try {
+        this.links = {
+            "Home": "/",
+            "Roadmap": "/roadmap",
+            "Terms Of Service": "/terms",
+            "Privacy Policy": "/privacypolicy"
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
     }
 }
         ReactDOM.render(
@@ -1270,4 +1348,7 @@ class Roadmap extends React.Component {
 } ),
             document.getElementById('app')
         )
+   }catch(e){
+       alert(e.name+" "+e.message);
+   }
 </script></body></html>
