@@ -234,7 +234,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 8px
+    padding: 8px;
+    height: 52px
 }
 
 .Style-button_7 {
@@ -515,7 +516,8 @@ Dashboard.prototype.render = function() {
                     ),
                     state.tab.name == 'style' ?
                     React.createElement(Style, {
-                        "data-tid": "Asmeq8t8pqi8"
+                        "data-tid": "Asmeq8t8pqi8",
+                        save: this.saveStyle.bind(this)
                     }) :
                     React.createElement(Table, {
                         "data-tid": "Ahrgglvnqoj6",
@@ -741,7 +743,7 @@ Dashboard.prototype.create = function() {
 }
 Dashboard.prototype.createComponent = function() {
     try {
-        var name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
+        let name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
         if (!name) return;
         name = this.convertName(name);
         let path = `/${this.state.project}/Components/${name}.json`;
@@ -776,6 +778,24 @@ Dashboard.prototype.createComponent = function() {
     } catch (e) {
         console.log("=========================")
         console.log('createComponent')
+        console.log(e)
+    }
+}
+Dashboard.prototype.createFile = function(path, data, isUpate) {
+    try {
+        //write file
+    } catch (e) {
+        console.log("=========================")
+        console.log('createFile')
+        console.log(e)
+    }
+}
+Dashboard.prototype.createFolder = function(path) {
+    try {
+        //create folder
+    } catch (e) {
+        console.log("=========================")
+        console.log('createFolder')
         console.log(e)
     }
 }
@@ -927,6 +947,16 @@ Dashboard.prototype.remove = function(item) {
         console.log(e)
     }
 }
+Dashboard.prototype.saveStyle = function(data) {
+    try {
+        const json = JSON.stringify(data, null, 2);
+        this.updateSetting(json);
+    } catch (e) {
+        console.log("=========================")
+        console.log('saveStyle')
+        console.log(e)
+    }
+}
 Dashboard.prototype.search = function(value) {
     try {
         var v = value.toLowerCase();
@@ -961,6 +991,46 @@ Dashboard.prototype.updateLocal = function(type, data) {
     } catch (e) {
         console.log("=========================")
         console.log('updateLocal')
+        console.log(e)
+    }
+}
+Dashboard.prototype.updateSetting = function() {
+    try {
+        let name = window.prompt("enter name for " + (this.state.page === "projects" ? "project" : "component"));
+        if (!name) return;
+        name = this.convertName(name);
+        let path = `/${this.state.project}/Components/${name}.json`;
+        const h = {
+            'Content-Type': "application/octet-stream",
+            "Dropbox-API-Arg": JSON.stringify({
+                path: path,
+                "mode": "overwrite"
+            })
+        };
+        const body = {
+            name: name,
+            component: {
+                name: name,
+            }
+        };
+        this.setState({
+            makeAction: `creating:  ${path}`
+        });
+        this.call(h, "upload", body).then((l) => {
+            alert("saved!!!");
+            this.state.list.unshift({
+                lastTime: "now",
+                name: name,
+                path: path,
+                type: "component"
+            });
+            this.setState({
+                makeAction: null
+            });
+        });
+    } catch (e) {
+        console.log("=========================")
+        console.log('updateSetting')
         console.log(e)
     }
 }
@@ -1203,11 +1273,21 @@ Style.prototype.render = function() {
                                 )
                             ),
                             state.editFont === i ?
-                            React.createElement(SelectList, {
-                                "data-tid": "Aosre3po3u8n",
-                                list: this.fonts,
-                                name: 'font'
-                            }) :
+                            React.createElement("select", {
+                                    "data-tid": "Aj97jqff70r",
+                                    onChange: (e) => {
+                                        this.changeFont(e.target.value);
+                                    }
+                                },
+                                this.fonts && this.fonts.map && this.fonts.length ? this.fonts.map((i, j) => (
+                                    React.createElement("option", {
+                                            key: j,
+                                            "data-tid": "Agwkigegarv5"
+                                        },
+                                        i
+                                    )
+                                )) : undefined
+                            ) :
                             null
                         )
                     )) : undefined
@@ -1374,6 +1454,20 @@ Style.prototype.changeColor = function(i, v) {
         console.log(e)
     }
 }
+Style.prototype.changeFont = function(val) {
+    try {
+        const idx = this.state.fonts.indexOf(this.state.editFont);
+        this.state.fonts[idx] = val;
+        this.setState({
+            fonts: this.state.fonts,
+            editFont: null
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('changeFont')
+        console.log(e)
+    }
+}
 Style.prototype.getColor = function(j) {
     try {
         const r = Math.max((j / this.fonts.length), 0.2)
@@ -1419,7 +1513,16 @@ Style.prototype.removeSize = function(size) {
 }
 Style.prototype.save = function() {
     try {
-        this.props.save(this.state);
+        const {
+            fonts,
+            colors,
+            sizes
+        } = this.state;
+        this.props.save({
+            fonts,
+            colors,
+            sizes
+        });
     } catch (e) {
         console.log("=========================")
         console.log('save')
@@ -1832,41 +1935,6 @@ EditName.prototype.update = function(e) {
 }
 
 
-var SelectList = React.createClass({
-    getInitialState: function() {
-        return {}
-    },
-    render: function() {
-        return null
-    }
-});
-SelectList.prototype.render = function() {
-    var props = this.props;
-    var state = this.state;
-    return React.createElement("form", {
-            "data-tid": "Alwqr9f9maxo"
-        },
-        React.createElement("input", {
-            "data-tid": "A6y59o0qb2ld",
-            type: 'text',
-            list: props.name
-        }),
-        React.createElement("datalist", {
-                "data-tid": "A9qqsbwzvs3o",
-                id: props.name
-            },
-            props.list && props.list.map && props.list.length ? props.list.map((i, j) => (
-                React.createElement("option", {
-                    key: j,
-                    "data-tid": "Azuky8i018jh",
-                    value: i
-                })
-            )) : undefined
-        )
-    )
-}
-
-
 var ProjectItem = React.createClass({
     getInitialState: function() {
         return {}
@@ -1938,7 +2006,7 @@ ProjectItem.prototype.remove = function(e) {
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
-    projects:[]
+    
 } ),
             document.getElementById('app')
         )
