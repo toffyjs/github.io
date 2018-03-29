@@ -210,6 +210,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-radius: 66px;
     opacity: 0
 }
+.Style-button_14 {
+    border-color: transparent;
+    background-color: transparent;
+    color: Crimson
+}
 .Style-div_12 {
     flex-direction: row;
     display: flex
@@ -224,8 +229,22 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     justify-content: flex-start;
     align-items: center
 }
-.Style-h1_3 {
-    margin: 14px
+.Style-div_15 {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px
+}
+
+.Style-button_7 {
+    border-color: transparent;
+    background-color: transparent
+}
+.Style-button_3 {
+    border-color: transparent;
+    background-color: transparent;
+    color: Crimson
 }
 
 .Style-div_8 {
@@ -234,10 +253,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-width: 1px;
     flex-direction: row;
     display: flex;
-    padding: 7px
+    padding: 7px;
+    justify-content: space-between
 }
 .Style-div_8:last-child {
     border-bottom: none
+}
+.Style-div_16 {
+    flex-direction: row;
+    display: flex
+}
+.Style-div_17 {
+    width: 200px
 }
 .Style-div_26 {
     margin-top: 8px;
@@ -1079,7 +1106,19 @@ Style.prototype.render = function() {
                                 React.createElement(EditName, {
                                     "data-tid": "Avtn566n5qcf",
                                     name: i.name
-                                })
+                                }),
+                                React.createElement("button", {
+                                        "data-tid": "Ahcbd7y94fj",
+                                        onClick: (e) => {
+                                            this.removeColor(i);
+                                        },
+                                        className: "Style-button_14"
+                                    },
+                                    React.createElement("i", {
+                                        "data-tid": "Abugjon1epr",
+                                        className: (" fa fa-trash") + ''
+                                    })
+                                )
                             ),
                             React.createElement("div", {
                                     "data-tid": "Axxz2b7ake1g",
@@ -1097,7 +1136,9 @@ Style.prototype.render = function() {
                                 )) : undefined
                             )
                         )
-                    )) : undefined
+                    )) : React.createElement("div", {
+                        "data-tid": "A7e88sus7e0i"
+                    })
                 )
             )
         ),
@@ -1115,16 +1156,59 @@ Style.prototype.render = function() {
                         className: "Style-div_9"
                     },
                     state.fonts && state.fonts.map && state.fonts.length ? state.fonts.map((i, j) => (
-                        React.createElement("h1", {
+                        React.createElement("div", {
                                 key: j,
-                                "data-tid": "An83o7j3o709",
-                                style: {
-                                    fontFamily: i,
-                                    color: this.getColor(j)
-                                },
-                                className: "Style-h1_3"
+                                "data-tid": "Abl3xq2xlvbb",
+                                className: "Style-div_15"
                             },
-                            i
+                            React.createElement("div", {
+                                    "data-tid": "A2xqctpk4t4x",
+                                    className: "Style-div_30"
+                                },
+                                React.createElement("h1", {
+                                        "data-tid": "An83o7j3o709",
+                                        style: {
+                                            fontFamily: i,
+                                            color: this.getColor(j)
+                                        },
+                                        className: "Style-h1_3"
+                                    },
+                                    i
+                                ),
+                                React.createElement("button", {
+                                        "data-tid": "Aycnh990syn",
+                                        onClick: (e) => {
+                                            this.setState({
+                                                editFont: i
+                                            });
+                                        },
+                                        className: "Style-button_7"
+                                    },
+                                    React.createElement("i", {
+                                        "data-tid": "Acg3i9zue2bq",
+                                        className: (" fa fa-pencil") + ''
+                                    })
+                                ),
+                                React.createElement("button", {
+                                        "data-tid": "Anwzaslylje",
+                                        onClick: (e) => {
+                                            this.removeFont(i);
+                                        },
+                                        className: "Style-button_3"
+                                    },
+                                    React.createElement("i", {
+                                        "data-tid": "A2r87fifcpc3",
+                                        className: (" fa fa-trash") + ''
+                                    })
+                                )
+                            ),
+                            state.editFont === i ?
+                            React.createElement(SelectList, {
+                                "data-tid": "Aosre3po3u8n",
+                                list: this.fonts,
+                                name: 'font'
+                            }) :
+                            null
                         )
                     )) : undefined
                 )
@@ -1150,14 +1234,36 @@ Style.prototype.render = function() {
                                 "data-tid": "At8a35yvf77t",
                                 className: "Style-div_8"
                             },
-                            React.createElement(EditName, {
-                                "data-tid": "Aimmbkn7307q",
-                                name: i.name
-                            }),
-                            React.createElement(EditName, {
-                                "data-tid": "Awvzqjcdand",
-                                name: i.value
-                            })
+                            React.createElement("div", {
+                                    "data-tid": "A56r3cgooafp",
+                                    className: "Style-div_16"
+                                },
+                                React.createElement("div", {
+                                        "data-tid": "At19k9tr3ib7",
+                                        className: "Style-div_17"
+                                    },
+                                    React.createElement(EditName, {
+                                        "data-tid": "Aimmbkn7307q",
+                                        name: i.name
+                                    })
+                                ),
+                                React.createElement(EditName, {
+                                    "data-tid": "Awvzqjcdand",
+                                    name: i.value
+                                })
+                            ),
+                            React.createElement("button", {
+                                    "data-tid": "Ae09tovja235",
+                                    onClick: (e) => {
+                                        this.removeSize(i);
+                                    },
+                                    className: "Style-button_14"
+                                },
+                                React.createElement("i", {
+                                    "data-tid": "Abugjon1epr",
+                                    className: (" fa fa-trash") + ''
+                                })
+                            )
                         )
                     )) : undefined
                 )
@@ -1186,7 +1292,7 @@ Style.prototype.componentWillMount = function() {
         this.state = {
             colors: [],
             sizes: [],
-            fonts: []
+            fonts: ['ABeeZee']
         }
     } catch (e) {
         console.log("=========================")
@@ -1275,6 +1381,39 @@ Style.prototype.getColor = function(j) {
     } catch (e) {
         console.log("=========================")
         console.log('getColor')
+        console.log(e)
+    }
+}
+Style.prototype.removeColor = function(color) {
+    try {
+        this.setState({
+            colors: this.state.colors.filter((c) => c !== color)
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('removeColor')
+        console.log(e)
+    }
+}
+Style.prototype.removeFont = function(font) {
+    try {
+        this.setState({
+            fonts: this.state.fonts.filter((f) => f !== font)
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('removeFont')
+        console.log(e)
+    }
+}
+Style.prototype.removeSize = function(size) {
+    try {
+        this.setState({
+            sizes: this.state.sizes.filter((s) => s !== size)
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('removeSize')
         console.log(e)
     }
 }
@@ -1693,6 +1832,41 @@ EditName.prototype.update = function(e) {
 }
 
 
+var SelectList = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+SelectList.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("form", {
+            "data-tid": "Alwqr9f9maxo"
+        },
+        React.createElement("input", {
+            "data-tid": "A6y59o0qb2ld",
+            type: 'text',
+            list: props.name
+        }),
+        React.createElement("datalist", {
+                "data-tid": "A9qqsbwzvs3o",
+                id: props.name
+            },
+            props.list && props.list.map && props.list.length ? props.list.map((i, j) => (
+                React.createElement("option", {
+                    key: j,
+                    "data-tid": "Azuky8i018jh",
+                    value: i
+                })
+            )) : undefined
+        )
+    )
+}
+
+
 var ProjectItem = React.createClass({
     getInitialState: function() {
         return {}
@@ -1764,7 +1938,7 @@ ProjectItem.prototype.remove = function(e) {
 }
         ReactDOM.render(
             React.createElement(Dashboard,{
-    
+    projects:[]
 } ),
             document.getElementById('app')
         )
