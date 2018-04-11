@@ -15,7 +15,7 @@ var Tag = {
       };
     }
   },
-  css: function(src, callback) {
+  css: function(src, callback, onerror) {
     var tag = document.createElement("link"),
       loaded;
     tag.setAttribute("href", src);
@@ -36,6 +36,7 @@ var Tag = {
         }
         loaded = true;
       };
+      script.onerror = onerror;
     }
   }
 };
@@ -43,9 +44,15 @@ var Tag = {
 function updateTag(type, name, id) {
   var tag = this[id];
   if (!tag) {
-    Tag[type](name, () => {
-      window.openFromView("extranal", [name], Klasses);
-    });
+    Tag[type](
+      name,
+      () => {
+        window.openFromView("extranal", [name], Klasses);
+      },
+      e => {
+        window.openFromView("extranalerr", [name], Klasses);
+      }
+    );
   } else {
     tag[type == "js" ? "src" : "link"] = name;
   }
