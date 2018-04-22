@@ -1,0 +1,137 @@
+<!DOCTYPE html><html><head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+<style type="text/css">
+
+body{
+    font-family:Roboto
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}</style><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js">
+</script><title></title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> 
+ <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+
+<style type="text/css">
+ .LoadingPage-div_2 {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px
+}
+.LoadingPage-div_19 {
+    height: 100vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: Orange;
+    animation-duration: .5s;
+    animation-name: zoomInRight
+}
+.LoadingPage-button_1 {
+    border-radius: 11px;
+    width: 50px;
+    height: 50px;
+    margin: 18px
+}
+.Logo-h1_5 {
+    color: #333
+}
+.Logo-span_5 {
+    color: AliceBlue
+}
+</style>
+ </head><body><script type="text/javascript">
+ </script><div id="app"></div><script type="text/javascript">
+   try{
+        
+        var LoadingPage = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+LoadingPage.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("div", {
+            "data-tid": "Ade7ai3czw3f",
+            className: "LoadingPage-div_2"
+        },
+        state.start ?
+        React.createElement("div", {
+                "data-tid": "Auz2xlh2bwe",
+                className: "LoadingPage-div_19"
+            },
+            React.createElement(Logo, {
+                "data-tid": "A4daesr3wddk"
+            })
+        ) :
+        React.createElement("button", {
+                "data-tid": "Aheaskt8ocg8",
+                onClick: this.start.bind(this),
+                className: "LoadingPage-button_1"
+            },
+            "toffy"
+        )
+    )
+}
+LoadingPage.prototype.componentWillMount = function() {
+    try {
+        this.state = {
+            start: !this.props.off
+        }
+    } catch (e) {
+        console.log("=========================")
+        console.log('componentWillMount')
+        console.log(e)
+    }
+}
+LoadingPage.prototype.start = function() {
+    try {
+        this.setState({
+            start: true
+        })
+    } catch (e) {
+        console.log("=========================")
+        console.log('start')
+        console.log(e)
+    }
+}
+
+
+var Logo = React.createClass({
+    getInitialState: function() {
+        return {}
+    },
+    render: function() {
+        return null
+    }
+});
+Logo.prototype.render = function() {
+    var props = this.props;
+    var state = this.state;
+    return React.createElement("h1", {
+            "data-tid": "Amhrz4e21okj",
+            className: "Logo-h1_5"
+        },
+        "TOFFY", React.createElement("span", {
+                "data-tid": "Agu445kn19y7",
+                className: "Logo-span_5"
+            },
+            "IDE"
+        )
+    )
+}
+        ReactDOM.render(
+            React.createElement(LoadingPage,{} ),
+            document.getElementById('app')
+        )
+   }catch(e){
+       alert(e.name+" "+e.message);
+   }
+</script></body></html>
