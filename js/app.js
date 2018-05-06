@@ -22,6 +22,13 @@ var Tag = {
     tag.rel = 'stylesheet';
     document.getElementsByTagName('head')[0].appendChild(tag);
   },
+  cssInline: function(src, callback, onerror) {
+    var tag = document.createElement('tyle'),
+      loaded;
+    tag.innerHTML = src;
+    tag.rel = 'stylesheet';
+    document.getElementsByTagName('head')[0].appendChild(tag);
+  },
   js: function(src, callback) {
     var script = document.createElement('script'),
       loaded;
