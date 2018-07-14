@@ -145,11 +145,37 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin: 5px;
     box-shadow: 0 0 15px #777
 }
+.Page-div_10 {
+    margin: 1px;
+    margin-top: 33px;
+    justify-content: center;
+    display: flex;
+    border-color: LightSlateGrey
+}
+.Page-a_1 {
+    font-style: none;
+    text-decoration: none;
+    color: White;
+    margin-right: 30px;
+    border-color: White;
+    background-color: transparent;
+    padding: 10px;
+    border-style: solid;
+    border-radius: 38px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 27px
+}
+.Page-i_10 {
+    margin-right: 10px
+}
 .Page-div_21 {
     flex-direction: row;
     padding: 22px;
     flex-wrap: wrap;
-    display: flex
+    display: flex;
+    justify-content: center;
+    margin-top: 57px
 }
 .Page-div_22 {
     width: 200px;
@@ -212,7 +238,7 @@ AppBuild.prototype.render = function() {
                         "data-tid": "Ailb2ytzx9ok",
                         className: "AppBuild-span_1"
                     },
-                    "Enter you app..."
+                    "Enter you app ID..."
                 ),
                 React.createElement("div", {
                         "data-tid": "Ac6v7fbl1cq4",
@@ -394,6 +420,22 @@ Page.prototype.render = function() {
                 )
             ),
             React.createElement("div", {
+                    "data-tid": "Aha78o9wjtqd",
+                    className: "Page-div_10"
+                },
+                React.createElement("a", {
+                        "data-tid": "An94ncfv8fh",
+                        className: "Page-a_1",
+                        href: 'https://itunes.apple.com/app/' + state.id
+                    },
+                    React.createElement("i", {
+                        "data-tid": "Awybwwkp6cyq",
+                        className: " Page-i_10" + (" fa fa-apple") + ''
+                    }),
+                    "Download ", state.name
+                )
+            ),
+            React.createElement("div", {
                     "data-tid": "A1mgs3z6ipxd",
                     className: "Page-div_21"
                 },
@@ -440,6 +482,24 @@ Page.prototype.render = function() {
 Page.prototype.componentWillMount = function() {
     try {
         this.state = this.props.value;
+        // const ios = this.props.ios;
+        // this.state={
+        //         review: ios.review,
+        //         image: ios.icon,
+        //         description: ios.openGraph.description,
+        //         name: ios.openGraph.name,
+        //         screenshot: ios.openGraph.screenshot,
+        //         urls: [{
+        //             name: ios.openGraph.name,
+        //             url: ios.softwareInfo.websiteUrl
+        //         }, {
+        //             name: 'Support',
+        //             url: ios.softwareInfo.supportUrl
+        //         }, {
+        //             name: 'Privacy Policy',
+        //             url: ios.softwareInfo.privacyPolicyUrl
+        //         }]
+        //     }
     } catch (e) {
         console.log("=========================")
         console.log('componentWillMount')
